@@ -10,10 +10,6 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
-        test: /\.svg$/,
-        loader: 'file-loader',
-      },
-      {
         test: /\.ttf$/,
         type: 'asset/inline',
       },

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from '../../assets/img/Logo.svg'
 import Navbar from './Navbar/Navbar';
 
 const Header = styled.header`
@@ -13,7 +12,6 @@ const Header = styled.header`
 
 const HeaderApp = () => (
   <Header>
-    <img src={logo} alt="budget-app" />
     <Navbar />
   </Header>
 );
