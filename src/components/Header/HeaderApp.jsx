@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Logo from '../Icons/Logo';
 import Navbar from './Navbar/Navbar';
 
 const Header = styled.header`
@@ -12,6 +13,7 @@ const Header = styled.header`
 
 const HeaderApp = () => (
   <Header>
+    <Logo/>
     <Navbar />
   </Header>
 );
