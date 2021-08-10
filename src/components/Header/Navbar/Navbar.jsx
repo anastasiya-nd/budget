@@ -8,10 +8,10 @@ const Navbar = () => (
         <NavItemLink to='/'>Home</NavItemLink>
       </NavItem>
       <NavItem>
-        <NavItemLink to='/'>About us</NavItemLink>
+        <NavItemLink to='/about-us'>About us</NavItemLink>
       </NavItem>
       <NavItem>
-        <NavItemLink to='/'>Contacts</NavItemLink>
+        <NavItemLink to='/contacts'>Contacts</NavItemLink>
       </NavItem>
     </NavUl>
   </nav>
