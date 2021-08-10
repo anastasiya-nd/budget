@@ -14,6 +14,10 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'file-loader',
       },
+      {
+        test: /\.ttf$/,
+        type: 'asset/inline',
+      },
     ],
   },
   plugins: [
