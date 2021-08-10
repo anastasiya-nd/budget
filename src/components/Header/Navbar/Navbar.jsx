@@ -1,38 +1,20 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-
-const Nav = styled.nav`
-  ul {
-    display: flex;
-    padding: 0;
-  }
-  ul li {
-    list-style-type: none;
-    margin-left: 40px;
-  }
-  ul li a {
-    font-size: 18px;
-    line-height: 16px;
-    text-decoration: none;
-    color: #000;
-  }
-`
+import { NavUl, NavItem, NavItemLink } from './styles';
 
 const Navbar = () => (
-  <Nav>
-    <ul>
-      <li>
-        <NavLink to='/'>Home</NavLink>
-      </li>
-      <li>
-        <NavLink to='/'>About us</NavLink>
-      </li>
-      <li>
-        <NavLink to='/'>Contacts</NavLink>
-      </li>
-    </ul>
-  </Nav>
+  <nav>
+    <NavUl>
+      <NavItem>
+        <NavItemLink to='/'>Home</NavItemLink>
+      </NavItem>
+      <NavItem>
+        <NavItemLink to='/'>About us</NavItemLink>
+      </NavItem>
+      <NavItem>
+        <NavItemLink to='/'>Contacts</NavItemLink>
+      </NavItem>
+    </NavUl>
+  </nav>
 )
 
 export default Navbar;
