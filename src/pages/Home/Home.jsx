@@ -1,8 +1,9 @@
 import React from 'react';
+import SpendingItem from '../../components/SpendingItem';
 
 const Home = () => (
   <section>
-    Home
+    <SpendingItem />
   </section>
 )
 
