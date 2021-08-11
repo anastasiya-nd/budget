@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Food from '../Icons/Food';
 import Shopping from '../Icons/Shopping';
 import Entertainment from '../Icons/Entertainment';
@@ -9,37 +10,7 @@ import Education from '../Icons/Education';
 import Other from '../Icons/Other';
 import * as Styled from './styles';
 
-
-const SpendingItem = () => {
-  const spendings = [
-    {
-      category: 'food',
-      note: 'fish, bread, eggs, milk, bread, ice-cream',
-      labels: ['Mall', 'Party', 'Mall', 'Party'],
-      createdAt: 'Sep 29, 2019',
-      amount: '25.00',
-      currency: 'BYN',
-      id: 'faf2'
-    },
-    {
-      category: 'shopping',
-      note: 't-shirt, jacket, cup, keyboard',
-      createdAt: 'Sep 22, 2020',
-      amount: '100.00',
-      currency: 'BYN',
-      id: 'fdwf'
-    },
-    {
-      category: 'bills',
-      note: 'internet, phone, electricity, water',
-      labels: ['Home'],
-      createdAt: 'Sep 22, 2020',
-      amount: '60.50',
-      currency: 'BYN',
-      id: 'fdcfe'
-    },
-  ];
-
+const SpendingItem = (props) => {
   const getIcon = (category) => {
     switch (category) {
       case 'food':
@@ -63,30 +34,43 @@ const SpendingItem = () => {
     }
   }
 
+  const { category, note, labels, createdAt, amount, currency } = props;
+
   return (
-    spendings.map(s => (
-      <Styled.Spending key={s.id}>
-        {getIcon(s.category)}
+      <Styled.Spending>
+        {getIcon(category)}
         <Styled.CategoryWrap>
-          <Styled.CategoryName>{s.category}</Styled.CategoryName>
-          {s.note && <Styled.Description>{s.note}</Styled.Description>}
+          <Styled.CategoryName>{category}</Styled.CategoryName>
+          {note && <Styled.Description>{note}</Styled.Description>}
         </Styled.CategoryWrap>
-        {s.labels && (
+        {!!labels.length && (
           <Styled.LabelWrap>
-            <Styled.Label>{s.labels[0]}</Styled.Label>
-            {s.labels[1] ? <Styled.Label>{s.labels[1]}</Styled.Label> : null}
-            {s.labels.length > 2 ?
-              <Styled.HiddenLabelsNumber>+{s.labels.length - 2}</Styled.HiddenLabelsNumber>
-              : null}
+            <Styled.Label>{labels[0]}</Styled.Label>
+            {labels[1] && <Styled.Label>{labels[1]}</Styled.Label>}
+            {labels.length > 2 &&
+              <Styled.HiddenLabelsNumber>+{labels.length - 2}</Styled.HiddenLabelsNumber>}
           </Styled.LabelWrap>
         )}
         <Styled.DateAndAmountWrap>
-          <Styled.Date>{s.createdAt}</Styled.Date>
-          <Styled.Amount>{s.amount} {s.currency}</Styled.Amount>
+          <Styled.Date>{createdAt}</Styled.Date>
+          <Styled.Amount>{amount} {currency}</Styled.Amount>
         </Styled.DateAndAmountWrap>
       </Styled.Spending>
-    ))
   )
 }
+
+SpendingItem.propTypes = {
+  category: PropTypes.string.isRequired,
+  note: PropTypes.string,
+  labels: PropTypes.arrayOf(PropTypes.string),
+  createdAt: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
+  currency: PropTypes.string.isRequired
+};
+
+SpendingItem.defaultProps = {
+  note: '',
+  labels: []
+};
 
 export default SpendingItem;
