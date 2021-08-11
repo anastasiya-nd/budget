@@ -10,9 +10,9 @@ import Education from '../Icons/Education';
 import Other from '../Icons/Other';
 import * as Styled from './styles';
 
-const SpendingItem = (props) => {
-  const getIcon = (category) => {
-    switch (category) {
+const SpendingItem = ({ category, note, labels, createdAt, amount, currency }) => {
+  const getIcon = (categoryName) => {
+    switch (categoryName) {
       case 'food':
         return <Food />;
       case 'shopping':
@@ -33,8 +33,6 @@ const SpendingItem = (props) => {
         return null;
     }
   }
-
-  const { category, note, labels, createdAt, amount, currency } = props;
 
   return (
       <Styled.Spending>

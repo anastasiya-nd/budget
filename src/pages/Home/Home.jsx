@@ -32,21 +32,19 @@ const Home = () => {
     },
   ];
 
-  const spendings = spendingsArray.map((s) => (
-    <SpendingItem
-      key={s.id}
-      category={s.category}
-      note={s.note}
-      labels={s.labels}
-      createdAt={s.createdAt}
-      amount={s.amount}
-      currency={s.currency}
-      />
-  ));
-
   return (
     <section>
-      {spendings}
+      {spendingsArray.map((s) => (
+          <SpendingItem
+            key={s.id}
+            category={s.category}
+            note={s.note}
+            labels={s.labels}
+            createdAt={s.createdAt}
+            amount={s.amount}
+            currency={s.currency}
+            />
+      ))}
     </section>
   )
 }
