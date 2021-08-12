@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ButtonItem from './styles';
 
-const Button = ({ text, type, variant}) => (
-  <ButtonItem className={variant} type={type} onClick={() => console.log('A method')}>
+const Button = ({ text, type, variant }) => (
+  <ButtonItem variant={variant} type={type}>
     {text}
   </ButtonItem>
 )
@@ -11,7 +11,7 @@ const Button = ({ text, type, variant}) => (
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   type: PropTypes.string,
-  variant: PropTypes.string
+  variant: PropTypes.string,
 };
 
 Button.defaultProps = {

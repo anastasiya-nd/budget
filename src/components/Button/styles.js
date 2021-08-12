@@ -7,15 +7,19 @@ const ButtonItem = styled.button`
   font-size: 14px;
   line-height: 16px;
 
-  &.primary {
+  ${({ variant }) =>
+    variant === 'primary' &&
+    `
     background-color: #24695c;
     color: #fff;
-  }
+  `}
 
-  &.secondary {
+  ${({ variant }) =>
+    variant === 'secondary' &&
+    `
     background-color: #f5f1ee;
     color: #000;
-  }
+  `}
 `;
 
 export default ButtonItem;
