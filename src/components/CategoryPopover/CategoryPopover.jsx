@@ -14,6 +14,7 @@ const CategoryPopover = () => {
         <ul>
           {categories.map(category => <li key={category}>{category}</li>)}
         </ul>
+        <button type='button'>Apply</button>
       </div>
     </div>
   )
