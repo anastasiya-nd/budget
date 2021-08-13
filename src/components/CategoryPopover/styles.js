@@ -17,23 +17,14 @@ export const PopoverContentWrap = styled.div`
   left: 0;
   background: #fff;
   width: fit-content;
-  ${({ isOpen }) =>
-    isOpen === false &&
-    `
-    display: none;
-  `}
-  ${({ isOpen }) =>
-    isOpen === true &&
-    `
-    display: block;
-  `}
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
 `;
 
 export const ArrowWrap = styled.div`
   transition: 0.2s;
   height: 24px;
   ${({ isOpen }) =>
-    isOpen === true &&
+    isOpen &&
     `
     transform: rotate(180deg);
   `}
@@ -46,13 +37,14 @@ export const CategoryWrap = styled.ul`
 
 export const CategoryItem = styled.li`
   list-style-type: none;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 2px 8px;
+  font-weight: ${({ isActive }) => (isActive ? 700 : 400)};
 `;
 
 export const CategoryLabel = styled.label`
   display: block;
-  font-size: 14px;
-  line-height: 16px;
-  padding: 2px 8px;
 `;
 
 export const CategoryInput = styled.input`

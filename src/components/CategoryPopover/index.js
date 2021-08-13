@@ -1,3 +1,1 @@
-import CategoryPopover from './CategoryPopover';
-
-export default CategoryPopover;
+export { default } from './CategoryPopover';

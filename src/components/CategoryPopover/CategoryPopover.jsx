@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import * as Styled from './styles';
 import Arrow from '../Icons/Arrow';
 
@@ -11,10 +11,14 @@ const CategoryPopover = () => {
 
   const [isOpen, toggleIsOpen] = useState(false);
 
+  const getCategory = (e) => {
+    setCategory(e.target.dataset.value);
+  };
+
   return (
     <Styled.PopoverWrap>
       <Styled.PopoverLabel onClick={() => toggleIsOpen(!isOpen)}>
-        <span>{ placeholder || popoverLabel }</span>
+        <span>{placeholder || popoverLabel}</span>;
         <Styled.ArrowWrap isOpen={isOpen}>
           <Arrow/>
         </Styled.ArrowWrap>
@@ -22,18 +26,26 @@ const CategoryPopover = () => {
       <Styled.PopoverContentWrap isOpen={isOpen}>
         <Styled.CategoryWrap>
           {categories.map(category => (
-            <Styled.CategoryItem key={category}>
-              <Styled.CategoryInput
-                id={category}
-                name='category'
-                type='radio'
-                value={category}
-                defaultChecked={false}
-                onClick={(e) => setCategory(e.target.value) }/>
-              <Styled.CategoryLabel htmlFor={category}>
-                {category}
-              </Styled.CategoryLabel>
+            <Styled.CategoryItem
+              key={category}
+              data-value={category}
+              isActive={categoryValue === category}
+              onClick={(e) => getCategory(e)}>
+              {category}
             </Styled.CategoryItem>
+
+            // <Styled.CategoryItem key={category}>
+            //   <Styled.CategoryInput
+            //     id={category}
+            //     name='category'
+            //     type='radio'
+            //     value={category}
+            //     defaultChecked={false}
+            //     onClick={(e) => setCategory(e.target.value) }/>
+            //   <Styled.CategoryLabel htmlFor={category}>
+            //     {category}
+            //   </Styled.CategoryLabel>
+            // </Styled.CategoryItem>
           ))}
         </Styled.CategoryWrap>
         <button type='button' onClick={() => console.log(categoryValue)}>Apply</button>
