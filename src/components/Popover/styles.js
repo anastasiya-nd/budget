@@ -17,7 +17,7 @@ export const PopoverContentWrap = styled.div`
   left: 0;
   background: #fff;
   width: fit-content;
-  box-shadow: 0 3px 7px 3px rgb(0 0 0 / 20%);
+  box-shadow: 0px 4px 8px rgba(22, 61, 53, 0.12);
   border-radius: 4px;
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
 `;
