@@ -1,58 +1,35 @@
 import React, { useState } from 'react'
 import * as Styled from './styles';
-import Arrow from '../Icons/Arrow';
+import Popover from '../Popover/Popover';
+// import Button from '../Button'
 
 const CategoryPopover = () => {
-  const categories = ['shopping', 'entertainment', 'car', 'bills', 'food', 'home', 'education', 'other'];
-  const placeholder = '';
-  const popoverLabel = 'Category';
+  const categories = ['Shopping', 'Entertainment', 'Car', 'Bills', 'Food', 'Home', 'Education', 'Other'];
 
-  const [categoryValue, setCategory] = useState('');
+  const [categoryValue, setValue] = useState('');
 
-  const [isOpen, toggleIsOpen] = useState(false);
-
-  const getCategory = (e) => {
-    setCategory(e.target.dataset.value);
+  const setCategory = (e) => {
+    setValue(e.target.dataset.value);
   };
 
   return (
-    <Styled.PopoverWrap>
-      <Styled.PopoverLabel onClick={() => toggleIsOpen(!isOpen)}>
-        <span>{placeholder || popoverLabel}</span>;
-        <Styled.ArrowWrap isOpen={isOpen}>
-          <Arrow/>
-        </Styled.ArrowWrap>
-      </Styled.PopoverLabel>
-      <Styled.PopoverContentWrap isOpen={isOpen}>
+    <Popover popoverLabel='Category'>
+      <>
         <Styled.CategoryWrap>
           {categories.map(category => (
             <Styled.CategoryItem
               key={category}
               data-value={category}
               isActive={categoryValue === category}
-              onClick={(e) => getCategory(e)}>
+              onClick={(e) => setCategory(e)}>
               {category}
             </Styled.CategoryItem>
-
-            // <Styled.CategoryItem key={category}>
-            //   <Styled.CategoryInput
-            //     id={category}
-            //     name='category'
-            //     type='radio'
-            //     value={category}
-            //     defaultChecked={false}
-            //     onClick={(e) => setCategory(e.target.value) }/>
-            //   <Styled.CategoryLabel htmlFor={category}>
-            //     {category}
-            //   </Styled.CategoryLabel>
-            // </Styled.CategoryItem>
           ))}
         </Styled.CategoryWrap>
-        <button type='button' onClick={() => console.log(categoryValue)}>Apply</button>
-      </Styled.PopoverContentWrap>
-    </Styled.PopoverWrap>
+        <Styled.ButtonItem text='Apply' onClick={() => console.log(categoryValue)}/>
+      </>
+    </Popover>
   )
-
 }
 
 export default CategoryPopover;
