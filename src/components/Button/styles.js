@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-const ButtonItem = styled.button`
+// eslint-disable-next-line
+export const ButtonItem = styled.button`
   border: none;
   border-radius: 3px;
   padding: 8px;
@@ -21,5 +22,3 @@ const ButtonItem = styled.button`
     color: #000;
   `}
 `;
-
-export default ButtonItem;

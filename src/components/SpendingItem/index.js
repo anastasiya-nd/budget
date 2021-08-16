@@ -1,3 +1,1 @@
-import SpendingItem from './SpendingItem';
-
-export default SpendingItem;
+export { default } from './SpendingItem';
