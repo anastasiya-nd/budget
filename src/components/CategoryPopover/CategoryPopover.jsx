@@ -3,7 +3,16 @@ import Popover from '../Popover/Popover';
 import * as Styled from './styles'
 
 const CategoryPopover = () => {
-  const categories = ['Shopping', 'Entertainment', 'Car', 'Bills', 'Food', 'Home', 'Education', 'Other'];
+  const categories = [
+    'Shopping',
+    'Entertainment',
+    'Car',
+    'Bills',
+    'Food',
+    'Home',
+    'Education',
+    'Other'
+  ];
   const [categoryValue, setValue] = useState('');
 
   const setCategory = (category) => {
@@ -24,7 +33,9 @@ const CategoryPopover = () => {
             </Styled.CategoryItem>
           ))}
         </Styled.CategoryWrap>
-        <Styled.ButtonItem text='Apply' onClick={() => console.log(categoryValue)}/>
+        <Styled.ButtonWrap>
+          <Styled.ButtonItem text='Apply' onClick={() => console.log(categoryValue)}/>
+        </Styled.ButtonWrap>
       </>
     </Popover>
   )

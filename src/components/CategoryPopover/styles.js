@@ -2,9 +2,18 @@ import styled from 'styled-components';
 import Button from '../Button';
 
 export const CategoryWrap = styled.ul`
-  padding: 8px 0px;
-  margin: 0;
-  // min-width: 110px;
+  height: 160px;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 16px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.16);
+    width: 6px;
+    border-radius: 8px;
+    border-right: 5px solid #fff;
+    border-left: 5px solid #fff;
+  }
 `;
 
 export const CategoryItem = styled.li`
@@ -19,6 +28,11 @@ export const CategoryItem = styled.li`
   }
 `;
 
+export const ButtonWrap = styled.div`
+  padding: 0 16px;
+  margin-top: 8px;
+`;
+
 export const ButtonItem = styled(Button)`
-  font-size: 16px;
+  width: 100%;
 `;
