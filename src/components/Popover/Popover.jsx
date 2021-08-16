@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import Arrow from '../Icons/Arrow';
 
-const Popover = ({ popoverLabel, ...props }) => {
+const Popover = ({ popoverLabel, ...other }) => {
   const [isOpen, toggleIsOpen] = useState(false);
   const node = useRef();
 
@@ -23,7 +23,7 @@ const Popover = ({ popoverLabel, ...props }) => {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     }
-  },[])
+  }, [])
 
   return (
     <Styled.PopoverWrap ref={node}>
@@ -34,7 +34,7 @@ const Popover = ({ popoverLabel, ...props }) => {
         </Styled.ArrowWrap>
       </Styled.PopoverLabel>
       <Styled.PopoverContentWrap isOpen={isOpen}>
-        {props.children}
+        {other.children}
       </Styled.PopoverContentWrap>
     </Styled.PopoverWrap>
   )
