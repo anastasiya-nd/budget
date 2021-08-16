@@ -5,7 +5,6 @@ import Arrow from '../Icons/Arrow';
 
 const Popover = ({ popoverLabel, ...props }) => {
   const [isOpen, toggleIsOpen] = useState(false);
-
   const node = useRef();
 
   const handleClickOutside = (e) => {
@@ -39,7 +38,7 @@ const Popover = ({ popoverLabel, ...props }) => {
       </Styled.PopoverContentWrap>
     </Styled.PopoverWrap>
   )
-}
+};
 
 Popover.propTypes = {
   popoverLabel: PropTypes.string.isRequired,
