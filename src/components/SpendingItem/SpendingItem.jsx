@@ -36,7 +36,9 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency }) =
 
   return (
       <Styled.Spending>
-        {getIcon(category)}
+        <Styled.IconWrap variant={category}>
+          {getIcon(category)}
+        </Styled.IconWrap>
         <Styled.CategoryWrap>
           <Styled.CategoryName>{category}</Styled.CategoryName>
           {note && <Styled.Description>{note}</Styled.Description>}
@@ -63,7 +65,7 @@ SpendingItem.propTypes = {
   labels: PropTypes.arrayOf(PropTypes.string),
   createdAt: PropTypes.string.isRequired,
   amount: PropTypes.number.isRequired,
-  currency: PropTypes.string.isRequired
+  currency: PropTypes.string.isRequired,
 };
 
 SpendingItem.defaultProps = {

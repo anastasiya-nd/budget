@@ -12,6 +12,24 @@ export const Spending = styled.div`
   }
 `;
 
+export const IconWrap = styled.div`
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: ${({ variant }) =>
+    (variant === 'food' && '#DFC4C0;') ||
+    (variant === 'shopping' && '#BE8C5F;') ||
+    (variant === 'entertainment' && '#FF6B74;') ||
+    (variant === 'car' && '#EF8151;') ||
+    (variant === 'bills' && '#24695C;') ||
+    (variant === 'home' && '#f5f1ee;') ||
+    (variant === 'education' && '#00A9CE;') ||
+    (variant === 'other' && '#5652BA;')};
+`;
+
 export const CategoryWrap = styled.div`
   margin: 0 18px;
   max-width: 315px;
