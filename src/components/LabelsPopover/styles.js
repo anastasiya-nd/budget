@@ -28,7 +28,7 @@ export const Label = styled.span`
 `;
 
 export const Input = styled.input`
-  min-width: 150px;
+  max-width: 170px;
   height: 34px;
   flex-shrink: 1;
   border: none;
