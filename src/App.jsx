@@ -4,7 +4,7 @@ import AboutUs from './pages/AboutUs';
 import Contacts from './pages/Contacts';
 import Header from './components/Header';
 import Home from './pages/Home';
-import Main from './styles';
+import { Main } from './styles';
 
 const App = () => (
   <>
