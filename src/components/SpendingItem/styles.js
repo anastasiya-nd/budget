@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 
+const iconVariants = {
+  food: '#DFC4C0',
+  shopping: '#BE8C5F',
+  entertainment: '#FF6B74',
+  car: '#EF8151',
+  bills: '#24695C',
+  home: '#B7AD56',
+  education: '#00A9CE',
+  other: '#5652BA',
+};
+
 export const Spending = styled.div`
   padding: 12px 18px;
   background: #f5f1ee;
@@ -19,15 +30,7 @@ export const IconWrap = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  background-color: ${({ variant }) =>
-    (variant === 'food' && '#DFC4C0;') ||
-    (variant === 'shopping' && '#BE8C5F;') ||
-    (variant === 'entertainment' && '#FF6B74;') ||
-    (variant === 'car' && '#EF8151;') ||
-    (variant === 'bills' && '#24695C;') ||
-    (variant === 'home' && '#f5f1ee;') ||
-    (variant === 'education' && '#00A9CE;') ||
-    (variant === 'other' && '#5652BA;')};
+  background-color: ${({ variant }) => iconVariants[variant] || '#fff'};
 `;
 
 export const CategoryWrap = styled.div`
