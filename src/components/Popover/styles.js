@@ -13,6 +13,7 @@ export const PopoverLabel = styled.div`
 
 export const PopoverContentWrap = styled.div`
   position: absolute;
+  z-index: 10;
   top: 100%;
   left: 0;
   background: #fff;
