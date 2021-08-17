@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 
+const iconVariants = {
+  food: '#DFC4C0',
+  shopping: '#BE8C5F',
+  entertainment: '#FF6B74',
+  car: '#EF8151',
+  bills: '#24695C',
+  home: '#B7AD56',
+  education: '#00A9CE',
+  other: '#5652BA',
+};
+
 export const Spending = styled.div`
   padding: 12px 18px;
   background: #f5f1ee;
@@ -10,6 +21,16 @@ export const Spending = styled.div`
   &:not(:last-of-type) {
     margin-bottom: 10px;
   }
+`;
+
+export const IconWrap = styled.div`
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: ${({ variant }) => iconVariants[variant] || '#fff'};
 `;
 
 export const CategoryWrap = styled.div`
