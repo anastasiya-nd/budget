@@ -9,15 +9,9 @@ const LabelsPopover = () => {
   const addLabel = (e) => {
     if (e.key === 'Enter') {
       setLabels([...labels, e.target.value]);
-      e.target.value = ''
+      e.target.value = '';
     }
   }
-
-  // const deleteLabel = (index) => {
-  //   labels.splice(index, 1)
-  //   console.log(labels)
-  //   setLabels(labels);
-  // }
 
   const deleteLabel = (deletingLabel) => {
     const newLabels = labels.filter(label => label !== deletingLabel);
