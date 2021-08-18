@@ -1,6 +1,6 @@
 import React from 'react';
 import CategoryPopover from '../../components/CategoryPopover';
-import LabelsPopover from '../../components/LabelsPopover/LabelsPopover';
+import LabelsPopover from '../../components/LabelsPopover';
 import SpendingItem from '../../components/SpendingItem';
 
 const Home = () => {

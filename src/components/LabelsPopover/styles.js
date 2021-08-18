@@ -19,12 +19,10 @@ export const LabelWrap = styled.div`
   background-color: #f5f1ee;
   width: fit-content;
   margin: 4px 4px 4px 0;
-  /* height: 30px; */
 `;
 
 export const Label = styled.span`
   padding: 4px 8px;
-  /* flex-shrink: 0; */
 `;
 
 export const Input = styled.input`
