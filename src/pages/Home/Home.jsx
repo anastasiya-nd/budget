@@ -1,5 +1,6 @@
 import React from 'react';
 import CategoryPopover from '../../components/CategoryPopover';
+import LabelsPopover from '../../components/LabelsPopover';
 import SpendingItem from '../../components/SpendingItem';
 
 const Home = () => {
@@ -35,6 +36,7 @@ const Home = () => {
 
   return (
     <section>
+      <LabelsPopover />
       <CategoryPopover />
       {spendingsArray.map((s) => (
           <SpendingItem

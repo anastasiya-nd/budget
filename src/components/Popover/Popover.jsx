@@ -8,7 +8,7 @@ const Popover = ({ popoverLabel, ...other }) => {
   const node = useRef();
 
   const handleClickOutside = (e) => {
-    if (!node.current.contains(e.target)) {
+    if (!node.current.contains(e.target) && !e.target.closest('[data-delete]')) {
       toggleIsOpen(false);
     }
   }

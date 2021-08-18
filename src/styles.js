@@ -41,6 +41,12 @@ export const GlobalStyle = createGlobalStyle`
   ul li {
     list-style-type: none;
   }
+
+  button {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+  }
 `;
 
 export const Main = styled.main`
