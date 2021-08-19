@@ -37,7 +37,7 @@ const Home = () => {
   return (
     <section>
       <LabelsPopover />
-      <CategoryPopover />
+      {/* <CategoryPopover /> */}
       {spendingsArray.map((s) => (
           <SpendingItem
             key={s.id}
