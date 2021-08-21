@@ -9,25 +9,24 @@ const Popover = React.memo(({ popoverLabel, children }) => {
   // && !e.target.closest('[data-delete]')
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
+    const handleClickOutside=(e)=> {
       console.log(e.target)
-      if (node.current && !node.current.contains(e.target) && isOpen) {
+      if (node.current && !node.current.contains(e.target)) {
         console.log('handleClickOutside')
         toggleIsOpen(false);
       }
     }
 
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('click', handleClickOutside, true);
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('click', handleClickOutside, true);
     }
   })
 
   const changeIsOpen = () => {
     toggleIsOpen(true)
-  }
-
+  } ::
   console.log('state ', isOpen)
 
   return (
