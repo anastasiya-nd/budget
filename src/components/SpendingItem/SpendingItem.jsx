@@ -32,32 +32,33 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency }) =
       default:
         return null;
     }
-  }
+  };
 
   return (
-      <Styled.Spending>
-        <Styled.IconWrap variant={category}>
-          {getIcon(category)}
-        </Styled.IconWrap>
-        <Styled.CategoryWrap>
-          <Styled.CategoryName>{category}</Styled.CategoryName>
-          {note && <Styled.Description>{note}</Styled.Description>}
-        </Styled.CategoryWrap>
-        {!!labels.length && (
-          <Styled.LabelWrap>
-            <Styled.Label>{labels[0]}</Styled.Label>
-            {labels[1] && <Styled.Label>{labels[1]}</Styled.Label>}
-            {labels.length > 2 &&
-              <Styled.HiddenLabelsNumber>+{labels.length - 2}</Styled.HiddenLabelsNumber>}
-          </Styled.LabelWrap>
-        )}
-        <Styled.DateAndAmountWrap>
-          <Styled.Date>{createdAt}</Styled.Date>
-          <Styled.Amount>{amount} {currency}</Styled.Amount>
-        </Styled.DateAndAmountWrap>
-      </Styled.Spending>
-  )
-}
+    <Styled.Spending>
+      <Styled.IconWrap variant={category}>{getIcon(category)}</Styled.IconWrap>
+      <Styled.CategoryWrap>
+        <Styled.CategoryName>{category}</Styled.CategoryName>
+        {note && <Styled.Description>{note}</Styled.Description>}
+      </Styled.CategoryWrap>
+      {!!labels.length && (
+        <Styled.LabelWrap>
+          <Styled.Label>{labels[0]}</Styled.Label>
+          {labels[1] && <Styled.Label>{labels[1]}</Styled.Label>}
+          {labels.length > 2 && (
+            <Styled.HiddenLabelsNumber>+{labels.length - 2}</Styled.HiddenLabelsNumber>
+          )}
+        </Styled.LabelWrap>
+      )}
+      <Styled.DateAndAmountWrap>
+        <Styled.Date>{createdAt}</Styled.Date>
+        <Styled.Amount>
+          {amount} {currency}
+        </Styled.Amount>
+      </Styled.DateAndAmountWrap>
+    </Styled.Spending>
+  );
+};
 
 SpendingItem.propTypes = {
   category: PropTypes.string.isRequired,
@@ -70,7 +71,7 @@ SpendingItem.propTypes = {
 
 SpendingItem.defaultProps = {
   note: '',
-  labels: []
+  labels: [],
 };
 
 export default SpendingItem;

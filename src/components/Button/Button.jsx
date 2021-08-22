@@ -6,20 +6,20 @@ const Button = ({ text, type, variant, onClick, className }) => (
   <ButtonItem variant={variant} type={type} onClick={onClick} className={className}>
     {text}
   </ButtonItem>
-)
+);
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   type: PropTypes.string,
   variant: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 Button.defaultProps = {
   type: 'button',
   variant: 'primary',
-  className: ''
+  className: '',
 };
 
-export default Button
+export default Button;

@@ -1,9 +1,5 @@
 import React from 'react';
 
-const AboutUs = () => (
-  <section>
-    AboutUs
-  </section>
-)
+const AboutUs = () => <section>AboutUs</section>;
 
 export default AboutUs;

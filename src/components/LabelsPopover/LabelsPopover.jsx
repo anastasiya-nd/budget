@@ -3,7 +3,7 @@ import Popover from '../Popover/Popover';
 import Content from './Content';
 
 const LabelsPopover = () => (
-  <Popover popoverLabel='Labels'>
+  <Popover popoverLabel="Labels">
     <Content />
   </Popover>
 );
