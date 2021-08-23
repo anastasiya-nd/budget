@@ -40,8 +40,6 @@ const Calendar = () => {
   let startingDayOfNextMonth = 1;
   const countOfDayInNextMonth = countOfWeekInCalendar * countOfDayInWeek - (countOfDaysInPrevMonth + countOfDaysInMonth);  // endingDayInNextMonth
 
-
-
   const getDaysOfPrevMonth = (calendar) => {
     if( countOfDaysInPrevMonth !== 1) {
       // eslint-disable-next-line
@@ -116,7 +114,7 @@ const Calendar = () => {
         </Styled.ArrowButton>
       </Styled.CalendarHeader>
       <Styled.CalendarTableHeader>
-        {dayNames.map(day => <span key={day}>{day}</span>)}
+        {dayNames.map(day => <div key={day}>{day}</div>)}
       </Styled.CalendarTableHeader>
       <Styled.CalendarTableContent>
         {calendar.map((day, index) => (
