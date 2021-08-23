@@ -44,6 +44,7 @@ const Calendar = () => {
 
   const getDaysOfPrevMonth = (calendar) => {
     if( countOfDaysInPrevMonth !== 1) {
+      // eslint-disable-next-line
       for(let i = 1; i <= countOfDaysInPrevMonth; i++) {
         calendar.push({
           day: startingDayOfPrevMonth,
@@ -56,6 +57,7 @@ const Calendar = () => {
   }
 
   const getDaysOfCurrentMonth = (calendar) => {
+    // eslint-disable-next-line
     for(let i = 1; i <= countOfDaysInMonth; i++) {
       calendar.push({
         day: currentNumberOfDayInMonth,
@@ -67,6 +69,7 @@ const Calendar = () => {
   }
 
   const getDaysOfNextMonth = (calendar) => {
+    // eslint-disable-next-line
     for(let i = 1; i <= countOfDayInNextMonth; i++) {
       calendar.push({
         day: startingDayOfNextMonth,
@@ -119,6 +122,7 @@ const Calendar = () => {
         {calendar.map((day, index) => (
           <Styled.CalendarDay
             variant={day.variant}
+            // eslint-disable-next-line
             key={index}
             isActive={day.value === currentDate}
             onClick={() => setcurrentDate(day.value)}
