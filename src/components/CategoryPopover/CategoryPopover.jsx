@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Popover from '../Popover/Popover';
-import * as Styled from './styles'
+import * as Styled from './styles';
 
 const CategoryPopover = () => {
   const categories = [
@@ -11,7 +11,7 @@ const CategoryPopover = () => {
     'Food',
     'Home',
     'Education',
-    'Other'
+    'Other',
   ];
   const [categoryValue, setValue] = useState('');
 
@@ -20,10 +20,10 @@ const CategoryPopover = () => {
   };
 
   return (
-    <Popover popoverLabel='Category'>
+    <Popover popoverLabel="Category">
       <>
         <Styled.CategoryWrap>
-          {categories.map(category => (
+          {categories.map((category) => (
             <Styled.CategoryItem
               key={category}
               isActive={categoryValue === category}
@@ -34,11 +34,11 @@ const CategoryPopover = () => {
           ))}
         </Styled.CategoryWrap>
         <Styled.ButtonWrap>
-          <Styled.ButtonItem text='Apply' onClick={() => console.log(categoryValue)}/>
+          <Styled.ButtonItem text="Apply" onClick={() => console.log(categoryValue)} />
         </Styled.ButtonWrap>
       </>
     </Popover>
-  )
+  );
 };
 
 export default CategoryPopover;

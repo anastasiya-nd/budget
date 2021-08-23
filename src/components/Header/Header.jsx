@@ -5,7 +5,7 @@ import HeaderItem from './styles';
 
 const Header = () => (
   <HeaderItem>
-    <Logo/>
+    <Logo />
     <Navbar />
   </HeaderItem>
 );
