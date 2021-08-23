@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-const commonStylesCols = `
-  width: 36px;
-  height: 28px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
+const commonStylesOfRowWrap = `
+  width: fit-content;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(7, 36px);
+  font-size: 14px;
+  line-height: 16px;
 `;
 
 export const CalendarWrap = styled.div`
@@ -22,23 +22,36 @@ export const CalendarHeader = styled.div`
   height: 40px;
 `;
 
-export const TableRow = styled.tr`
+export const CalendarTableContent = styled.div`
+  ${commonStylesOfRowWrap}
+  grid-template-rows: repeat(6, 28px);
+  place-items: stretch;
+  /* justify-items: stretch;
+  align-items: stretch; */
+`;
+
+export const TableRow = styled.div`
   display: flex;
   padding: 0 10px;
   font-size: 14px;
   line-height: 16px;
 `;
 
-export const TableHeaderRow = styled(TableRow)`
+export const CalendarTableHeader = styled.div`
+  ${commonStylesOfRowWrap}
+  grid-template-rows: repeat(1, 28px);
+  /* justify-items: center;
+  align-items: center; */
+  place-items: center center;
   color: #777676;
+  font-weight: 700;
 `;
 
-export const TableHeaderCol = styled.th`
-  ${commonStylesCols}
-`;
 
-export const TableCol = styled.td`
-  ${commonStylesCols}
+export const CalendarDay = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   ${({ variant }) => variant === 'otherMonth' && `color: #b2b2b2;`}
   ${({ isActive }) =>
     isActive &&
