@@ -152,6 +152,6 @@ export const getNextMonth = (date) => new Date(date.getFullYear(), date.getMonth
 /**
  * Convert Date for comparison
  * @param {Date} date - current date
- * @returns {number} - next month
+ * @returns {number} - converted date
 */
 export const convertDate = (date) => new Date(date).getTime();
