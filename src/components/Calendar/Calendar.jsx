@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NextArrow from '../Icons/NextArrow';
 import PrevArrow from '../Icons/PrevArrow';
 import * as Styled from './styles';
@@ -24,21 +24,50 @@ const Calendar = () => {
   const countOfDayInWeek = 7;
   const defaultDate = new Date();
 
-  const [currentDate, setcurrentDate] = useState(defaultDate);
-  const [currentMonth, setCurrentMonth] = useState(defaultDate);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [currentDate, setCurrentDate] = useState(defaultDate);
 
-  const year = currentMonth.getFullYear();
-  const month = currentMonth.getMonth();
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
 
-  const countOfDaysInMonth = new Date(year, month + 1, 0).getDate();      // const countOfDaysInMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0).getDate();
-  const indexOfFirstDay = new Date(year, month, 1).getDay();              // const indexOfFirstDay = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1).getDay();
-  const startingDayOfMonth = daysInWeek.indexOf(indexOfFirstDay) + 1;
-  const lastDateOfPrevMonth = new Date(year, month, 0);                   // const lastDateOfPrevMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 0);
-  let startingDayOfPrevMonth = lastDateOfPrevMonth.getDate() - daysInWeek.indexOf(indexOfFirstDay) + 1;
-  const countOfDaysInPrevMonth = startingDayOfMonth - 1;
+  const countOfDaysInMonth = new Date(year, month + 1, 0).getDate(); // +getCountOfDaysInMonth     // const countOfDaysInMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0).getDate();
+
+  const indexOfFirstDay = new Date(year, month, 1).getDay();   // +getIndexOfFirstDayInMonth           // const indexOfFirstDay = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1).getDay();
+
+  // const indexOfFirstDay = getIndexOfFirstDayInMonth(currentDate);
+
+  const startingDayOfMonth = daysInWeek.indexOf(indexOfFirstDay) + 1;  // +getStartingDayOfMonth
+  const lastDateOfPrevMonth = new Date(year, month, 0);     // +getLastDateInPrevMonth              // const lastDateOfPrevMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 0);
+  let startingDayOfPrevMonth = lastDateOfPrevMonth.getDate() - daysInWeek.indexOf(indexOfFirstDay) + 1; // +getStartingDateOfPrevMonth
+
+  const countOfDaysInPrevMonth = startingDayOfMonth - 1; // +getCountOfDaysInPrevMonth
   let currentNumberOfDayInMonth = 1;
   let startingDayOfNextMonth = 1;
-  const countOfDayInNextMonth = countOfWeekInCalendar * countOfDayInWeek - (countOfDaysInPrevMonth + countOfDaysInMonth);  // endingDayInNextMonth
+  const countOfDayInNextMonth = countOfWeekInCalendar * countOfDayInWeek - (countOfDaysInPrevMonth + countOfDaysInMonth); // +getCountOfDayInNextMonth  // endingDayInNextMonth
+
+  const setDateValue = (value) => new Date(value);
+
+  console.log('setDateValue', setDateValue(selectedDate));
+  console.log(selectedDate);
+
+  // const dateValueOfPrevMonth = `${month === 0 ? year - 1 : year}-${month === 0 ? 12 : month}-${startingDayOfPrevMonth}`;
+  // const dateValueOfCurrentMonth = `${year}-${month + 1}-${currentNumberOfDayInMonth}`;
+  // const dateValueOfNextMonth = `${month === 11 ? year + 1 : year}-${month === 11 ? 1 : month + 2}-${startingDayOfNextMonth}`;
+
+  const setDateValueOfPrevMonth = (day) => `${month === 0 ? year - 1 : year}-${month === 0 ? 12 : month}-${day}`
+
+  const getDays = (countOfDays, calendar, dayOfMonth, variant, setValue) => {
+    let daysCount = dayOfMonth;
+    // eslint-disable-next-line
+    for(let i = 1; i <= countOfDays; i++) {
+      calendar.push({
+        day: daysCount,
+        variant,
+        dateValue: setValue(daysCount)
+      });
+      daysCount += 1;
+    }
+  }
 
   const getDaysOfPrevMonth = (calendar) => {
     if( countOfDaysInPrevMonth !== 1) {
@@ -82,6 +111,7 @@ const Calendar = () => {
   const getDaysOfCalendar = () => {
     const daysInCalendar = [];
 
+    // getDays(countOfDaysInPrevMonth, daysInCalendar, startingDayOfPrevMonth, 'otherMonth', setDateValueOfPrevMonth);
     getDaysOfPrevMonth(daysInCalendar);
     getDaysOfCurrentMonth(daysInCalendar);
     getDaysOfNextMonth(daysInCalendar);
@@ -92,11 +122,11 @@ const Calendar = () => {
   const calendar = getDaysOfCalendar();
 
   const getPrevMonth = () => {
-    setCurrentMonth(prevValue => new Date(prevValue.getFullYear(), prevValue.getMonth() - 1, 1))
+    setCurrentDate(new Date(year, month - 1, 1))
   }
 
   const getNextMonth = () => {
-    setCurrentMonth(nextValue => new Date(nextValue.getFullYear(), nextValue.getMonth() + 1, 1))
+    setCurrentDate(new Date(year, month + 1, 1))
   }
 
   return (
@@ -122,8 +152,8 @@ const Calendar = () => {
             variant={day.variant}
             // eslint-disable-next-line
             key={index}
-            isActive={day.value === currentDate}
-            onClick={() => setcurrentDate(day.value)}
+            isActive={day.value === selectedDate}
+            onClick={() => setSelectedDate(day.value)}
           >
             {day.day}
           </Styled.CalendarDay>
