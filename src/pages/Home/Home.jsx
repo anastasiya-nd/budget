@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
 import SpendingItem from '../../components/SpendingItem';
+import Button from '../../components/Button';
+import Modal from '../../components/Modal';
 
 const Home = () => {
   const spendingsArray = [
@@ -33,11 +35,22 @@ const Home = () => {
       id: 'fdcfe',
     },
   ];
+  const [isOpenModal, toggleIsOpenModal] = useState(false);
+
+  const openModal = () => {
+    toggleIsOpenModal(true);
+  };
 
   return (
     <section>
+      {isOpenModal && (
+        <Modal title="New spending" isOpenModal={isOpenModal} toggleIsOpenModal={toggleIsOpenModal}>
+          <>Modal content</>
+        </Modal>
+      )}
       <LabelsPopover />
       <CategoryPopover />
+      <Button text="Add new spending +" onClick={openModal} />
       {spendingsArray.map((s) => (
         <SpendingItem
           key={s.id}
