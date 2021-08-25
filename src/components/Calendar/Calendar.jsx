@@ -1,7 +1,25 @@
 import React, { useState } from 'react';
 import NextArrow from '../Icons/NextArrow';
 import PrevArrow from '../Icons/PrevArrow';
-import * as CalendarFunc from './utils';
+import {
+  getCountOfDaysInCurrentMonth,
+  getIndexOfFirstDayInMonth,
+  getStartingDayOfMonth,
+  getLastDateOfPrevMonth,
+  getStartingDateOfPrevMonth,
+  getCountOfDaysInPrevMonth,
+  getCountOfDayInNextMonth,
+  getDaysOfMonthForCalendar,
+  setDateValueOfPrevMonth,
+  setDateValueOfCurrentMonth,
+  setDateValueOfNextMonth,
+  concatDaysOfMonth,
+  getIndexOfCurrentMonth,
+  getIndexOfCurrentYear,
+  getPrevMonth,
+  getNextMonth,
+  convertDate
+} from './utils';
 import { daysInWeek, dayNames, monthNames, countOfWeekInCalendar, countOfDayInWeek } from './constants'
 import * as Styled from './styles';
 
@@ -11,48 +29,48 @@ const Calendar = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const currentDayOfCurrentMonth = 1;
   const startingDayOfNextMonth = 1;
-  const countOfDaysInCurrentMonth = CalendarFunc.getCountOfDaysInCurrentMonth(currentDate);
-  const indexOfFirstDayInMonth = CalendarFunc.getIndexOfFirstDayInMonth(currentDate);
-  const startingDayOfCurrentMonth = CalendarFunc.getStartingDayOfMonth(daysInWeek, indexOfFirstDayInMonth);
-  const lastDateOfPrevMonth = CalendarFunc.getLastDateOfPrevMonth(currentDate);
-  const startingDayOfPrevMonth = CalendarFunc.getStartingDateOfPrevMonth(
+  const countOfDaysInCurrentMonth = getCountOfDaysInCurrentMonth(currentDate);
+  const indexOfFirstDayInMonth = getIndexOfFirstDayInMonth(currentDate);
+  const startingDayOfCurrentMonth = getStartingDayOfMonth(daysInWeek, indexOfFirstDayInMonth);
+  const lastDateOfPrevMonth = getLastDateOfPrevMonth(currentDate);
+  const startingDayOfPrevMonth = getStartingDateOfPrevMonth(
     lastDateOfPrevMonth,
     daysInWeek,
     indexOfFirstDayInMonth
   );
-  const countOfDaysInPrevMonth = CalendarFunc.getCountOfDaysInPrevMonth(startingDayOfCurrentMonth);
-  const countOfDayInNextMonth = CalendarFunc.getCountOfDayInNextMonth(
+  const countOfDaysInPrevMonth = getCountOfDaysInPrevMonth(startingDayOfCurrentMonth);
+  const countOfDayInNextMonth = getCountOfDayInNextMonth(
     countOfWeekInCalendar,
     countOfDayInWeek,
     countOfDaysInPrevMonth,
     countOfDaysInCurrentMonth
   );
-  const daysOfPrevMonth = CalendarFunc.getDaysOfMonthForCalendar(
+  const daysOfPrevMonth = getDaysOfMonthForCalendar(
     currentDate,
     countOfDaysInPrevMonth,
     startingDayOfPrevMonth,
     'otherMonth',
-    CalendarFunc.setDateValueOfPrevMonth
+    setDateValueOfPrevMonth
   );
-  const daysOfCurrentMonth = CalendarFunc.getDaysOfMonthForCalendar(
+  const daysOfCurrentMonth = getDaysOfMonthForCalendar(
     currentDate,
     countOfDaysInCurrentMonth,
     currentDayOfCurrentMonth,
     'currentMonth',
-    CalendarFunc.setDateValueOfCurrentMonth
+    setDateValueOfCurrentMonth
   );
-  const daysOfNextMonth = CalendarFunc.getDaysOfMonthForCalendar(
+  const daysOfNextMonth = getDaysOfMonthForCalendar(
     currentDate,
     countOfDayInNextMonth,
     startingDayOfNextMonth,
     'otherMonth',
-    CalendarFunc.setDateValueOfNextMonth
+    setDateValueOfNextMonth
   );
-  const calendarDays = CalendarFunc.concatDaysOfMonth(daysOfPrevMonth, daysOfCurrentMonth, daysOfNextMonth);
-  const currentMonth = CalendarFunc.getIndexOfCurrentMonth(currentDate);
-  const currentYear = CalendarFunc.getIndexOfCurrentYear(currentDate);
-  const prevMonth = CalendarFunc.getPrevMonth(currentDate);
-  const nextMonth = CalendarFunc.getNextMonth(currentDate);
+  const calendarDays = concatDaysOfMonth(daysOfPrevMonth, daysOfCurrentMonth, daysOfNextMonth);
+  const currentMonth = getIndexOfCurrentMonth(currentDate);
+  const currentYear = getIndexOfCurrentYear(currentDate);
+  const prevMonth = getPrevMonth(currentDate);
+  const nextMonth = getNextMonth(currentDate);
 
   const setPrevMonth = () => setCurrentDate(prevMonth);
   const setNextMonth = () => setCurrentDate(nextMonth);
@@ -81,7 +99,7 @@ const Calendar = () => {
             // eslint-disable-next-line
             key={index}
             isActive={
-              CalendarFunc.convertDate(day.dateValue) === CalendarFunc.convertDate(selectedDate)
+              convertDate(day.dateValue) === convertDate(selectedDate)
             }
             onClick={() => setSelectedDate(day.dateValue)}
           >
