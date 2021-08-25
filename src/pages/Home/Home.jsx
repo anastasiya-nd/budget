@@ -1,6 +1,7 @@
 import React from 'react';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
+import Select from '../../components/Select/Select';
 import SpendingItem from '../../components/SpendingItem';
 
 const Home = () => {
@@ -34,10 +35,22 @@ const Home = () => {
     },
   ];
 
+  const categories = [
+    'Shopping',
+    'Entertainment',
+    'Car',
+    'Bills',
+    'Food',
+    'Home',
+    'Education',
+    'Other',
+  ];
+
   return (
     <section>
       <LabelsPopover />
       <CategoryPopover />
+      <Select placeholder="select placeholder" options={categories} />
       {spendingsArray.map((s) => (
         <SpendingItem
           key={s.id}
