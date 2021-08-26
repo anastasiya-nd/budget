@@ -8,7 +8,6 @@ export const Modal = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 999;
-  display: ${({ variant }) => (variant ? 'block' : 'none')};
 `;
 
 export const ModalContainer = styled.div`

@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import Close from '../Icons/Close';
 
-const Modal = ({ isOpenModal, toggleIsOpenModal, title, children }) => {
+const Modal = ({ onClose, title, children }) => {
   const node = useRef(null);
 
   const closeModal = () => {
-    toggleIsOpenModal(false);
+    onClose(false);
   };
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Modal = ({ isOpenModal, toggleIsOpenModal, title, children }) => {
 
     const handleClickOutside = (e) => {
       if (node.current && !node.current.contains(e.target)) {
-        toggleIsOpenModal(false);
+        closeModal();
       }
     };
 
@@ -34,8 +34,8 @@ const Modal = ({ isOpenModal, toggleIsOpenModal, title, children }) => {
   });
 
   return ReactDOM.createPortal(
-    <Styled.Modal variant={isOpenModal}>
-      <Styled.ModalContainer ref={node} variant={isOpenModal}>
+    <Styled.Modal>
+      <Styled.ModalContainer ref={node}>
         <Styled.ModalHeader>
           <div>{title}</div>
           <Styled.ButtonClose type="button" onClick={closeModal}>

@@ -35,16 +35,16 @@ const Home = () => {
       id: 'fdcfe',
     },
   ];
-  const [isOpenModal, toggleIsOpenModal] = useState(false);
+  const [isOpenModal, onClose] = useState(false);
 
   const openModal = () => {
-    toggleIsOpenModal(true);
+    onClose(true);
   };
 
   return (
     <section>
       {isOpenModal && (
-        <Modal title="New spending" isOpenModal={isOpenModal} toggleIsOpenModal={toggleIsOpenModal}>
+        <Modal title="New spending" onClose={onClose}>
           <>Modal content</>
         </Modal>
       )}
