@@ -1,30 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import Arrow from '../Icons/Arrow';
+import { useClickOutside } from '../../hooks/hooks';
 
 const Select = ({ label, placeholder, defaultValue, options }) => {
   const [activeOption, setActiveOption] = useState(defaultValue);
-  const [isOpen, toggleIsOpen] = useState(false);
   const node = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (node.current && !node.current.contains(e.target)) {
-        toggleIsOpen(false);
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  });
-
-  const changeIsOpen = () => {
-    toggleIsOpen(!isOpen);
-  };
+  const [isOpen, toggleIsOpen, changeIsOpen] = useClickOutside(node);
 
   const chooseOption = (option) => {
     setActiveOption(option);
