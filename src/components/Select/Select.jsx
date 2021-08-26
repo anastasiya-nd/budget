@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import Arrow from '../Icons/Arrow';
 
-const Select = ({ placeholder, options }) => {
-  const [activeOption, setActiveOption] = useState('');
+const Select = ({ placeholder, valueDefault, options }) => {
+  const [activeOption, setActiveOption] = useState(valueDefault);
   const [isOpen, toggleIsOpen] = useState(false);
   const node = useRef(null);
 
@@ -34,7 +34,7 @@ const Select = ({ placeholder, options }) => {
   return (
     <Styled.SelectWrap ref={node}>
       <Styled.SelectLabel onClick={changeIsOpen}>
-        <span>{activeOption || placeholder}</span>
+        <span>{activeOption || valueDefault || placeholder}</span>
         <Styled.ArrowWrap variant={isOpen}>
           <Arrow />
         </Styled.ArrowWrap>
@@ -57,8 +57,14 @@ const Select = ({ placeholder, options }) => {
 };
 
 Select.propTypes = {
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  valueDefault: PropTypes.string,
+};
+
+Select.defaultProps = {
+  placeholder: 'select placeholder',
+  valueDefault: '',
 };
 
 export default Select;
