@@ -50,7 +50,7 @@ const Home = () => {
     <section>
       <LabelsPopover />
       <CategoryPopover />
-      <Select placeholder="select placeholder" options={categories} />
+      <Select label="Category" placeholder="Select a spending category" options={categories} />
       {spendingsArray.map((s) => (
         <SpendingItem
           key={s.id}
