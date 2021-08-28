@@ -1,12 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 // eslint-disable-next-line
-export const useClickOutside = (ref) => {
-  const [isOpen, toggleIsOpen] = useState(false);
-
+export const useClickOutside = (ref, clickOutside) => {
   const onClick = (e) => {
     if (ref.current && !ref.current.contains(e.target)) {
-      toggleIsOpen(false);
+      clickOutside();
     }
   };
 
@@ -16,10 +14,4 @@ export const useClickOutside = (ref) => {
       document.removeEventListener('click', onClick, true);
     };
   });
-
-  const changeIsOpen = () => {
-    toggleIsOpen(!isOpen);
-  };
-
-  return [isOpen, toggleIsOpen, changeIsOpen];
 };

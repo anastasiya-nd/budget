@@ -7,12 +7,22 @@ import { useClickOutside } from '../../hooks/hooks';
 const Select = ({ label, placeholder, defaultValue, options }) => {
   const [activeOption, setActiveOption] = useState(defaultValue);
   const node = useRef(null);
-  const [isOpen, toggleIsOpen, changeIsOpen] = useClickOutside(node);
+  const [isOpen, toggleIsOpen] = useState(false);
 
   const chooseOption = (option) => {
     setActiveOption(option);
+    toggleIsOpen(false);
+  };
+
+  const changeIsOpen = () => {
     toggleIsOpen(!isOpen);
   };
+
+  const onClose = () => {
+    toggleIsOpen(false);
+  };
+
+  useClickOutside(node, onClose);
 
   return (
     <>
