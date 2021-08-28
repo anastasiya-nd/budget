@@ -1,7 +1,7 @@
 import React from 'react';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
-import Select from '../../components/Select/Select';
+import Select from '../../components/Select';
 import SpendingItem from '../../components/SpendingItem';
 
 const Home = () => {
