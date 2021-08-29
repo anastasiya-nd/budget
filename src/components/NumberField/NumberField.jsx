@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Input, Label } from './styles';
 
-const TextInput = ({ label }) => {
-  const [currentValue, setValue] = useState(0);
+const NumberField = ({ label }) => {
+  const [value, setValue] = useState(0);
   return (
     <>
       {label && <Label htmlFor="amount">{label}</Label>}
@@ -11,19 +11,19 @@ const TextInput = ({ label }) => {
         id="amount"
         type="number"
         name="amount"
-        value={currentValue}
+        value={value}
         onChange={(e) => setValue(e.target.value)}
       />
     </>
   );
 };
 
-TextInput.propTypes = {
+NumberField.propTypes = {
   label: PropTypes.string,
 };
 
-TextInput.defaultProps = {
+NumberField.defaultProps = {
   label: '',
 };
 
-export default TextInput;
+export default NumberField;

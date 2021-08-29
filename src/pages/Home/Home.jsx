@@ -2,7 +2,7 @@ import React from 'react';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
 import SpendingItem from '../../components/SpendingItem';
-import TextInput from '../../components/TextInput';
+import NumberField from '../../components/NumberField';
 
 const Home = () => {
   const spendingsArray = [
@@ -37,7 +37,7 @@ const Home = () => {
 
   return (
     <section>
-      <TextInput label="Amount" />
+      <NumberField label="Amount" />
       <LabelsPopover />
       <CategoryPopover />
       {spendingsArray.map((s) => (
