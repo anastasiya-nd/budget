@@ -7,20 +7,16 @@ import Close from '../Icons/Close';
 const Modal = ({ onClose, title, children }) => {
   const node = useRef(null);
 
-  const closeModal = () => {
-    onClose(false);
-  };
-
   useEffect(() => {
     function onKeyDown(event) {
       if (event.keyCode === 27) {
-        closeModal();
+        onClose();
       }
     }
 
     const handleClickOutside = (e) => {
       if (node.current && !node.current.contains(e.target)) {
-        closeModal();
+        onClose();
       }
     };
 
@@ -38,7 +34,7 @@ const Modal = ({ onClose, title, children }) => {
       <Styled.ModalContainer ref={node}>
         <Styled.ModalHeader>
           <div>{title}</div>
-          <Styled.ButtonClose type="button" onClick={closeModal}>
+          <Styled.ButtonClose type="button" onClick={onClose}>
             <Close />
           </Styled.ButtonClose>
         </Styled.ModalHeader>
@@ -51,8 +47,6 @@ const Modal = ({ onClose, title, children }) => {
 
 Modal.propTypes = {
   title: PropTypes.string.isRequired,
-  isOpenModal: PropTypes.bool.isRequired,
-  toggleIsOpenModal: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
 };
 

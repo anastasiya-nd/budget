@@ -35,22 +35,26 @@ const Home = () => {
       id: 'fdcfe',
     },
   ];
-  const [isOpenModal, onClose] = useState(false);
+  const [isOpenModal, toggleModal] = useState(false);
 
-  const openModal = () => {
-    onClose(true);
+  const handleOpenModal = () => {
+    toggleModal(true);
+  };
+
+  const handleCloseModal = () => {
+    toggleModal(false);
   };
 
   return (
     <section>
       {isOpenModal && (
-        <Modal title="New spending" onClose={onClose}>
+        <Modal title="New spending" onClose={handleCloseModal}>
           <>Modal content</>
         </Modal>
       )}
       <LabelsPopover />
       <CategoryPopover />
-      <Button text="Add new spending +" onClick={openModal} />
+      <Button text="Add new spending +" onClick={handleOpenModal} />
       {spendingsArray.map((s) => (
         <SpendingItem
           key={s.id}
