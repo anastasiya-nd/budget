@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
+import Select from '../../components/Select';
 import SpendingItem from '../../components/SpendingItem';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
@@ -45,6 +46,17 @@ const Home = () => {
     toggleModal(false);
   };
 
+  const categories = [
+    'Shopping',
+    'Entertainment',
+    'Car',
+    'Bills',
+    'Food',
+    'Home',
+    'Education',
+    'Other',
+  ];
+
   return (
     <section>
       {isOpenModal && (
@@ -54,7 +66,11 @@ const Home = () => {
       )}
       <LabelsPopover />
       <CategoryPopover />
+<<<<<<< HEAD
       <Button text="Add new spending +" onClick={handleOpenModal} />
+=======
+      <Select label="Category" placeholder="Select a spending category" options={categories} />
+>>>>>>> 1542e9ba3aef6cafc3dd7f433dd0eb0ac1545538
       {spendingsArray.map((s) => (
         <SpendingItem
           key={s.id}
