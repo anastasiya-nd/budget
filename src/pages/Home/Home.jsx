@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
 import SpendingItem from '../../components/SpendingItem';
@@ -35,9 +35,16 @@ const Home = () => {
     },
   ];
 
+  const [amount, setAmount] = useState(0);
+  const onChange = (v) => {
+    setAmount(v);
+  };
+
+  console.log(amount);
+
   return (
     <section>
-      <NumberField label="Amount" />
+      <NumberField label="Amount" onChange={onChange} value={amount} />
       <LabelsPopover />
       <CategoryPopover />
       {spendingsArray.map((s) => (

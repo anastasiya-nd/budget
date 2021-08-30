@@ -13,6 +13,7 @@ export const Input = styled.input`
 `;
 
 export const Label = styled.label`
+  display: block;
   font-size: 12px;
   line-height: 16px;
   margin-bottom: 4px;
