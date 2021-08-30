@@ -13,6 +13,7 @@ export const PopoverLabel = styled.div`
 
 export const PopoverContentWrap = styled.div`
   position: absolute;
+  z-index: 10;
   top: 100%;
   left: 0;
   background: #fff;
@@ -20,11 +21,11 @@ export const PopoverContentWrap = styled.div`
   box-shadow: 0px 4px 8px rgba(22, 61, 53, 0.12);
   border-radius: 4px;
   padding: 8px 0 16px;
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  display: ${({ variant }) => (variant ? 'block' : 'none')};
 `;
 
 export const ArrowWrap = styled.div`
   transition: 0.2s;
   height: 24px;
-  transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
+  transform: ${({ variant }) => (variant ? 'rotate(180deg)' : 'rotate(0deg)')};
 `;

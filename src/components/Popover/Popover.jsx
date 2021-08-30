@@ -1,48 +1,39 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import Arrow from '../Icons/Arrow';
+import { useClickOutside } from '../../hooks/hooks';
 
-const Popover = ({ popoverLabel, ...other }) => {
+const Popover = React.memo(({ popoverLabel, children }) => {
+  const node = useRef(null);
   const [isOpen, toggleIsOpen] = useState(false);
-  const node = useRef();
-
-  const handleClickOutside = (e) => {
-    if (!node.current.contains(e.target)) {
-      toggleIsOpen(false);
-    }
-  }
 
   const changeIsOpen = () => {
-    toggleIsOpen(!isOpen)
-  }
+    toggleIsOpen(!isOpen);
+  };
 
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
+  const onClose = () => {
+    toggleIsOpen(false);
+  };
 
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    }
-  }, [])
+  useClickOutside(node, onClose);
 
   return (
     <Styled.PopoverWrap ref={node}>
       <Styled.PopoverLabel onClick={changeIsOpen}>
         <span>{popoverLabel}</span>
-        <Styled.ArrowWrap isOpen={isOpen}>
-          <Arrow/>
+        <Styled.ArrowWrap variant={isOpen}>
+          <Arrow />
         </Styled.ArrowWrap>
       </Styled.PopoverLabel>
-      <Styled.PopoverContentWrap isOpen={isOpen}>
-        {other.children}
-      </Styled.PopoverContentWrap>
+      <Styled.PopoverContentWrap variant={isOpen}>{children}</Styled.PopoverContentWrap>
     </Styled.PopoverWrap>
-  )
-};
+  );
+});
 
 Popover.propTypes = {
   popoverLabel: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
 };
 
 export default Popover;
