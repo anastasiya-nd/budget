@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Calendar from '../../components/Calendar/Calendar';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
 import Select from '../../components/Select';
@@ -59,6 +60,7 @@ const Home = () => {
 
   return (
     <section>
+      <Calendar />
       {isOpenModal && (
         <Modal title="New spending" onClose={handleCloseModal}>
           <>Modal content</>
