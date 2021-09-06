@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NextArrow from '../Icons/NextArrow';
 import PrevArrow from '../Icons/PrevArrow';
 import {
@@ -18,9 +18,26 @@ import {
   getIndexOfCurrentYear,
   getPrevMonth,
   getNextMonth,
-  convertDate
+  convertDate,
+  getMonthIndex,
+  getDateFromMonthSelect,
+  getDateFromYearSelect,
+  getIndexOfNextMonth,
+  getIndexOfPrevMonth,
+  getValueOfNextYear,
+  getValueOfPrevYear,
+  disabledPrevYearButton,
+  disabledNextYearButton,
+  setYearValues,
 } from './utils';
-import { daysInWeek, dayNames, monthNames, countOfWeekInCalendar, countOfDayInWeek } from './constants'
+import {
+  daysInWeek,
+  dayNames,
+  monthNames,
+  countOfWeekInCalendar,
+  countOfDayInWeek,
+} from './constants';
+import Select from '../Select';
 import * as Styled from './styles';
 
 const Calendar = () => {
@@ -69,28 +86,79 @@ const Calendar = () => {
   const calendarDays = concatDaysOfMonth(daysOfPrevMonth, daysOfCurrentMonth, daysOfNextMonth);
   const currentMonth = getIndexOfCurrentMonth(currentDate);
   const currentYear = getIndexOfCurrentYear(currentDate);
+  const valueForYearSelect = {
+    startingYear: 2020,
+    endingYear: defaultDate.getFullYear() + 10,
+  };
+  const years = setYearValues(valueForYearSelect.startingYear, valueForYearSelect.endingYear);
   const prevMonth = getPrevMonth(currentDate);
   const nextMonth = getNextMonth(currentDate);
+  const [activeMonth, setActiveMonth] = useState(monthNames[currentMonth]);
+  const [activeYear, setActiveYear] = useState(`${currentYear}`);
+  const indexOfSelectingMonth = getMonthIndex(activeMonth, monthNames);
+  const chooseOptionMonth = (option) => setActiveMonth(option);
+  const chooseOptionYear = (option) => setActiveYear(option);
+  const indexOfNextMonth = getIndexOfNextMonth(currentMonth);
+  const indexOfPrevMonth = getIndexOfPrevMonth(currentMonth);
+  const valueNextYear = getValueOfNextYear(currentMonth, currentYear);
+  const valuePrevYear = getValueOfPrevYear(currentMonth, currentYear);
 
-  const setPrevMonth = () => setCurrentDate(prevMonth);
-  const setNextMonth = () => setCurrentDate(nextMonth);
+  const setPrevMonth = () => {
+    setCurrentDate(prevMonth);
+    setActiveMonth(monthNames[indexOfPrevMonth]);
+    setActiveYear(valuePrevYear);
+  };
+
+  const setNextMonth = () => {
+    setCurrentDate(nextMonth);
+    setActiveMonth(monthNames[indexOfNextMonth]);
+    setActiveYear(valueNextYear);
+  };
+
+  useEffect(() => {
+    const dateFromMonthSelect = getDateFromMonthSelect(currentDate, indexOfSelectingMonth);
+    setCurrentDate(dateFromMonthSelect);
+  }, [activeMonth]);
+
+  useEffect(() => {
+    const dateFromYearSelect = getDateFromYearSelect(currentDate, activeYear);
+    setCurrentDate(dateFromYearSelect);
+  }, [activeYear]);
 
   return (
     <Styled.CalendarWrap>
       <Styled.CalendarHeader>
-        <Styled.ArrowButton type='button' onClick={setPrevMonth}>
+        <Styled.ArrowButton
+          type="button"
+          onClick={setPrevMonth}
+          disabled={disabledPrevYearButton(
+            currentMonth,
+            currentYear,
+            valueForYearSelect.startingYear
+          )}
+        >
           <PrevArrow />
         </Styled.ArrowButton>
         <Styled.CalendarHeaderDate>
-          <span>{monthNames[currentMonth]}</span>
-          <span>{currentYear}</span>
+          <Select active={activeMonth} chooseOption={chooseOptionMonth} options={monthNames} />
+          <Select active={activeYear} chooseOption={chooseOptionYear} options={years} />
         </Styled.CalendarHeaderDate>
-        <Styled.ArrowButton type='button' onClick={setNextMonth}>
-          <NextArrow/>
+        <Styled.ArrowButton
+          type="button"
+          onClick={setNextMonth}
+          disabled={disabledNextYearButton(
+            currentMonth,
+            currentYear,
+            valueForYearSelect.endingYear
+          )}
+        >
+          <NextArrow />
         </Styled.ArrowButton>
       </Styled.CalendarHeader>
       <Styled.CalendarTableHeader>
-        {dayNames.map(day => <div key={day}>{day}</div>)}
+        {dayNames.map((day) => (
+          <div key={day}>{day}</div>
+        ))}
       </Styled.CalendarTableHeader>
       <Styled.CalendarTableContent>
         {calendarDays.map((day, index) => (
@@ -98,9 +166,7 @@ const Calendar = () => {
             variant={day.variant}
             // eslint-disable-next-line
             key={index}
-            isActive={
-              convertDate(day.dateValue) === convertDate(selectedDate)
-            }
+            isActive={convertDate(day.dateValue) === convertDate(selectedDate)}
             onClick={() => setSelectedDate(day.dateValue)}
           >
             {day.day}
@@ -108,7 +174,7 @@ const Calendar = () => {
         ))}
       </Styled.CalendarTableContent>
     </Styled.CalendarWrap>
-  )
+  );
 };
 
 export default Calendar;

@@ -4,14 +4,13 @@ import * as Styled from './styles';
 import Arrow from '../Icons/Arrow';
 import { useClickOutside } from '../../hooks/hooks';
 
-const Select = ({ label, placeholder, defaultValue, options }) => {
-  const [activeOption, setActiveOption] = useState(defaultValue);
+const Select = ({ label, placeholder, options, chooseOption, active }) => {
   const node = useRef(null);
   const [isOpen, toggleIsOpen] = useState(false);
 
-  const chooseOption = (option) => {
-    setActiveOption(option);
+  const onChoose = (option) => {
     toggleIsOpen(false);
+    return chooseOption(option);
   };
 
   const changeIsOpen = () => {
@@ -28,8 +27,8 @@ const Select = ({ label, placeholder, defaultValue, options }) => {
     <>
       {label && <Styled.SelectLabel>{label}</Styled.SelectLabel>}
       <Styled.SelectWrap ref={node}>
-        <Styled.SelectValue onClick={changeIsOpen} activeOption={activeOption}>
-          <span>{activeOption || defaultValue || placeholder}</span>
+        <Styled.SelectValue onClick={changeIsOpen} active={active}>
+          <span>{active || placeholder}</span>
           <Styled.ArrowWrap variant={isOpen}>
             <Arrow />
           </Styled.ArrowWrap>
@@ -39,8 +38,8 @@ const Select = ({ label, placeholder, defaultValue, options }) => {
             {options.map((option) => (
               <Styled.OptionItem
                 key={option}
-                isActive={activeOption === option}
-                onClick={() => chooseOption(option)}
+                isActive={active === option}
+                onClick={() => onChoose(option)}
               >
                 {option}
               </Styled.OptionItem>
@@ -56,12 +55,13 @@ Select.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  defaultValue: PropTypes.string,
+  chooseOption: PropTypes.func.isRequired,
+  active: PropTypes.string,
 };
 
 Select.defaultProps = {
   placeholder: 'select placeholder',
-  defaultValue: '',
+  active: '',
   label: '',
 };
 
