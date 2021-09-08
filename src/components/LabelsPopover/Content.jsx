@@ -6,8 +6,9 @@ const Content = () => {
   const [labels, setLabels] = useState([]);
 
   const addLabel = (e) => {
-    if (e.key === 'Enter') {
-      setLabels([...labels, e.target.value]);
+    const inputValue = e.target.value.trim();
+    if (e.keyCode === 13 && inputValue) {
+      setLabels([...labels, inputValue]);
       e.target.value = '';
     }
   };
