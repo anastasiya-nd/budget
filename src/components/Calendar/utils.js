@@ -249,10 +249,5 @@ export const disabledNextYearButton = (month, year, endingYear) =>
  * @param {number} endingYear - ending year
  * @returns {Array} - array of years
  */
-export const setYearValues = (startingYear, endingYear) => {
-  const yearsArray = [];
-  for (let i = startingYear; i <= endingYear; i++) { // eslint-disable-line
-    yearsArray.push(`${i}`);
-  }
-  return yearsArray;
-};
+export const setYearValues = (startingYear, endingYear) =>
+  Array.from({ length: endingYear - startingYear + 1 }, (_, i) => `${i + startingYear}`);

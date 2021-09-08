@@ -10,7 +10,7 @@ const Select = ({ label, placeholder, options, chooseOption, active }) => {
 
   const onChoose = (option) => {
     toggleIsOpen(false);
-    return chooseOption(option);
+    chooseOption(option);
   };
 
   const changeIsOpen = () => {
