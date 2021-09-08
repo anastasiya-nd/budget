@@ -26,8 +26,6 @@ import {
   getIndexOfPrevMonth,
   getValueOfNextYear,
   getValueOfPrevYear,
-  disabledPrevYearButton,
-  disabledNextYearButton,
   setYearValues,
 } from './utils';
 import {
@@ -114,7 +112,10 @@ const Calendar = () => {
     setActiveMonth(monthNames[indexOfNextMonth]);
     setActiveYear(valueNextYear);
   };
-
+  const disabledPrevYearButton = (month, year, startingYear) =>
+    month === 0 && year <= startingYear && 'disabled';
+  const disabledNextYearButton = (month, year, endingYear) =>
+    month === 11 && year >= endingYear && 'disabled';
   useEffect(() => {
     const dateFromMonthSelect = getDateFromMonthSelect(currentDate, indexOfSelectingMonth);
     setCurrentDate(dateFromMonthSelect);

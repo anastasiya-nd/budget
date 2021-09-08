@@ -224,26 +224,6 @@ export const getValueOfPrevYear = (month, year) => (month === 0 ? year - 1 : yea
 export const getValueOfNextYear = (month, year) => (month === 11 ? year + 1 : year);
 
 /**
- * Disabled PrevYear button
- * @param {number} month - index current month
- * @param {number} year - index current year
- * @param {number} startingYear - starting year
- * @returns {number} - index next year
- */
-export const disabledPrevYearButton = (month, year, startingYear) =>
-  month === 0 && year <= startingYear && 'disabled';
-
-/**
- * Disabled NextYear button
- * @param {number} month - index current month
- * @param {number} year - index current year
- * @param {number} endingYear - ending year
- * @returns {number} - index next year
- */
-export const disabledNextYearButton = (month, year, endingYear) =>
-  month === 11 && year >= endingYear && 'disabled';
-
-/**
  * Set years for select
  * @param {number} startingYear - starting year
  * @param {number} endingYear - ending year
