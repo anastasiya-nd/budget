@@ -112,10 +112,12 @@ const Calendar = () => {
     setActiveMonth(monthNames[indexOfNextMonth]);
     setActiveYear(valueNextYear);
   };
-  const disabledPrevYearButton = (month, year, startingYear) =>
+
+  const isDisabledPrevYearButton = (month, year, startingYear) =>
     month === 0 && year <= startingYear && 'disabled';
-  const disabledNextYearButton = (month, year, endingYear) =>
+  const isDisabledNextYearButton = (month, year, endingYear) =>
     month === 11 && year >= endingYear && 'disabled';
+
   useEffect(() => {
     const dateFromMonthSelect = getDateForSelectedMonth(currentDate, indexOfSelectingMonth);
     setCurrentDate(dateFromMonthSelect);
@@ -125,14 +127,15 @@ const Calendar = () => {
     const dateFromYearSelect = getDateForSelectedYear(currentDate, activeYear);
     setCurrentDate(dateFromYearSelect);
   }, [activeYear]);
-
+  console.log(typeof activeYear);
+  console.log(currentDate);
   return (
     <Styled.CalendarWrap>
       <Styled.CalendarHeader>
         <Styled.ArrowButton
           type="button"
           onClick={setPrevMonth}
-          disabled={disabledPrevYearButton(
+          disabled={isDisabledPrevYearButton(
             currentMonth,
             currentYear,
             valueForYearSelect.startingYear
@@ -147,7 +150,7 @@ const Calendar = () => {
         <Styled.ArrowButton
           type="button"
           onClick={setNextMonth}
-          disabled={disabledNextYearButton(
+          disabled={isDisabledNextYearButton(
             currentMonth,
             currentYear,
             valueForYearSelect.endingYear

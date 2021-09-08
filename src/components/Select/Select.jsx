@@ -54,9 +54,9 @@ const Select = ({ label, placeholder, options, chooseOption, active }) => {
 Select.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  options: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
   chooseOption: PropTypes.func.isRequired,
-  active: PropTypes.string,
+  active: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Select.defaultProps = {

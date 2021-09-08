@@ -230,4 +230,4 @@ export const getValueOfNextYear = (month, year) => (month === 11 ? year + 1 : ye
  * @returns {Array} - array of years
  */
 export const setYearValues = (startingYear, endingYear) =>
-  Array.from({ length: endingYear - startingYear + 1 }, (_, i) => `${i + startingYear}`);
+  Array.from({ length: endingYear - startingYear + 1 }, (_, i) => i + startingYear);
