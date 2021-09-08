@@ -20,8 +20,8 @@ import {
   getNextMonth,
   convertDate,
   getMonthIndex,
-  getDateFromMonthSelect,
-  getDateFromYearSelect,
+  getDateForSelectedMonth,
+  getDateForSelectedYear,
   getIndexOfNextMonth,
   getIndexOfPrevMonth,
   getValueOfNextYear,
@@ -117,12 +117,12 @@ const Calendar = () => {
   const disabledNextYearButton = (month, year, endingYear) =>
     month === 11 && year >= endingYear && 'disabled';
   useEffect(() => {
-    const dateFromMonthSelect = getDateFromMonthSelect(currentDate, indexOfSelectingMonth);
+    const dateFromMonthSelect = getDateForSelectedMonth(currentDate, indexOfSelectingMonth);
     setCurrentDate(dateFromMonthSelect);
   }, [activeMonth]);
 
   useEffect(() => {
-    const dateFromYearSelect = getDateFromYearSelect(currentDate, activeYear);
+    const dateFromYearSelect = getDateForSelectedYear(currentDate, activeYear);
     setCurrentDate(dateFromYearSelect);
   }, [activeYear]);
 

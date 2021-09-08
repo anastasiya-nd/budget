@@ -178,20 +178,20 @@ export const convertDate = (date) => new Date(date).getTime();
 export const getMonthIndex = (month, monthNames) => monthNames.indexOf(month);
 
 /**
+ * Get date from month select
+ * @param {Date} date - current date
+ * @param {number} month - selecting month
+ * @returns {Date} - selecting date
+ */
+export const getDateForSelectedMonth = (date, month) => new Date(date.getFullYear(), month, 1);
+
+/**
  * Get date from year select
  * @param {Date} date - current date
  * @param {number} year - selecting year
  * @returns {Date} - selecting date
  */
-export const getDateFromMonthSelect = (date, month) => new Date(date.getFullYear(), month, 1);
-
-/**
- * Get date from year select
- * @param {Date} date - current date
- * @param {number} month - selecting month
- * @returns {Date} - selecting date
- */
-export const getDateFromYearSelect = (date, year) => new Date(year, date.getMonth(), 1);
+export const getDateForSelectedYear = (date, year) => new Date(year, date.getMonth(), 1);
 
 /**
  * Get index of next month
