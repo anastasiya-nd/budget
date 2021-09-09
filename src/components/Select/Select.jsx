@@ -4,13 +4,13 @@ import * as Styled from './styles';
 import Arrow from '../Icons/Arrow';
 import { useClickOutside } from '../../hooks/hooks';
 
-const Select = ({ label, placeholder, options, chooseOption, active }) => {
+const Select = ({ label, placeholder, options, onChange, active }) => {
   const node = useRef(null);
   const [isOpen, toggleIsOpen] = useState(false);
 
   const onChoose = (option) => {
     toggleIsOpen(false);
-    chooseOption(option);
+    onChange(option);
   };
 
   const changeIsOpen = () => {
@@ -55,7 +55,7 @@ Select.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
-  chooseOption: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   active: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 

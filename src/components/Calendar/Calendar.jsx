@@ -140,8 +140,8 @@ const Calendar = () => {
           <PrevArrow />
         </Styled.ArrowButton>
         <Styled.CalendarHeaderDate>
-          <Select active={activeMonth} chooseOption={chooseOptionMonth} options={monthNames} />
-          <Select active={activeYear} chooseOption={chooseOptionYear} options={years} />
+          <Select active={activeMonth} onChange={chooseOptionMonth} options={monthNames} />
+          <Select active={activeYear} onChange={chooseOptionYear} options={years} />
         </Styled.CalendarHeaderDate>
         <Styled.ArrowButton
           type="button"
