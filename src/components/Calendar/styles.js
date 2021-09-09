@@ -34,6 +34,9 @@ export const ArrowButton = styled.button`
     cursor: pointer;
     background-color: #e3deda;
   }
+  &:disabled {
+    background-color: #cdcdcd;
+  }
 `;
 
 export const CalendarHeaderDate = styled.div`

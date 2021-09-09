@@ -22,7 +22,7 @@ export const SelectValue = styled.div`
   justify-content: space-between;
   padding-left: 8px;
   max-width: 360px;
-  color: ${({ activeOption }) => (activeOption ? '#000' : '#b2b2b2')};
+  color: ${({ active }) => (active ? '#000' : '#b2b2b2')};
 `;
 
 export const SelectContentWrap = styled.div`
