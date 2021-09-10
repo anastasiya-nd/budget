@@ -41,7 +41,7 @@ import * as Styled from './styles';
 const Calendar = () => {
   const defaultDate = new Date();
   const [currentDate, setCurrentDate] = useState(defaultDate);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState([]);
   const currentDayOfCurrentMonth = 1;
   const startingDayOfNextMonth = 1;
   const countOfDaysInCurrentMonth = getCountOfDaysInCurrentMonth(currentDate);
@@ -114,6 +114,18 @@ const Calendar = () => {
   const isDisabledPrevYearButton = (month, year, startingYear) =>
     month === 0 && year <= startingYear;
   const isDisabledNextYearButton = (month, year, endingYear) => month === 11 && year >= endingYear;
+  const sortSelectedDate = () => selectedDate.sort();
+
+  const selectDate = (val) => {
+    if (selectedDate.length < 2) {
+      setSelectedDate([...selectedDate, val]);
+    } else {
+      setSelectedDate([val]);
+    }
+  };
+
+  sortSelectedDate();
+  console.log(selectedDate);
 
   useEffect(() => {
     const dateFromMonthSelect = getDateForSelectedMonth(currentDate, indexOfSelectingMonth);
@@ -166,8 +178,14 @@ const Calendar = () => {
             variant={day.variant}
             // eslint-disable-next-line
             key={index}
-            isActive={convertDate(day.dateValue) === convertDate(selectedDate)}
-            onClick={() => setSelectedDate(day.dateValue)}
+            isActive={
+              convertDate(day.dateValue) === convertDate(selectedDate[0]) ||
+              convertDate(day.dateValue) === convertDate(selectedDate[1]) ||
+              (selectedDate[1] &&
+                convertDate(day.dateValue) >= convertDate(selectedDate[0]) &&
+                convertDate(day.dateValue) <= convertDate(selectedDate[1]))
+            }
+            onClick={() => selectDate(day.dateValue)}
           >
             {day.day}
           </Styled.CalendarDay>
