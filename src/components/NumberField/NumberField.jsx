@@ -10,9 +10,14 @@ const NumberField = ({ label, value, onChange }) => {
   };
 
   const validateInputValue = () => {
-    const val = parseFloat(inputValue);
-    setInputValue(val);
-    onChange(val);
+    let val = parseFloat(inputValue);
+    if (isNaN(val)) { // eslint-disable-line
+      val = '';
+      setInputValue(val);
+    } else {
+      setInputValue(val);
+      onChange(val);
+    }
   };
 
   return (
