@@ -36,11 +36,9 @@ const Home = () => {
   ];
 
   const [amount, setAmount] = useState(0);
-  const onChange = (v) => {
-    setAmount(v);
+  const onChange = (val) => {
+    setAmount(val);
   };
-
-  console.log(amount);
 
   return (
     <section>
