@@ -114,18 +114,25 @@ const Calendar = () => {
   const isDisabledPrevYearButton = (month, year, startingYear) =>
     month === 0 && year <= startingYear;
   const isDisabledNextYearButton = (month, year, endingYear) => month === 11 && year >= endingYear;
-  const sortSelectedDate = () => selectedDate.sort();
 
-  const selectDate = (val) => {
+  const setPeriodValues = (val) => {
     if (selectedDate.length < 2) {
       setSelectedDate([...selectedDate, val]);
     } else {
       setSelectedDate([val]);
     }
   };
+  const sortSelectedDates = () => {
+    if (
+      selectedDate[0] &&
+      selectedDate[1] &&
+      new Date(selectedDate[0]) > new Date(selectedDate[1])
+    ) {
+      selectedDate.reverse();
+    }
+  };
 
-  sortSelectedDate();
-  console.log(selectedDate);
+  sortSelectedDates();
 
   useEffect(() => {
     const dateFromMonthSelect = getDateForSelectedMonth(currentDate, indexOfSelectingMonth);
@@ -137,6 +144,7 @@ const Calendar = () => {
     setCurrentDate(dateFromYearSelect);
   }, [activeYear]);
 
+  console.log(selectedDate);
   return (
     <Styled.CalendarWrap>
       <Styled.CalendarHeader>
@@ -179,13 +187,10 @@ const Calendar = () => {
             // eslint-disable-next-line
             key={index}
             isActive={
-              convertDate(day.dateValue) === convertDate(selectedDate[0]) ||
-              convertDate(day.dateValue) === convertDate(selectedDate[1]) ||
-              (selectedDate[1] &&
-                convertDate(day.dateValue) >= convertDate(selectedDate[0]) &&
-                convertDate(day.dateValue) <= convertDate(selectedDate[1]))
+              convertDate(day.dateValue) >= convertDate(selectedDate[0]) &&
+              convertDate(day.dateValue) <= convertDate(selectedDate[1])
             }
-            onClick={() => selectDate(day.dateValue)}
+            onClick={() => setPeriodValues(day.dateValue)}
           >
             {day.day}
           </Styled.CalendarDay>
