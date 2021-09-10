@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Textarea, Label } from './styles';
 
-const Note = ({ label, placeholder, onChange }) => {
+const TextareaField = ({ label, placeholder, onChange }) => {
   const handleInputChange = (e) => {
     onChange(e.target.value);
   };
@@ -15,15 +15,15 @@ const Note = ({ label, placeholder, onChange }) => {
   );
 };
 
-Note.propTypes = {
+TextareaField.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 
-Note.defaultProps = {
+TextareaField.defaultProps = {
   label: '',
   placeholder: '',
 };
 
-export default Note;
+export default TextareaField;

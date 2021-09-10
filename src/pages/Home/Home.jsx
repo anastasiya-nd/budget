@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
 import SpendingItem from '../../components/SpendingItem';
-import Note from '../../components/Note';
+import TextareaField from '../../components/TextareaField';
 
 const Home = () => {
   const spendingsArray = [
@@ -44,7 +44,11 @@ const Home = () => {
 
   return (
     <section>
-      <Note label="Note" placeholder="Type spending description here" onChange={onChange} />
+      <TextareaField
+        label="Note"
+        placeholder="Type spending description here"
+        onChange={onChange}
+      />
       <LabelsPopover />
       <CategoryPopover />
       {spendingsArray.map((s) => (
