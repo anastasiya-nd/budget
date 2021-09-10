@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
 import SpendingItem from '../../components/SpendingItem';
@@ -35,9 +35,16 @@ const Home = () => {
     },
   ];
 
+  const [note, setNote] = useState('');
+
+  const onChange = (val) => {
+    setNote(val);
+  };
+  console.log(note);
+
   return (
     <section>
-      <Note label="Note" placeholder="Type spending description here" />
+      <Note label="Note" placeholder="Type spending description here" onChange={onChange} />
       <LabelsPopover />
       <CategoryPopover />
       {spendingsArray.map((s) => (
