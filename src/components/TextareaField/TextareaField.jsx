@@ -8,10 +8,10 @@ const TextareaField = ({ label, placeholder, onChange }) => {
   };
 
   return (
-    <>
+    <div>
       {label && <Label htmlFor="note">{label}</Label>}
       <Textarea id="note" name="note" onChange={handleInputChange} placeholder={placeholder} />
-    </>
+    </div>
   );
 };
 
