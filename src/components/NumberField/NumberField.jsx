@@ -21,7 +21,7 @@ const NumberField = ({ label, value, onChange }) => {
   };
 
   return (
-    <>
+    <div>
       {label && <Label htmlFor="amount">{label}</Label>}
       <Input
         id="amount"
@@ -31,7 +31,7 @@ const NumberField = ({ label, value, onChange }) => {
         onChange={handleInputChange}
         onBlur={validateInputValue}
       />
-    </>
+    </div>
   );
 };
 
