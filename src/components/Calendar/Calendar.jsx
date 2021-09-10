@@ -122,12 +122,9 @@ const Calendar = () => {
       setSelectedDate([val]);
     }
   };
+
   const sortSelectedDates = () => {
-    if (
-      selectedDate[0] &&
-      selectedDate[1] &&
-      new Date(selectedDate[0]) > new Date(selectedDate[1])
-    ) {
+    if (selectedDate[1] && new Date(selectedDate[0]) > new Date(selectedDate[1])) {
       selectedDate.reverse();
     }
   };
