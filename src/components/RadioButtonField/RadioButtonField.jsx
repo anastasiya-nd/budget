@@ -9,16 +9,16 @@ const RadioButtonField = ({ inputs, active, onChange }) => {
   return (
     <RadioButtonWrap>
       {inputs.map((input) => (
-        <RadioButton key={input}>
+        <RadioButton key={input.key}>
           <ButtonInput
-            id={input}
+            id={input.id}
             type="radio"
             name="currency"
             onChange={handleInputChange}
-            value={input}
+            value={input.value}
           />
-          <ButtonLabel htmlFor={input} active={active === input}>
-            {input}
+          <ButtonLabel htmlFor={input.id} active={active === input.value}>
+            {input.value}
           </ButtonLabel>
         </RadioButton>
       ))}
@@ -27,7 +27,7 @@ const RadioButtonField = ({ inputs, active, onChange }) => {
 };
 
 RadioButtonField.propTypes = {
-  inputs: PropTypes.arrayOf(PropTypes.string).isRequired,
+  inputs: PropTypes.arrayOf(PropTypes.object).isRequired,
   active: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };

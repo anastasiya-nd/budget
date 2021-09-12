@@ -58,7 +58,13 @@ const Home = () => {
   //   'Education',
   //   'Other',
   // ];
-  const currencyValues = ['BYN', 'RUB', 'USD', 'EUR'];
+
+  const currencyData = [
+    { id: '1', key: 'byn', value: 'BYN' },
+    { id: '2', key: 'rub', value: 'RUB' },
+    { id: '3', key: 'usd', value: 'USD' },
+    { id: '4', key: 'eur', value: 'EUR' },
+  ];
   const [currency, setCurrency] = useState('');
   const onChange = (val) => {
     setCurrency(val);
@@ -66,7 +72,7 @@ const Home = () => {
 
   return (
     <section>
-      <RadioButtonField inputs={currencyValues} active={currency} onChange={onChange} />
+      <RadioButtonField inputs={currencyData} active={currency} onChange={onChange} />
       <Calendar />
       {isOpenModal && (
         <Modal title="New spending" onClose={handleCloseModal}>
