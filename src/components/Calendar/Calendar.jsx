@@ -179,8 +179,7 @@ const Calendar = () => {
         {calendarDays.map((day, index) => (
           <Styled.CalendarDay
             variant={day.variant}
-            // eslint-disable-next-line
-            key={index}
+            key={index} // eslint-disable-line
             isActive={
               convertDate(day.dateValue) >= convertDate(periodStart) &&
               convertDate(day.dateValue) <= convertDate(periodEnd)
