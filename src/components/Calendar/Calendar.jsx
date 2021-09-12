@@ -41,7 +41,8 @@ import * as Styled from './styles';
 const Calendar = () => {
   const defaultDate = new Date();
   const [currentDate, setCurrentDate] = useState(defaultDate);
-  const [selectedDate, setSelectedDate] = useState([]);
+  const [periodStart, setPeriodStart] = useState('');
+  const [periodEnd, setPeriodEnd] = useState('');
   const currentDayOfCurrentMonth = 1;
   const startingDayOfNextMonth = 1;
   const countOfDaysInCurrentMonth = getCountOfDaysInCurrentMonth(currentDate);
@@ -116,20 +117,18 @@ const Calendar = () => {
   const isDisabledNextYearButton = (month, year, endingYear) => month === 11 && year >= endingYear;
 
   const setPeriodValues = (val) => {
-    if (selectedDate.length < 2) {
-      setSelectedDate([...selectedDate, val]);
+    if (!periodStart) {
+      setPeriodStart(val);
+    } else if (periodStart && !periodEnd && (new Date(periodStart) > new Date(val))) { // eslint-disable-line
+      setPeriodEnd(periodStart);
+      setPeriodStart(val);
+    } else if (periodStart && !periodEnd) {
+      setPeriodEnd(val);
     } else {
-      setSelectedDate([val]);
+      setPeriodStart(val);
+      setPeriodEnd('');
     }
   };
-
-  const sortSelectedDates = () => {
-    if (selectedDate[1] && new Date(selectedDate[0]) > new Date(selectedDate[1])) {
-      selectedDate.reverse();
-    }
-  };
-
-  sortSelectedDates();
 
   useEffect(() => {
     const dateFromMonthSelect = getDateForSelectedMonth(currentDate, indexOfSelectingMonth);
@@ -141,7 +140,6 @@ const Calendar = () => {
     setCurrentDate(dateFromYearSelect);
   }, [activeYear]);
 
-  console.log(selectedDate);
   return (
     <Styled.CalendarWrap>
       <Styled.CalendarHeader>
@@ -184,8 +182,8 @@ const Calendar = () => {
             // eslint-disable-next-line
             key={index}
             isActive={
-              convertDate(day.dateValue) >= convertDate(selectedDate[0]) &&
-              convertDate(day.dateValue) <= convertDate(selectedDate[1])
+              convertDate(day.dateValue) >= convertDate(periodStart) &&
+              convertDate(day.dateValue) <= convertDate(periodEnd)
             }
             onClick={() => setPeriodValues(day.dateValue)}
           >
