@@ -9,6 +9,7 @@ import Modal from '../../components/Modal';
 import RadioButtonField from '../../components/RadioButtonField';
 import TextareaField from '../../components/TextareaField';
 import NumberField from '../../components/NumberField';
+import LabelsField from '../../components/LabelsField';
 
 const Home = () => {
   const spendingsArray = [
@@ -81,6 +82,19 @@ const Home = () => {
     setAmount(val);
   };
 
+  const [labels, setLabels] = useState(['Other']);
+
+  const handleDeleteLabel = (deletingLabel) => {
+    const newLabels = labels.filter((label) => label !== deletingLabel);
+    setLabels(newLabels);
+  };
+
+  const handleChangeLabel = (val) => {
+    setLabels([...labels, val]);
+  };
+
+  console.log(labels);
+
   return (
     <section>
       <RadioButtonField inputs={currencyData} active={currency} onChange={handleChangeNote} />
@@ -91,6 +105,13 @@ const Home = () => {
         onChange={onChange}
       />
       <NumberField label="Amount" onChange={handleChangeAmount} value={amount} />
+      <LabelsField
+        fieldLabel="Labels"
+        placeholder="Add label name"
+        labels={labels}
+        onChange={handleChangeLabel}
+        onDelete={handleDeleteLabel}
+      />
       <Calendar />
       {isOpenModal && (
         <Modal title="New spending" onClose={handleCloseModal}>
