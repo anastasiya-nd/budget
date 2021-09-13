@@ -39,16 +39,15 @@ const LabelsField = ({ fieldLabel, placeholder, labels, onChange, onDelete }) =>
           onChange={handleInputChange}
         />
         {!!labels.length &&
-          labels.map((label, index) => {
+          labels.map((label, index) => (
             // eslint-disable-next-line
-            return (<Label key={index}>
-                {label}
-                <DeleteButton type="button" onClick={() => deleteLabel(label)}>
-                  <LabelClear />
-                </DeleteButton>
-              </Label>
-            );
-          })}
+            <Label key={index}>
+              {label}
+              <DeleteButton type="button" onClick={() => deleteLabel(label)}>
+                <LabelClear />
+              </DeleteButton>
+            </Label>
+          ))}
       </LabelsWrap>
     </div>
   );
