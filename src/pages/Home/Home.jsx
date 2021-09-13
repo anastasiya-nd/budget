@@ -8,6 +8,7 @@ import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import RadioButtonField from '../../components/RadioButtonField';
 import TextareaField from '../../components/TextareaField';
+import NumberField from '../../components/NumberField';
 
 const Home = () => {
   const spendingsArray = [
@@ -75,6 +76,10 @@ const Home = () => {
   const handleChangeNote = (val) => {
     setNote(val);
   };
+  const [amount, setAmount] = useState(0);
+  const handleChangeAmount = (val) => {
+    setAmount(val);
+  };
 
   return (
     <section>
@@ -85,6 +90,7 @@ const Home = () => {
         value={note}
         onChange={onChange}
       />
+      <NumberField label="Amount" onChange={handleChangeAmount} value={amount} />
       <Calendar />
       {isOpenModal && (
         <Modal title="New spending" onClose={handleCloseModal}>
