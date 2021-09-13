@@ -60,10 +60,10 @@ const Home = () => {
   // ];
 
   const currencyData = [
-    { id: '1', key: 'byn', value: 'BYN' },
-    { id: '2', key: 'rub', value: 'RUB' },
-    { id: '3', key: 'usd', value: 'USD' },
-    { id: '4', key: 'eur', value: 'EUR' },
+    { id: '1', value: 'byn', label: 'BYN' },
+    { id: '2', value: 'rub', label: 'RUB' },
+    { id: '3', value: 'usd', label: 'USD' },
+    { id: '4', value: 'eur', label: 'EUR' },
   ];
   const [currency, setCurrency] = useState('');
   const onChange = (val) => {

@@ -9,7 +9,7 @@ const RadioButtonField = ({ inputs, active, onChange }) => {
   return (
     <RadioButtonWrap>
       {inputs.map((input) => (
-        <RadioButton key={input.key}>
+        <RadioButton key={input.id}>
           <ButtonInput
             id={input.id}
             type="radio"
@@ -18,7 +18,7 @@ const RadioButtonField = ({ inputs, active, onChange }) => {
             value={input.value}
           />
           <ButtonLabel htmlFor={input.id} active={active === input.value}>
-            {input.value}
+            {input.label}
           </ButtonLabel>
         </RadioButton>
       ))}
