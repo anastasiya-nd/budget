@@ -82,6 +82,7 @@ const Home = () => {
       <TextareaField
         label="Note"
         placeholder="Type spending description here"
+        value={note}
         onChange={onChange}
       />
       <Calendar />
