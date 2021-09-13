@@ -9,6 +9,7 @@ import Modal from '../../components/Modal';
 import RadioButtonField from '../../components/RadioButtonField';
 import TextareaField from '../../components/TextareaField';
 import NumberField from '../../components/NumberField';
+import LabelsField from '../../components/LabelsField';
 
 const Home = () => {
   const spendingsArray = [
@@ -91,6 +92,7 @@ const Home = () => {
         onChange={onChange}
       />
       <NumberField label="Amount" onChange={handleChangeAmount} value={amount} />
+      <LabelsField label="Labels" />
       <Calendar />
       {isOpenModal && (
         <Modal title="New spending" onClose={handleCloseModal}>
