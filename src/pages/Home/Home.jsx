@@ -82,6 +82,19 @@ const Home = () => {
     setAmount(val);
   };
 
+  const [labels, setLabels] = useState(['Other']);
+
+  const onDelete = (deletingLabel) => {
+    const newLabels = labels.filter((label) => label !== deletingLabel);
+    setLabels(newLabels);
+  };
+
+  const onChange = (val) => {
+    setLabels([...labels, val]);
+  };
+
+  console.log(labels);
+
   return (
     <section>
       <RadioButtonField inputs={currencyData} active={currency} onChange={handleChangeNote} />
@@ -92,7 +105,13 @@ const Home = () => {
         onChange={onChange}
       />
       <NumberField label="Amount" onChange={handleChangeAmount} value={amount} />
-      <LabelsField label="Labels" />
+      <LabelsField
+        fieldLabel="Labels"
+        placeholder="Add label name"
+        labels={labels}
+        onChange={onChange}
+        onDelete={onDelete}
+      />
       <Calendar />
       {isOpenModal && (
         <Modal title="New spending" onClose={handleCloseModal}>
