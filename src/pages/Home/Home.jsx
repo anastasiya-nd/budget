@@ -89,7 +89,7 @@ const Home = () => {
     setLabels(newLabels);
   };
 
-  const onChangeLabel = (val) => {
+  const handleChangeLabel = (val) => {
     setLabels([...labels, val]);
   };
 
@@ -109,7 +109,7 @@ const Home = () => {
         fieldLabel="Labels"
         placeholder="Add label name"
         labels={labels}
-        onChange={onChangeLabel}
+        onChange={handleChangeLabel}
         onDelete={handleDeleteLabel}
       />
       <Calendar />
