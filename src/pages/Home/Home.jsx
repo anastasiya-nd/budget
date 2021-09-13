@@ -7,6 +7,7 @@ import SpendingItem from '../../components/SpendingItem';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import RadioButtonField from '../../components/RadioButtonField';
+import TextareaField from '../../components/TextareaField';
 
 const Home = () => {
   const spendingsArray = [
@@ -69,10 +70,20 @@ const Home = () => {
   const onChange = (val) => {
     setCurrency(val);
   };
+  const [note, setNote] = useState(''); // eslint-disable-line
+
+  const handleChangeNote = (val) => {
+    setNote(val);
+  };
 
   return (
     <section>
-      <RadioButtonField inputs={currencyData} active={currency} onChange={onChange} />
+      <RadioButtonField inputs={currencyData} active={currency} onChange={handleChangeNote} />
+      <TextareaField
+        label="Note"
+        placeholder="Type spending description here"
+        onChange={onChange}
+      />
       <Calendar />
       {isOpenModal && (
         <Modal title="New spending" onClose={handleCloseModal}>
