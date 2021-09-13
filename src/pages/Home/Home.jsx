@@ -84,12 +84,12 @@ const Home = () => {
 
   const [labels, setLabels] = useState(['Other']);
 
-  const onDelete = (deletingLabel) => {
+  const handleDeleteLabel = (deletingLabel) => {
     const newLabels = labels.filter((label) => label !== deletingLabel);
     setLabels(newLabels);
   };
 
-  const onChange = (val) => {
+  const onChangeLabel = (val) => {
     setLabels([...labels, val]);
   };
 
@@ -109,8 +109,8 @@ const Home = () => {
         fieldLabel="Labels"
         placeholder="Add label name"
         labels={labels}
-        onChange={onChange}
-        onDelete={onDelete}
+        onChange={onChangeLabel}
+        onDelete={handleDeleteLabel}
       />
       <Calendar />
       {isOpenModal && (
