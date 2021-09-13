@@ -6,6 +6,7 @@ import LabelsPopover from '../../components/LabelsPopover';
 import SpendingItem from '../../components/SpendingItem';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
+import RadioButtonField from '../../components/RadioButtonField';
 
 const Home = () => {
   const spendingsArray = [
@@ -58,8 +59,20 @@ const Home = () => {
   //   'Other',
   // ];
 
+  const currencyData = [
+    { id: '1', value: 'byn', label: 'BYN' },
+    { id: '2', value: 'rub', label: 'RUB' },
+    { id: '3', value: 'usd', label: 'USD' },
+    { id: '4', value: 'eur', label: 'EUR' },
+  ];
+  const [currency, setCurrency] = useState('');
+  const onChange = (val) => {
+    setCurrency(val);
+  };
+
   return (
     <section>
+      <RadioButtonField inputs={currencyData} active={currency} onChange={onChange} />
       <Calendar />
       {isOpenModal && (
         <Modal title="New spending" onClose={handleCloseModal}>
