@@ -35,9 +35,9 @@ const Select = ({ label, placeholder, options, onChange, active }) => {
         </Styled.SelectValue>
         <Styled.SelectContentWrap variant={isOpen}>
           <ul>
-            {options.map((option) => (
+            {options.map((option, index) => (
               <Styled.OptionItem
-                key={option}
+                key={index}  //eslint-disable-line
                 isActive={active === option}
                 onClick={() => onChoose(option)}
               >

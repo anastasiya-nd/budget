@@ -23,9 +23,9 @@ const CategoryPopover = () => {
     <Popover popoverLabel="Category">
       <>
         <Styled.CategoryWrap>
-          {categories.map((category) => (
+          {categories.map((category, index) => (
             <Styled.CategoryItem
-              key={category}
+              key={index}  //eslint-disable-line
               isActive={categoryValue === category}
               onClick={() => setCategory(category)}
             >
