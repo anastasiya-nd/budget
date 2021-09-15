@@ -93,8 +93,6 @@ const Home = () => {
     setLabels([...labels, val]);
   };
 
-  console.log(labels);
-
   return (
     <section>
       <RadioButtonField inputs={currencyData} active={currency} onChange={handleChangeCurrency} />
