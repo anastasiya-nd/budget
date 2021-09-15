@@ -25,15 +25,15 @@ const LabelsField = ({ fieldLabel, placeholder, labels, onChange, onDelete }) =>
 
   return (
     <div>
-      {fieldLabel && <FieldLabel htmlFor="amount">{fieldLabel}</FieldLabel>}
+      {fieldLabel && <FieldLabel htmlFor="label">{fieldLabel}</FieldLabel>}
       <LabelsWrap>
         <PlusButton type="button" onClick={addLabel}>
           <Plus />
         </PlusButton>
         <Input
-          id="amount"
+          id="label"
           type="text"
-          name="amount"
+          name="label"
           value={labelValue}
           placeholder={placeholder}
           onChange={handleInputChange}
