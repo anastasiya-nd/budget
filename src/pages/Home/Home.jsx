@@ -69,7 +69,7 @@ const Home = () => {
     { id: '4', value: 'eur', label: 'EUR' },
   ];
   const [currency, setCurrency] = useState('');
-  const onChange = (val) => {
+  const handleChangeCurrency = (val) => {
     setCurrency(val);
   };
   const [note, setNote] = useState(''); // eslint-disable-line
@@ -93,16 +93,14 @@ const Home = () => {
     setLabels([...labels, val]);
   };
 
-  console.log(labels);
-
   return (
     <section>
-      <RadioButtonField inputs={currencyData} active={currency} onChange={handleChangeNote} />
+      <RadioButtonField inputs={currencyData} active={currency} onChange={handleChangeCurrency} />
       <TextareaField
         label="Note"
         placeholder="Type spending description here"
         value={note}
-        onChange={onChange}
+        onChange={handleChangeNote}
       />
       <NumberField label="Amount" onChange={handleChangeAmount} value={amount} />
       <LabelsField

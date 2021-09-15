@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import NextArrow from '../Icons/NextArrow';
 import PrevArrow from '../Icons/PrevArrow';
 import {
@@ -38,7 +39,7 @@ import {
 import Select from '../Select';
 import * as Styled from './styles';
 
-const Calendar = () => {
+const Calendar = ({ rangeSelection }) => {
   const defaultDate = new Date();
   const [currentDate, setCurrentDate] = useState(defaultDate);
   const [periodStart, setPeriodStart] = useState('');
@@ -117,16 +118,20 @@ const Calendar = () => {
   const isDisabledNextYearButton = (month, year, endingYear) => month === 11 && year >= endingYear;
 
   const setPeriodValues = (val) => {
-    if (!periodStart) {
-      setPeriodStart(val);
-    } else if (periodStart && !periodEnd && (new Date(periodStart) > new Date(val))) { // eslint-disable-line
-      setPeriodEnd(periodStart);
-      setPeriodStart(val);
-    } else if (periodStart && !periodEnd) {
-      setPeriodEnd(val);
+    if (rangeSelection) {
+      if (!periodStart) {
+        setPeriodStart(val);
+      } else if (periodStart && !periodEnd && (new Date(periodStart) > new Date(val))) { // eslint-disable-line
+        setPeriodEnd(periodStart);
+        setPeriodStart(val);
+      } else if (periodStart && !periodEnd) {
+        setPeriodEnd(val);
+      } else {
+        setPeriodStart(val);
+        setPeriodEnd('');
+      }
     } else {
       setPeriodStart(val);
-      setPeriodEnd('');
     }
   };
 
@@ -181,8 +186,9 @@ const Calendar = () => {
             variant={day.variant}
             key={index} // eslint-disable-line
             isActive={
-              convertDate(day.dateValue) >= convertDate(periodStart) &&
-              convertDate(day.dateValue) <= convertDate(periodEnd)
+              convertDate(day.dateValue) === convertDate(periodStart) ||
+              (convertDate(day.dateValue) >= convertDate(periodStart) &&
+                convertDate(day.dateValue) <= convertDate(periodEnd))
             }
             onClick={() => setPeriodValues(day.dateValue)}
           >
@@ -192,6 +198,14 @@ const Calendar = () => {
       </Styled.CalendarTableContent>
     </Styled.CalendarWrap>
   );
+};
+
+Calendar.propTypes = {
+  rangeSelection: PropTypes.bool,
+};
+
+Calendar.defaultProps = {
+  rangeSelection: false,
 };
 
 export default Calendar;
