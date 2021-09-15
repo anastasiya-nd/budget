@@ -145,8 +145,6 @@ const Calendar = ({ rangeSelection }) => {
     setCurrentDate(dateFromYearSelect);
   }, [activeYear]);
 
-  console.log(periodStart, periodEnd);
-
   return (
     <Styled.CalendarWrap>
       <Styled.CalendarHeader>
