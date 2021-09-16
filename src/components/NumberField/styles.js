@@ -10,6 +10,7 @@ export const Input = styled.input`
   text-align: right;
   padding: 5px 12px;
   display: block;
+  width: stretch;
 `;
 
 export const Label = styled.label`

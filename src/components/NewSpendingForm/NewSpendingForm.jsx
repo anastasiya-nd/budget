@@ -76,10 +76,10 @@ const NewSpendingForm = ({ onClose }) => {
           onDelete={handleDeleteLabel}
         />
       </Styled.FormContent>
-      <div>
-        <Button text="Close" onClick={onClose} />
-        <Button text="Save" onClick={() => console.log(1)} />
-      </div>
+      <Styled.ButtonWrap>
+        <Button text="Close" variant="secondary" onClick={onClose} />
+        <Button text="Save" type="submit" onClick={() => console.log(1)} />
+      </Styled.ButtonWrap>
     </Styled.Form>
   );
 };

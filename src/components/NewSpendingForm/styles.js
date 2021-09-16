@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ButtonItem } from '../Button/styles';
 import LabelsField from '../LabelsField';
 import NumberField from '../NumberField';
 import RadioButtonField from '../RadioButtonField';
@@ -8,7 +9,6 @@ import TextareaField from '../TextareaField';
 
 export const Form = styled.form`
   padding: 24px 24px 28px;
-  width: 410px;
 `;
 
 export const FormContent = styled.div`
@@ -19,7 +19,7 @@ export const FormContent = styled.div`
     'amount currency'
     'note note'
     'labels labels';
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 180px);
   grid-gap: 18px;
 `;
 
@@ -51,3 +51,18 @@ export const Note = styled(TextareaField)`
 export const Labels = styled(LabelsField)`
   grid-area: labels;
 `;
+
+export const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+  ${ButtonItem} {
+    margin-left: 12px;
+    padding: 8px 12px;
+  }
+`;
+
+// export const ButtonItem = styled(Button)`  // What is better?
+//   margin-left: 12px;
+//   padding: 8px 12px;
+// `;

@@ -5,8 +5,6 @@ export const RadioButtonWrap = styled.div`
 `;
 
 export const RadioButton = styled.div`
-  min-height: 28px;
-  display: flex;
   &:not(:last-of-type) {
     margin-right: 4px;
   }
@@ -20,7 +18,11 @@ export const ButtonLabel = styled.label`
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;
-  padding: 5px 7px;
+  width: 42px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: ${({ active }) => (active ? '#fff' : '#000')};
 `;
 
