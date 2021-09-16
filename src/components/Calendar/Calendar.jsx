@@ -39,11 +39,16 @@ import {
 import Select from '../Select';
 import * as Styled from './styles';
 
-const Calendar = ({ rangeSelection }) => {
+const Calendar = ({
+  rangeSelection,
+  periodStart,
+  periodEnd,
+  setPeriodStart,
+  setPeriodEnd,
+  className,
+}) => {
   const defaultDate = new Date();
   const [currentDate, setCurrentDate] = useState(defaultDate);
-  const [periodStart, setPeriodStart] = useState('');
-  const [periodEnd, setPeriodEnd] = useState('');
   const currentDayOfCurrentMonth = 1;
   const startingDayOfNextMonth = 1;
   const countOfDaysInCurrentMonth = getCountOfDaysInCurrentMonth(currentDate);
@@ -118,6 +123,7 @@ const Calendar = ({ rangeSelection }) => {
   const isDisabledNextYearButton = (month, year, endingYear) => month === 11 && year >= endingYear;
 
   const setPeriodValues = (val) => {
+    console.log('val', val);
     if (rangeSelection) {
       if (!periodStart) {
         setPeriodStart(val);
@@ -146,7 +152,7 @@ const Calendar = ({ rangeSelection }) => {
   }, [activeYear]);
 
   return (
-    <Styled.CalendarWrap>
+    <Styled.CalendarWrap className={className}>
       <Styled.CalendarHeader>
         <Styled.ArrowButton
           type="button"
@@ -202,10 +208,18 @@ const Calendar = ({ rangeSelection }) => {
 
 Calendar.propTypes = {
   rangeSelection: PropTypes.bool,
+  periodStart: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+  periodEnd: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+  setPeriodStart: PropTypes.func.isRequired,
+  setPeriodEnd: PropTypes.func, //eslint-disable-line
+  className: PropTypes.string,
 };
 
 Calendar.defaultProps = {
   rangeSelection: false,
+  periodStart: '',
+  periodEnd: '',
+  className: '',
 };
 
 export default Calendar;

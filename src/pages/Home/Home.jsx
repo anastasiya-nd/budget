@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Calendar from '../../components/Calendar/Calendar';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
 // import Select from '../../components/Select';
@@ -10,6 +9,7 @@ import RadioButtonField from '../../components/RadioButtonField';
 import TextareaField from '../../components/TextareaField';
 import NumberField from '../../components/NumberField';
 import LabelsField from '../../components/LabelsField';
+import PeriodPopover from '../../components/PeriodPopover';
 
 const Home = () => {
   const spendingsArray = [
@@ -95,6 +95,7 @@ const Home = () => {
 
   return (
     <section>
+      <PeriodPopover />
       <RadioButtonField inputs={currencyData} active={currency} onChange={handleChangeCurrency} />
       <TextareaField
         label="Note"
@@ -110,7 +111,6 @@ const Home = () => {
         onChange={handleChangeLabel}
         onDelete={handleDeleteLabel}
       />
-      <Calendar />
       {isOpenModal && (
         <Modal title="New spending" onClose={handleCloseModal}>
           <>Modal content</>

@@ -24,7 +24,7 @@ const Select = ({ label, placeholder, options, onChange, active }) => {
   useClickOutside(node, onClose);
 
   return (
-    <>
+    <div>
       {label && <Styled.SelectLabel>{label}</Styled.SelectLabel>}
       <Styled.SelectWrap ref={node}>
         <Styled.SelectValue onClick={changeIsOpen} active={active}>
@@ -47,7 +47,7 @@ const Select = ({ label, placeholder, options, onChange, active }) => {
           </ul>
         </Styled.SelectContentWrap>
       </Styled.SelectWrap>
-    </>
+    </div>
   );
 };
 

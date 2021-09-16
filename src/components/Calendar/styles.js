@@ -5,13 +5,12 @@ const commonStylesOfRowWrap = `
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(7, 36px);
-  font-size: 14px;
-  line-height: 16px;
 `;
 
 export const CalendarWrap = styled.div`
   max-width: 272px;
-  border: 1px solid red;
+  font-size: 14px;
+  line-height: 16px;
 `;
 
 export const CalendarHeader = styled.div`
@@ -43,8 +42,8 @@ export const CalendarHeaderDate = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  font-size: 14px;
-  line-height: 16px;
+  /* font-size: 14px;
+  line-height: 16px; */
 `;
 
 export const CalendarTableHeader = styled.div`
