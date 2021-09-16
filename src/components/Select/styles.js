@@ -14,8 +14,6 @@ export const SelectLabel = styled.div`
 export const SelectValue = styled.div`
   display: flex;
   align-items: center;
-  font-size: 10px;
-  line-height: 16px;
   border: 1px solid #e7e7e9;
   border-radius: 3px;
   display: flex;
@@ -57,8 +55,6 @@ export const ArrowWrap = styled.div`
 `;
 
 export const OptionItem = styled.li`
-  font-size: 10px;
-  line-height: 16px;
   padding: 4px 12px;
   background: ${({ isActive }) => (isActive ? '#F5F1EE ' : 'transparent')};
   &:hover {

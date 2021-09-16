@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import Calendar from '../../components/Calendar/Calendar';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
-// import Select from '../../components/Select';
 import SpendingItem from '../../components/SpendingItem';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
@@ -10,6 +8,7 @@ import RadioButtonField from '../../components/RadioButtonField';
 import TextareaField from '../../components/TextareaField';
 import NumberField from '../../components/NumberField';
 import LabelsField from '../../components/LabelsField';
+import PeriodPopover from '../../components/PeriodPopover';
 
 const Home = () => {
   const spendingsArray = [
@@ -51,17 +50,6 @@ const Home = () => {
     toggleModal(false);
   };
 
-  // const categories = [
-  //   'Shopping',
-  //   'Entertainment',
-  //   'Car',
-  //   'Bills',
-  //   'Food',
-  //   'Home',
-  //   'Education',
-  //   'Other',
-  // ];
-
   const currencyData = [
     { id: '1', value: 'byn', label: 'BYN' },
     { id: '2', value: 'rub', label: 'RUB' },
@@ -95,6 +83,7 @@ const Home = () => {
 
   return (
     <section>
+      <PeriodPopover />
       <RadioButtonField inputs={currencyData} active={currency} onChange={handleChangeCurrency} />
       <TextareaField
         label="Note"
@@ -110,7 +99,6 @@ const Home = () => {
         onChange={handleChangeLabel}
         onDelete={handleDeleteLabel}
       />
-      <Calendar />
       {isOpenModal && (
         <Modal title="New spending" onClose={handleCloseModal}>
           <>Modal content</>
@@ -119,7 +107,6 @@ const Home = () => {
       <LabelsPopover />
       <CategoryPopover />
       <Button text="Add new spending +" onClick={handleOpenModal} />
-      {/* <Select label="Category" placeholder="Select a spending category" options={categories} /> */}
       {spendingsArray.map((s) => (
         <SpendingItem
           key={s.id}
