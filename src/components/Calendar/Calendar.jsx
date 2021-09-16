@@ -123,7 +123,6 @@ const Calendar = ({
   const isDisabledNextYearButton = (month, year, endingYear) => month === 11 && year >= endingYear;
 
   const setPeriodValues = (val) => {
-    console.log('val', val);
     if (rangeSelection) {
       if (!periodStart) {
         setPeriodStart(val);

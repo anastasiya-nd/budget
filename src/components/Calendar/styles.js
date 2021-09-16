@@ -42,8 +42,6 @@ export const CalendarHeaderDate = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  /* font-size: 14px;
-  line-height: 16px; */
 `;
 
 export const CalendarTableHeader = styled.div`

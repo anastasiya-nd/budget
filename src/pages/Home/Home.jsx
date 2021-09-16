@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
-// import Select from '../../components/Select';
 import SpendingItem from '../../components/SpendingItem';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
@@ -50,17 +49,6 @@ const Home = () => {
   const handleCloseModal = () => {
     toggleModal(false);
   };
-
-  // const categories = [
-  //   'Shopping',
-  //   'Entertainment',
-  //   'Car',
-  //   'Bills',
-  //   'Food',
-  //   'Home',
-  //   'Education',
-  //   'Other',
-  // ];
 
   const currencyData = [
     { id: '1', value: 'byn', label: 'BYN' },
@@ -119,7 +107,6 @@ const Home = () => {
       <LabelsPopover />
       <CategoryPopover />
       <Button text="Add new spending +" onClick={handleOpenModal} />
-      {/* <Select label="Category" placeholder="Select a spending category" options={categories} /> */}
       {spendingsArray.map((s) => (
         <SpendingItem
           key={s.id}

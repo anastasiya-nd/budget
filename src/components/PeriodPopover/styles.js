@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Calendar from '../Calendar/Calendar';
+import Calendar from '../Calendar';
 
 export const CalendarWrap = styled.div`
   background-color: #fff;
