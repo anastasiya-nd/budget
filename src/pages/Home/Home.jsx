@@ -9,7 +9,7 @@ import TextareaField from '../../components/TextareaField';
 import NumberField from '../../components/NumberField';
 import LabelsField from '../../components/LabelsField';
 import PeriodPopover from '../../components/PeriodPopover';
-import DateSelect from '../../components/DateSelect';
+import DateField from '../../components/DateField';
 
 const Home = () => {
   const spendingsArray = [
@@ -89,7 +89,7 @@ const Home = () => {
 
   return (
     <section>
-      <DateSelect
+      <DateField
         fieldLabel="Date"
         placeholder="Select a spending date"
         activeDate={periodStart}

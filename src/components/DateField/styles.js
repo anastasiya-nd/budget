@@ -7,18 +7,18 @@ import {
   CalendarTableHeader,
 } from '../Calendar/styles';
 
-export const SelectWrap = styled.div`
+export const FieldWrap = styled.div`
   position: relative;
   max-width: 280px;
 `;
 
-export const SelectLabel = styled.div`
+export const FieldLabel = styled.div`
   font-size: 12px;
   line-height: 16px;
   margin-bottom: 4px;
 `;
 
-export const SelectValue = styled.div`
+export const FieldValue = styled.div`
   font-size: 10px;
   display: flex;
   align-items: center;
@@ -31,7 +31,7 @@ export const SelectValue = styled.div`
   color: ${({ active }) => (active ? '#000' : '#b2b2b2')};
 `;
 
-export const SelectContentWrap = styled.div`
+export const CalendarWrap = styled.div`
   position: absolute;
   z-index: 10;
   top: 100%;
@@ -45,15 +45,6 @@ export const ArrowWrap = styled.div`
   transition: 0.2s;
   height: 24px;
   transform: ${({ variant }) => (variant ? 'rotate(180deg)' : 'rotate(0deg)')};
-`;
-
-export const OptionItem = styled.li`
-  padding: 4px 12px;
-  background: ${({ isActive }) => (isActive ? '#F5F1EE ' : 'transparent')};
-  &:hover {
-    cursor: pointer;
-    background: #f9f7f5;
-  }
 `;
 
 export const DateCalendar = styled(Calendar)`
