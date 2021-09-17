@@ -4,7 +4,7 @@ import * as Styled from './styles';
 import Arrow from '../Icons/Arrow';
 import { useClickOutside } from '../../hooks/hooks';
 
-const Select = ({ label, placeholder, options, onChange, active }) => {
+const Select = ({ label, placeholder, options, onChange, active, className }) => {
   const node = useRef(null);
   const [isOpen, toggleIsOpen] = useState(false);
 
@@ -24,7 +24,7 @@ const Select = ({ label, placeholder, options, onChange, active }) => {
   useClickOutside(node, onClose);
 
   return (
-    <div>
+    <div className={className}>
       {label && <Styled.SelectLabel>{label}</Styled.SelectLabel>}
       <Styled.SelectWrap ref={node}>
         <Styled.SelectValue onClick={changeIsOpen} active={active}>
@@ -57,12 +57,14 @@ Select.propTypes = {
   options: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
   onChange: PropTypes.func.isRequired,
   active: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  className: PropTypes.string,
 };
 
 Select.defaultProps = {
   placeholder: 'select placeholder',
   active: '',
   label: '',
+  className: '',
 };
 
 export default Select;

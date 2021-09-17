@@ -20,6 +20,7 @@ export const SelectValue = styled.div`
   justify-content: space-between;
   padding-left: 8px;
   max-width: 360px;
+  width: max-content;
   color: ${({ active }) => (active ? '#000' : '#b2b2b2')};
 `;
 
@@ -29,7 +30,7 @@ export const SelectContentWrap = styled.div`
   top: 100%;
   left: 0;
   background: #fff;
-  width: 100%;
+  width: max-content;
   box-shadow: 0px 4px 8px rgba(22, 61, 53, 0.12);
   border-radius: 4px;
   padding: 8px 0;
