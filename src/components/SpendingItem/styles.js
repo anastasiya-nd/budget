@@ -11,6 +11,15 @@ const iconVariants = {
   other: '#5652BA',
 };
 
+export const ButtonWrap = styled.div`
+  width: 0px;
+  margin-left: 16px;
+  transition: 0.3s;
+  opacity: 0;
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const Spending = styled.div`
   padding: 12px 18px;
   background: #f5f1ee;
@@ -18,8 +27,18 @@ export const Spending = styled.div`
   border-radius: 4px;
   display: flex;
   align-items: center;
+  transition: 0.3s;
+  overflow: hidden;
   &:not(:last-of-type) {
     margin-bottom: 10px;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover ${ButtonWrap} {
+    width: 52px;
+    cursor: pointer;
+    opacity: 1;
   }
 `;
 
@@ -104,4 +123,10 @@ export const Amount = styled.div`
   color: #24695c;
   width: 125px;
   text-align: right;
+`;
+
+export const Button = styled.button`
+  &:hover {
+    cursor: pointer;
+  }
 `;
