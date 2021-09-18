@@ -19,14 +19,15 @@ export const FormContent = styled.div`
     'amount currency'
     'note note'
     'labels labels';
-  grid-template-columns: repeat(2, 180px);
+  /* grid-template-columns: repeat(2, 180px); */
+  grid-template-columns: repeat(2, 192px);
   grid-gap: 18px;
 `;
 
 export const CategorySelect = styled(Select)`
   grid-area: category;
   ${SelectWrap} {
-    font-size: 10px;
+    font-size: 12px;
     line-height: 16px;
   }
 `;

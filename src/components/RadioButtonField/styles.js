@@ -18,7 +18,7 @@ export const ButtonLabel = styled.label`
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;
-  width: 42px;
+  width: 48px;
   height: 28px;
   display: flex;
   justify-content: center;
