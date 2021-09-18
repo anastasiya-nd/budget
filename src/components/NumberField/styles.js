@@ -13,7 +13,7 @@ export const Input = styled.input`
   width: stretch;
 `;
 
-export const Label = styled.label`
+export const FieldLabel = styled.label`
   display: block;
   font-size: 12px;
   line-height: 16px;

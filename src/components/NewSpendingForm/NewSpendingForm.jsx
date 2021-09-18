@@ -53,17 +53,17 @@ const NewSpendingForm = ({ onClose }) => {
     <Styled.Form>
       <Styled.FormContent>
         <Styled.CategorySelect
-          label="Category"
+          fieldLabel="Category"
           placeholder="Select a spending category"
           options={categories}
           onChange={handleChangeCategory}
           active={category}
         />
         <Styled.Date>Date</Styled.Date>
-        <Styled.Amount label="Amount" onChange={handleChangeAmount} value={amount} />
+        <Styled.Amount fieldLabel="Amount" onChange={handleChangeAmount} value={amount} />
         <Styled.Currency inputs={currencyData} active={currency} onChange={handleChangeCurrency} />
         <Styled.Note
-          label="Note"
+          fieldLabel="Note"
           placeholder="Type spending description here"
           value={note}
           onChange={handleChangeNote}
