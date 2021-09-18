@@ -9,6 +9,8 @@ import Home from '../Icons/Home';
 import Education from '../Icons/Education';
 import Other from '../Icons/Other';
 import * as Styled from './styles';
+import DeleteIcon24 from '../Icons/DeleteIcon24';
+import EditIcon from '../Icons/EditIcon';
 
 const SpendingItem = ({ category, note, labels, createdAt, amount, currency }) => {
   const getIcon = (categoryName) => {
@@ -56,6 +58,14 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency }) =
           {amount} {currency}
         </Styled.Amount>
       </Styled.DateAndAmountWrap>
+      <Styled.ButtonWrap>
+        <Styled.Button type="button">
+          <EditIcon />
+        </Styled.Button>
+        <Styled.Button type="button">
+          <DeleteIcon24 />
+        </Styled.Button>
+      </Styled.ButtonWrap>
     </Styled.Spending>
   );
 };
