@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const FieldLabel = styled.label`
+  display: block;
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: 4px;
+`;
+
 export const RadioButtonWrap = styled.div`
   display: flex;
 `;
@@ -18,7 +25,7 @@ export const ButtonLabel = styled.label`
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;
-  width: 48px;
+  width: 45px;
   height: 28px;
   display: flex;
   justify-content: center;
