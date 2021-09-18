@@ -9,17 +9,17 @@ import {
 
 export const FieldWrap = styled.div`
   position: relative;
-  max-width: 280px;
+  width: 100%;
 `;
 
 export const FieldLabel = styled.div`
-  font-size: 12px;
+  font-size: 14px;
   line-height: 16px;
   margin-bottom: 4px;
 `;
 
 export const FieldValue = styled.div`
-  font-size: 10px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   border: 1px solid #e7e7e9;
@@ -27,7 +27,7 @@ export const FieldValue = styled.div`
   display: flex;
   justify-content: space-between;
   padding-left: 8px;
-  max-width: 280px;
+  width: 100%;
   color: ${({ active }) => (active ? '#000' : '#b2b2b2')};
 `;
 
@@ -48,7 +48,7 @@ export const ArrowWrap = styled.div`
 `;
 
 export const DateCalendar = styled(Calendar)`
-  font-size: 10px;
+  /* font-size: 10px;
   ${CalendarTableHeader} {
     grid-template-columns: repeat(7, 28px);
     grid-template-rows: 20px;
@@ -62,5 +62,5 @@ export const DateCalendar = styled(Calendar)`
   }
   ${ArrowButton} {
     width: 28px;
-  }
+  } */
 `;

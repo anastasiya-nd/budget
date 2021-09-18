@@ -36,7 +36,7 @@ const DateField = ({ fieldLabel, placeholder, activeDate, onChange }) => {
           </Styled.ArrowWrap>
         </Styled.FieldValue>
         <Styled.CalendarWrap variant={isOpen}>
-          <Styled.DateCalendar periodStart={activeDate} setPeriodStart={onChange} />
+          <Styled.DateCalendar periodStart={activeDate} setPeriodStart={onChange} maxCurrentDate />
         </Styled.CalendarWrap>
       </Styled.FieldWrap>
     </div>

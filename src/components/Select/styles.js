@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const SelectWrap = styled.div`
   position: relative;
-  max-width: 360px;
+  width: 100%;
 `;
 
 export const SelectLabel = styled.div`
@@ -19,7 +19,6 @@ export const SelectValue = styled.div`
   display: flex;
   justify-content: space-between;
   padding-left: 8px;
-  max-width: 360px;
   width: max-content;
   color: ${({ active }) => (active ? '#000' : '#b2b2b2')};
 `;
