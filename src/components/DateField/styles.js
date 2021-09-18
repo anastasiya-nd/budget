@@ -1,11 +1,4 @@
 import styled from 'styled-components';
-import Calendar from '../Calendar';
-import {
-  ArrowButton,
-  CalendarHeader,
-  CalendarTableContent,
-  CalendarTableHeader,
-} from '../Calendar/styles';
 
 export const FieldWrap = styled.div`
   position: relative;
@@ -45,22 +38,4 @@ export const ArrowWrap = styled.div`
   transition: 0.2s;
   height: 24px;
   transform: ${({ variant }) => (variant ? 'rotate(180deg)' : 'rotate(0deg)')};
-`;
-
-export const DateCalendar = styled(Calendar)`
-  /* font-size: 10px;
-  ${CalendarTableHeader} {
-    grid-template-columns: repeat(7, 28px);
-    grid-template-rows: 20px;
-  }
-  ${CalendarTableContent} {
-    grid-template-columns: repeat(7, 28px);
-    grid-template-rows: repeat(6, 20px);
-  }
-  ${CalendarHeader} {
-    height: 28px;
-  }
-  ${ArrowButton} {
-    width: 28px;
-  } */
 `;

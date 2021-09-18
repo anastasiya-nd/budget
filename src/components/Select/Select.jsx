@@ -64,7 +64,6 @@ Select.defaultProps = {
   placeholder: 'select placeholder',
   active: '',
   label: '',
-  // className: '',
 };
 
 export default Select;

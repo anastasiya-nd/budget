@@ -4,6 +4,7 @@ import * as Styled from './styles';
 import Arrow from '../Icons/Arrow';
 import { useClickOutside } from '../../hooks/hooks';
 import { monthNames } from '../Calendar/constants';
+import Calendar from '../Calendar';
 
 const DateField = ({ fieldLabel, placeholder, activeDate, onChange }) => {
   const node = useRef(null);
@@ -36,7 +37,7 @@ const DateField = ({ fieldLabel, placeholder, activeDate, onChange }) => {
           </Styled.ArrowWrap>
         </Styled.FieldValue>
         <Styled.CalendarWrap variant={isOpen}>
-          <Styled.DateCalendar periodStart={activeDate} setPeriodStart={onChange} maxCurrentDate />
+          <Calendar periodStart={activeDate} setPeriodStart={onChange} maxCurrentDate />
         </Styled.CalendarWrap>
       </Styled.FieldWrap>
     </div>
