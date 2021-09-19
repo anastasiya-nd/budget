@@ -49,6 +49,11 @@ const NewSpendingForm = ({ onClose }) => {
     setLabels([...labels, val]);
   };
 
+  const [periodStart, setPeriodStart] = useState('');
+  const handleChangePeriodStart = (date) => {
+    setPeriodStart(date);
+  };
+
   return (
     <Styled.Form>
       <Styled.FormContent>
@@ -59,7 +64,12 @@ const NewSpendingForm = ({ onClose }) => {
           onChange={handleChangeCategory}
           active={category}
         />
-        <Styled.Date>Date</Styled.Date>
+        <Styled.Date
+          fieldLabel="Date"
+          placeholder="Select a spending date"
+          activeDate={periodStart}
+          onChange={handleChangePeriodStart}
+        />
         <Styled.Amount fieldLabel="Amount" onChange={handleChangeAmount} value={amount} />
         <Styled.Currency inputs={currencyData} active={currency} onChange={handleChangeCurrency} />
         <Styled.Note

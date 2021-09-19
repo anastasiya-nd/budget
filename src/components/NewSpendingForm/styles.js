@@ -6,6 +6,7 @@ import RadioButtonField from '../RadioButtonField';
 import Select from '../Select';
 import { SelectWrap } from '../Select/styles';
 import TextareaField from '../TextareaField';
+import DateField from '../DateField';
 
 export const Form = styled.form`
   padding: 24px 24px 28px;
@@ -19,7 +20,8 @@ export const FormContent = styled.div`
     'amount currency'
     'note note'
     'labels labels';
-  grid-template-columns: repeat(2, 192px);
+  /* grid-template-columns: repeat(2, 192px); */
+  grid-template-columns: repeat(2, 252px);
   grid-gap: 18px;
 `;
 
@@ -31,7 +33,7 @@ export const CategorySelect = styled(Select)`
   }
 `;
 
-export const Date = styled.div`
+export const Date = styled(DateField)`
   grid-area: date;
 `;
 

@@ -49,12 +49,6 @@ const Home = () => {
 
   return (
     <section>
-      {/* <DateField
-        fieldLabel="Date"
-        placeholder="Select a spending date"
-        activeDate={periodStart}
-        onChange={handleChangePeriodStart}
-      /> */}
       <PeriodPopover />
       {isOpenModal && (
         <Modal title="New spending" onClose={handleCloseModal}>

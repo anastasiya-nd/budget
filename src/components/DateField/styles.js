@@ -6,13 +6,13 @@ export const FieldWrap = styled.div`
 `;
 
 export const FieldLabel = styled.div`
-  font-size: 14px;
+  font-size: 12px;
   line-height: 16px;
   margin-bottom: 4px;
 `;
 
 export const FieldValue = styled.div`
-  font-size: 14px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   border: 1px solid #e7e7e9;
@@ -20,6 +20,7 @@ export const FieldValue = styled.div`
   display: flex;
   justify-content: space-between;
   padding-left: 8px;
+  box-sizing: border-box;
   width: 100%;
   color: ${({ active }) => (active ? '#000' : '#b2b2b2')};
 `;

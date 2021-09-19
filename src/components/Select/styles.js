@@ -19,7 +19,8 @@ export const SelectValue = styled.div`
   display: flex;
   justify-content: space-between;
   padding-left: 8px;
-  width: max-content;
+  width: 100%;
+  box-sizing: border-box;
   color: ${({ active }) => (active ? '#000' : '#b2b2b2')};
 `;
 
@@ -29,7 +30,7 @@ export const SelectContentWrap = styled.div`
   top: 100%;
   left: 0;
   background: #fff;
-  width: max-content;
+  width: 100%;
   box-shadow: 0px 4px 8px rgba(22, 61, 53, 0.12);
   border-radius: 4px;
   padding: 8px 0;
@@ -50,6 +51,7 @@ export const SelectContentWrap = styled.div`
 
 export const ArrowWrap = styled.div`
   transition: 0.2s;
+  width: 24px;
   height: 24px;
   transform: ${({ variant }) => (variant ? 'rotate(180deg)' : 'rotate(0deg)')};
 `;
