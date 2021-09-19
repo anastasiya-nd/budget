@@ -9,6 +9,7 @@ import TextareaField from '../../components/TextareaField';
 import NumberField from '../../components/NumberField';
 import LabelsField from '../../components/LabelsField';
 import PeriodPopover from '../../components/PeriodPopover';
+import DateField from '../../components/DateField';
 
 const Home = () => {
   const spendingsArray = [
@@ -81,8 +82,19 @@ const Home = () => {
     setLabels([...labels, val]);
   };
 
+  const [periodStart, setPeriodStart] = useState('');
+  const handleChangePeriodStart = (date) => {
+    setPeriodStart(date);
+  };
+
   return (
     <section>
+      <DateField
+        fieldLabel="Date"
+        placeholder="Select a spending date"
+        activeDate={periodStart}
+        onChange={handleChangePeriodStart}
+      />
       <PeriodPopover />
       <RadioButtonField inputs={currencyData} active={currency} onChange={handleChangeCurrency} />
       <TextareaField

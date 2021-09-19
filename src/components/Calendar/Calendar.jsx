@@ -36,7 +36,6 @@ import {
   countOfWeekInCalendar,
   countOfDayInWeek,
 } from './constants';
-import Select from '../Select';
 import * as Styled from './styles';
 
 const Calendar = ({
@@ -45,6 +44,8 @@ const Calendar = ({
   periodEnd,
   setPeriodStart,
   setPeriodEnd,
+  maxSelectedDate,
+  minSelectedDate,
   className,
 }) => {
   const defaultDate = new Date();
@@ -135,6 +136,20 @@ const Calendar = ({
         setPeriodStart(val);
         setPeriodEnd('');
       }
+    } else if (minSelectedDate && maxSelectedDate) {
+      if (
+        (new Date(minSelectedDate) <= new Date(val)) && // eslint-disable-line
+        (new Date(maxSelectedDate) >= new Date(val)) // eslint-disable-line
+      ) {
+        setPeriodStart(val);
+      }
+    } else if (minSelectedDate || maxSelectedDate) {
+      if (
+        (new Date(minSelectedDate) <= new Date(val)) || // eslint-disable-line
+        (new Date(maxSelectedDate) >= new Date(val)) // eslint-disable-line
+      ) {
+        setPeriodStart(val);
+      }
     } else {
       setPeriodStart(val);
     }
@@ -165,8 +180,12 @@ const Calendar = ({
           <PrevArrow />
         </Styled.ArrowButton>
         <Styled.CalendarHeaderDate>
-          <Select active={activeMonth} onChange={chooseOptionMonth} options={monthNames} />
-          <Select active={activeYear} onChange={chooseOptionYear} options={years} />
+          <Styled.CalendarSelect
+            active={activeMonth}
+            onChange={chooseOptionMonth}
+            options={monthNames}
+          />
+          <Styled.CalendarSelect active={activeYear} onChange={chooseOptionYear} options={years} />
         </Styled.CalendarHeaderDate>
         <Styled.ArrowButton
           type="button"
@@ -211,6 +230,8 @@ Calendar.propTypes = {
   periodEnd: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
   setPeriodStart: PropTypes.func.isRequired,
   setPeriodEnd: PropTypes.func, //eslint-disable-line
+  maxSelectedDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+  minSelectedDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
   className: PropTypes.string,
 };
 
@@ -218,6 +239,8 @@ Calendar.defaultProps = {
   rangeSelection: false,
   periodStart: '',
   periodEnd: '',
+  maxSelectedDate: '',
+  minSelectedDate: '',
   className: '',
 };
 

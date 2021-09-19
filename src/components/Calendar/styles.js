@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import Select from '../Select';
+import { SelectValue } from '../Select/styles';
 
 const commonStylesOfRowWrap = `
   width: fit-content;
@@ -74,5 +76,14 @@ export const CalendarDay = styled.div`
     cursor: pointer;
     background-color: #145b4e;
     color: #fff;
+  }
+`;
+
+export const CalendarSelect = styled(Select)`
+  &:first-of-type ${SelectValue} {
+    width: 100px;
+  }
+  &:last-of-type ${SelectValue} {
+    width: 60px;
   }
 `;
