@@ -136,9 +136,16 @@ const Calendar = ({
         setPeriodStart(val);
         setPeriodEnd('');
       }
-    } else if (maxSelectedDate) {
+    } else if (minSelectedDate && maxSelectedDate) {
       if (
         (new Date(minSelectedDate) <= new Date(val)) && // eslint-disable-line
+        (new Date(maxSelectedDate) >= new Date(val)) // eslint-disable-line
+      ) {
+        setPeriodStart(val);
+      }
+    } else if (minSelectedDate || maxSelectedDate) {
+      if (
+        (new Date(minSelectedDate) <= new Date(val)) || // eslint-disable-line
         (new Date(maxSelectedDate) >= new Date(val)) // eslint-disable-line
       ) {
         setPeriodStart(val);
