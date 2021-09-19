@@ -7,6 +7,8 @@ import { monthNames } from '../Calendar/constants';
 import Calendar from '../Calendar';
 
 const DateField = ({ fieldLabel, placeholder, activeDate, onChange }) => {
+  const currentDate = new Date();
+  const minSelectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 3, 1);
   const node = useRef(null);
   const [isOpen, toggleIsOpen] = useState(false);
 
@@ -37,7 +39,12 @@ const DateField = ({ fieldLabel, placeholder, activeDate, onChange }) => {
           </Styled.ArrowWrap>
         </Styled.FieldValue>
         <Styled.CalendarWrap variant={isOpen}>
-          <Calendar periodStart={activeDate} setPeriodStart={onChange} maxCurrentDate />
+          <Calendar
+            periodStart={activeDate}
+            setPeriodStart={onChange}
+            minSelectedDate={minSelectedDate}
+            maxSelectedDate={currentDate}
+          />
         </Styled.CalendarWrap>
       </Styled.FieldWrap>
     </div>

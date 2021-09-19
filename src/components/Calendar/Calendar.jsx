@@ -44,7 +44,8 @@ const Calendar = ({
   periodEnd,
   setPeriodStart,
   setPeriodEnd,
-  maxCurrentDate,
+  maxSelectedDate,
+  minSelectedDate,
   className,
 }) => {
   const defaultDate = new Date();
@@ -135,8 +136,11 @@ const Calendar = ({
         setPeriodStart(val);
         setPeriodEnd('');
       }
-    } else if (maxCurrentDate) {
-      if (new Date(defaultDate) >= new Date(val)) {
+    } else if (maxSelectedDate) {
+      if (
+        (new Date(minSelectedDate) <= new Date(val)) && // eslint-disable-line
+        (new Date(maxSelectedDate) >= new Date(val)) // eslint-disable-line
+      ) {
         setPeriodStart(val);
       }
     } else {
@@ -219,7 +223,8 @@ Calendar.propTypes = {
   periodEnd: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
   setPeriodStart: PropTypes.func.isRequired,
   setPeriodEnd: PropTypes.func, //eslint-disable-line
-  maxCurrentDate: PropTypes.bool,
+  maxSelectedDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+  minSelectedDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
   className: PropTypes.string,
 };
 
@@ -227,7 +232,8 @@ Calendar.defaultProps = {
   rangeSelection: false,
   periodStart: '',
   periodEnd: '',
-  maxCurrentDate: false,
+  maxSelectedDate: '',
+  minSelectedDate: '',
   className: '',
 };
 
