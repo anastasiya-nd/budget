@@ -5,6 +5,8 @@ export const RadioButtonWrap = styled.div`
 `;
 
 export const RadioButton = styled.div`
+  min-height: 28px;
+  display: flex;
   &:not(:last-of-type) {
     margin-right: 4px;
   }

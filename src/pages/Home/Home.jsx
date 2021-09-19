@@ -4,12 +4,8 @@ import LabelsPopover from '../../components/LabelsPopover';
 import SpendingItem from '../../components/SpendingItem';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
-import RadioButtonField from '../../components/RadioButtonField';
-import TextareaField from '../../components/TextareaField';
-import NumberField from '../../components/NumberField';
-import LabelsField from '../../components/LabelsField';
 import PeriodPopover from '../../components/PeriodPopover';
-import DateField from '../../components/DateField';
+import NewSpendingForm from '../../components/NewSpendingForm/NewSpendingForm';
 
 const Home = () => {
   const spendingsArray = [
@@ -51,69 +47,18 @@ const Home = () => {
     toggleModal(false);
   };
 
-  const currencyData = [
-    { id: '1', value: 'byn', label: 'BYN' },
-    { id: '2', value: 'rub', label: 'RUB' },
-    { id: '3', value: 'usd', label: 'USD' },
-    { id: '4', value: 'eur', label: 'EUR' },
-  ];
-  const [currency, setCurrency] = useState('');
-  const handleChangeCurrency = (val) => {
-    setCurrency(val);
-  };
-  const [note, setNote] = useState(''); // eslint-disable-line
-
-  const handleChangeNote = (val) => {
-    setNote(val);
-  };
-  const [amount, setAmount] = useState(0);
-  const handleChangeAmount = (val) => {
-    setAmount(val);
-  };
-
-  const [labels, setLabels] = useState(['Other']);
-
-  const handleDeleteLabel = (deletingLabel) => {
-    const newLabels = labels.filter((label) => label !== deletingLabel);
-    setLabels(newLabels);
-  };
-
-  const handleChangeLabel = (val) => {
-    setLabels([...labels, val]);
-  };
-
-  const [periodStart, setPeriodStart] = useState('');
-  const handleChangePeriodStart = (date) => {
-    setPeriodStart(date);
-  };
-
   return (
     <section>
-      <DateField
+      {/* <DateField
         fieldLabel="Date"
         placeholder="Select a spending date"
         activeDate={periodStart}
         onChange={handleChangePeriodStart}
-      />
+      /> */}
       <PeriodPopover />
-      <RadioButtonField inputs={currencyData} active={currency} onChange={handleChangeCurrency} />
-      <TextareaField
-        label="Note"
-        placeholder="Type spending description here"
-        value={note}
-        onChange={handleChangeNote}
-      />
-      <NumberField label="Amount" onChange={handleChangeAmount} value={amount} />
-      <LabelsField
-        fieldLabel="Labels"
-        placeholder="Add label name"
-        labels={labels}
-        onChange={handleChangeLabel}
-        onDelete={handleDeleteLabel}
-      />
       {isOpenModal && (
         <Modal title="New spending" onClose={handleCloseModal}>
-          <>Modal content</>
+          <NewSpendingForm onClose={handleCloseModal} />
         </Modal>
       )}
       <LabelsPopover />

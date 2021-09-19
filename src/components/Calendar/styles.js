@@ -6,7 +6,7 @@ const commonStylesOfRowWrap = `
   width: fit-content;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(7, 36px);
+  grid-template-columns: repeat(2, 50%);
 `;
 
 export const CalendarWrap = styled.div`

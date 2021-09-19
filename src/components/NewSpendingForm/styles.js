@@ -1,0 +1,53 @@
+import styled from 'styled-components';
+import LabelsField from '../LabelsField';
+import NumberField from '../NumberField';
+import RadioButtonField from '../RadioButtonField';
+import Select from '../Select';
+import { SelectWrap } from '../Select/styles';
+import TextareaField from '../TextareaField';
+
+export const Form = styled.form`
+  padding: 24px 24px 28px;
+  width: 410px;
+`;
+
+export const FormContent = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-areas:
+    'category date'
+    'amount currency'
+    'note note'
+    'labels labels';
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 18px;
+`;
+
+export const CategorySelect = styled(Select)`
+  grid-area: category;
+  ${SelectWrap} {
+    font-size: 10px;
+    line-height: 16px;
+  }
+`;
+
+export const Date = styled.div`
+  grid-area: date;
+`;
+
+export const Amount = styled(NumberField)`
+  grid-area: amount;
+`;
+
+export const Currency = styled(RadioButtonField)`
+  grid-area: currency;
+  align-self: end;
+`;
+
+export const Note = styled(TextareaField)`
+  grid-area: note;
+`;
+
+export const Labels = styled(LabelsField)`
+  grid-area: labels;
+`;
