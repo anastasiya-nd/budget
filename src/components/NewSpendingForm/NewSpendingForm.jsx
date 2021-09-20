@@ -19,6 +19,11 @@ const NewSpendingForm = ({ onClose }) => {
     setCategory(val);
   };
 
+  const [periodStart, setPeriodStart] = useState('');
+  const handleChangePeriodStart = (date) => {
+    setPeriodStart(date);
+  };
+
   const [amount, setAmount] = useState(0);
   const handleChangeAmount = (val) => {
     setAmount(val);
@@ -40,7 +45,7 @@ const NewSpendingForm = ({ onClose }) => {
     setNote(val);
   };
 
-  const [labels, setLabels] = useState(['Other']);
+  const [labels, setLabels] = useState();
   const handleDeleteLabel = (deletingLabel) => {
     const newLabels = labels.filter((label) => label !== deletingLabel);
     setLabels(newLabels);
@@ -49,13 +54,28 @@ const NewSpendingForm = ({ onClose }) => {
     setLabels([...labels, val]);
   };
 
-  const [periodStart, setPeriodStart] = useState('');
-  const handleChangePeriodStart = (date) => {
-    setPeriodStart(date);
+  const fieldNames = { category, periodStart, amount, currency, note, labels };
+
+  const setSpendingValues = () => {
+    return Object.fromEntries(Object.entries(fieldNames).filter(([key, value]) => value)); //eslint-disable-line
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const spendingValues = setSpendingValues();
+    if (
+      !spendingValues.category ||
+      !spendingValues.periodStart ||
+      !spendingValues.amount ||
+      !spendingValues.currency
+    ) {
+      return console.log('Required fields');
+    }
+    return console.log(spendingValues);
   };
 
   return (
-    <Styled.Form>
+    <Styled.Form onSubmit={handleSubmit}>
       <Styled.FormContent>
         <Styled.CategorySelect
           fieldLabel="Category"
