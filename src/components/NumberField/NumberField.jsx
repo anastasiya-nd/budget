@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Input, Label } from './styles';
+import { Input, FieldLabel } from './styles';
 
-const NumberField = ({ label, value, onChange }) => {
+const NumberField = ({ fieldLabel, value, onChange, className }) => {
   const [inputValue, setInputValue] = useState(value);
 
   const handleInputChange = (e) => {
@@ -21,8 +21,8 @@ const NumberField = ({ label, value, onChange }) => {
   };
 
   return (
-    <div>
-      {label && <Label htmlFor="amount">{label}</Label>}
+    <div className={className}>
+      {fieldLabel && <FieldLabel htmlFor="amount">{fieldLabel}</FieldLabel>}
       <Input
         id="amount"
         type="text"
@@ -36,13 +36,15 @@ const NumberField = ({ label, value, onChange }) => {
 };
 
 NumberField.propTypes = {
-  label: PropTypes.string,
+  fieldLabel: PropTypes.string,
   value: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };
 
 NumberField.defaultProps = {
-  label: '',
+  fieldLabel: '',
+  className: '',
 };
 
 export default NumberField;

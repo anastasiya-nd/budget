@@ -4,7 +4,7 @@ import { Input, FieldLabel, PlusButton, Label, LabelsWrap, DeleteButton } from '
 import Plus from '../Icons/Plus';
 import LabelClear from '../Icons/LabelClear';
 
-const LabelsField = ({ fieldLabel, placeholder, labels, onChange, onDelete }) => {
+const LabelsField = ({ fieldLabel, placeholder, labels, onChange, onDelete, className }) => {
   const [labelValue, setLabelValue] = useState('');
 
   const addLabel = () => {
@@ -24,7 +24,7 @@ const LabelsField = ({ fieldLabel, placeholder, labels, onChange, onDelete }) =>
   };
 
   return (
-    <div>
+    <div className={className}>
       {fieldLabel && <FieldLabel htmlFor="label">{fieldLabel}</FieldLabel>}
       <LabelsWrap>
         <PlusButton type="button" onClick={addLabel}>
@@ -59,12 +59,14 @@ LabelsField.propTypes = {
   labels: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };
 
 LabelsField.defaultProps = {
   fieldLabel: '',
   placeholder: 'Add label name',
   labels: [],
+  className: '',
 };
 
 export default LabelsField;

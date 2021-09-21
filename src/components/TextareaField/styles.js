@@ -10,13 +10,14 @@ export const Textarea = styled.textarea`
   display: block;
   height: 64px;
   width: 100%;
+  box-sizing: border-box;
   resize: none;
   &::placeholder {
     color: #b2b2b2;
   }
 `;
 
-export const Label = styled.label`
+export const FieldLabel = styled.label`
   display: block;
   font-size: 12px;
   line-height: 16px;

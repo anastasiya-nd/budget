@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Textarea, Label } from './styles';
+import { Textarea, FieldLabel } from './styles';
 
-const TextareaField = ({ label, value, placeholder, onChange }) => {
+const TextareaField = ({ fieldLabel, value, placeholder, onChange, className }) => {
   const handleInputChange = (e) => {
     onChange(e.target.value);
   };
 
   return (
-    <div>
-      {label && <Label htmlFor="note">{label}</Label>}
+    <div className={className}>
+      {fieldLabel && <FieldLabel htmlFor="note">{fieldLabel}</FieldLabel>}
       <Textarea
         id="note"
         name="note"
@@ -22,16 +22,18 @@ const TextareaField = ({ label, value, placeholder, onChange }) => {
 };
 
 TextareaField.propTypes = {
-  label: PropTypes.string,
+  fieldLabel: PropTypes.string,
   value: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };
 
 TextareaField.defaultProps = {
-  label: '',
+  fieldLabel: '',
   value: '',
   placeholder: '',
+  className: '',
 };
 
 export default TextareaField;
