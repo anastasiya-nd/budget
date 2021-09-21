@@ -20,7 +20,6 @@ export const FormContent = styled.div`
     'amount currency'
     'note note'
     'labels labels';
-  /* grid-template-columns: repeat(2, 192px); */
   grid-template-columns: repeat(2, 252px);
   grid-gap: 18px;
 `;
@@ -63,8 +62,3 @@ export const ButtonWrap = styled.div`
     padding: 8px 12px;
   }
 `;
-
-// export const ButtonItem = styled(Button)`  // What is better?
-//   margin-left: 12px;
-//   padding: 8px 12px;
-// `;

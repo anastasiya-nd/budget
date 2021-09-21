@@ -5,7 +5,7 @@ import SpendingItem from '../../components/SpendingItem';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import PeriodPopover from '../../components/PeriodPopover';
-import NewSpendingForm from '../../components/NewSpendingForm/NewSpendingForm';
+import NewSpendingForm from '../../components/NewSpendingForm';
 
 const Home = () => {
   const spendingsArray = [

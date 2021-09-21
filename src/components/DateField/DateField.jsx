@@ -29,7 +29,7 @@ const DateField = ({ fieldLabel, placeholder, activeDate, onChange }) => {
   };
 
   return (
-    <div styles="{width: 100%}">
+    <div>
       {fieldLabel && <Styled.FieldLabel>{fieldLabel}</Styled.FieldLabel>}
       <Styled.FieldWrap ref={node}>
         <Styled.FieldValue onClick={changeIsOpen} active={activeDate}>
