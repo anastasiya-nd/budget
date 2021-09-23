@@ -1,4 +1,8 @@
-import { REQUEST_SPENDINGS_SUCCESS } from './types';
+import {
+  REQUEST_SPENDINGS_PENDING,
+  REQUEST_SPENDINGS_SUCCESS,
+  REQUEST_SPENDINGS_ERROR,
+} from './types';
 
 const initialState = {
   spendings: [],
@@ -7,6 +11,7 @@ const initialState = {
     page: 1,
     perPage: 5,
   },
+  loading: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,8 +19,19 @@ const reducer = (state = initialState, action) => {
     case REQUEST_SPENDINGS_SUCCESS:
       return {
         ...state,
-        spendings: action.spendings,
-        pagination: action.pagination,
+        spendings: action.payload.spendings,
+        pagination: action.payload.pagination,
+        loading: false,
+      };
+    case REQUEST_SPENDINGS_PENDING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case REQUEST_SPENDINGS_ERROR:
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;

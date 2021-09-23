@@ -7,16 +7,20 @@ import {
 export const requestSpendingsSuccess = (spendings, pagination) => { //eslint-disable-line
   return {
     type: REQUEST_SPENDINGS_SUCCESS,
-    spendings,
-    pagination,
+    payload: {
+      spendings,
+      pagination,
+    },
   };
 };
 
 export const requestSpendingsPending = (page, perPage) => {
   return {
     type: REQUEST_SPENDINGS_PENDING,
-    page,
-    perPage,
+    payload: {
+      page,
+      perPage,
+    },
   };
 };
 
