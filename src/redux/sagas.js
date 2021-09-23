@@ -6,7 +6,7 @@ import { requestSpendingsSuccess, requestSpendingsError } from './actions';
 
 function* getSpendingsWorker(data) {
   try {
-    const response = yield call(spendings.getSpendings, data.page, data.perPage);
+    const response = yield call(spendings.getSpendings, data.payload.page, data.payload.perPage);
     yield put(requestSpendingsSuccess(response.data.spendings, response.data.pagination));
   } catch (error) {
     yield put(requestSpendingsError());
