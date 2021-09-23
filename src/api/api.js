@@ -1,8 +1,12 @@
 import axios from 'axios';
 
+const instance = axios.create({
+  baseURL: 'http://localhost:3000/api/v1',
+});
+
 const spendings = {
-  getSpendings(page = 1, perPage = 10) {
-    return axios.get('http://localhost:3000/api/v1/spendings', {
+  getSpendings(page, perPage) {
+    return instance.get('/spendings', {
       params: {
         page,
         perPage,

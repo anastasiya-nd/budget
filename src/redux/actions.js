@@ -1,17 +1,27 @@
-import { GET_SPENDINGS, REQUEST_SPENDINGS } from './types';
+import {
+  REQUEST_SPENDINGS_PENDING,
+  REQUEST_SPENDINGS_SUCCESS,
+  REQUEST_SPENDINGS_ERROR,
+} from './types';
 
-export const getSpendings = (spendings, pagination) => { //eslint-disable-line
+export const requestSpendingsSuccess = (spendings, pagination) => { //eslint-disable-line
   return {
-    type: GET_SPENDINGS,
+    type: REQUEST_SPENDINGS_SUCCESS,
     spendings,
     pagination,
   };
 };
 
-export const requestSpendings = (page, perPage) => {
+export const requestSpendingsPendings = (page, perPage) => {
   return {
-    type: REQUEST_SPENDINGS,
+    type: REQUEST_SPENDINGS_PENDING,
     page,
     perPage,
+  };
+};
+
+export const requestSpendingsError = () => {
+  return {
+    type: REQUEST_SPENDINGS_ERROR,
   };
 };

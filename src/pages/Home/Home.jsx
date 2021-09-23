@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { requestSpendings } from '../../redux/actions';
+import { requestSpendingsPendings } from '../../redux/actions';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
 import SpendingItem from '../../components/SpendingItem';
@@ -8,6 +8,7 @@ import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import PeriodPopover from '../../components/PeriodPopover';
 import NewSpendingForm from '../../components/NewSpendingForm';
+import { getSpendings, getPagination } from '../../redux/selectors';
 
 const Home = () => {
   const [isOpenModal, toggleModal] = useState(false);
@@ -22,12 +23,12 @@ const Home = () => {
 
   const dispatch = useDispatch();
 
-  const spendings = useSelector((state) => state);
+  const spendings = useSelector(getSpendings);
+  const pagination = useSelector(getPagination);
 
   useEffect(() => {
-    dispatch(requestSpendings(spendings.pagination.page, spendings.pagination.perPage));
+    dispatch(requestSpendingsPendings(pagination.page, pagination.perPage));
   }, []);
-  console.log(spendings);
 
   return (
     <section>
@@ -40,7 +41,7 @@ const Home = () => {
       <LabelsPopover />
       <CategoryPopover />
       <Button text="Add new spending +" onClick={handleOpenModal} />
-      {spendings.spendings.map((s) => (
+      {spendings.map((s) => (
         <SpendingItem
           key={s._id} //eslint-disable-line
           category={s.category}

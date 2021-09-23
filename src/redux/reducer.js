@@ -1,17 +1,17 @@
-import { GET_SPENDINGS } from './types';
+import { REQUEST_SPENDINGS_SUCCESS } from './types';
 
 const initialState = {
   spendings: [],
   pagination: {
     total: undefined,
     page: 1,
-    perPage: 10,
+    perPage: 5,
   },
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_SPENDINGS:
+    case REQUEST_SPENDINGS_SUCCESS:
       return {
         ...state,
         spendings: [...action.spendings],
