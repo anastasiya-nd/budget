@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { requestSpendings } from '../../redux/actions';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
 import SpendingItem from '../../components/SpendingItem';
@@ -8,35 +10,6 @@ import PeriodPopover from '../../components/PeriodPopover';
 import NewSpendingForm from '../../components/NewSpendingForm';
 
 const Home = () => {
-  const spendingsArray = [
-    {
-      category: 'food',
-      note: 'fish, bread, eggs, milk, bread, ice-cream',
-      labels: ['Mall', 'Party', 'Mall', 'Party'],
-      createdAt: 'Sep 29, 2019',
-      amount: 25.0,
-      currency: 'BYN',
-      id: 'faf2',
-    },
-    {
-      category: 'shopping',
-      note: 't-shirt, jacket, cup, keyboard',
-      labels: [],
-      createdAt: 'Sep 22, 2020',
-      amount: 100.0,
-      currency: 'BYN',
-      id: 'fdwf',
-    },
-    {
-      category: 'bills',
-      note: 'internet, phone, electricity, water',
-      labels: ['Home'],
-      createdAt: 'Sep 22, 2020',
-      amount: 60.5,
-      currency: 'BYN',
-      id: 'fdcfe',
-    },
-  ];
   const [isOpenModal, toggleModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -46,6 +19,15 @@ const Home = () => {
   const handleCloseModal = () => {
     toggleModal(false);
   };
+
+  const dispatch = useDispatch();
+
+  const spendings = useSelector((state) => state);
+
+  useEffect(() => {
+    dispatch(requestSpendings(spendings.pagination.page, spendings.pagination.perPage));
+  }, []);
+  console.log(spendings);
 
   return (
     <section>
@@ -58,9 +40,9 @@ const Home = () => {
       <LabelsPopover />
       <CategoryPopover />
       <Button text="Add new spending +" onClick={handleOpenModal} />
-      {spendingsArray.map((s) => (
+      {spendings.spendings.map((s) => (
         <SpendingItem
-          key={s.id}
+          key={s._id} //eslint-disable-line
           category={s.category}
           note={s.note}
           labels={s.labels}
