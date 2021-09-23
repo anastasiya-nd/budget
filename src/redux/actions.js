@@ -4,7 +4,7 @@ import {
   REQUEST_SPENDINGS_ERROR,
 } from './types';
 
-export const requestSpendingsSuccess = (spendings, pagination) => { //eslint-disable-line
+export const requestSpendingsSuccess = (spendings, pagination) => {
   return {
     type: REQUEST_SPENDINGS_SUCCESS,
     payload: {
