@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { requestSpendingsPendings } from '../../redux/actions';
+import { requestSpendingsPending } from '../../redux/actions';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
 import SpendingItem from '../../components/SpendingItem';
@@ -12,6 +12,9 @@ import { getSpendings, getPagination } from '../../redux/selectors';
 
 const Home = () => {
   const [isOpenModal, toggleModal] = useState(false);
+  const dispatch = useDispatch();
+  const spendings = useSelector(getSpendings);
+  const pagination = useSelector(getPagination);
 
   const handleOpenModal = () => {
     toggleModal(true);
@@ -21,13 +24,8 @@ const Home = () => {
     toggleModal(false);
   };
 
-  const dispatch = useDispatch();
-
-  const spendings = useSelector(getSpendings);
-  const pagination = useSelector(getPagination);
-
   useEffect(() => {
-    dispatch(requestSpendingsPendings(pagination.page, pagination.perPage));
+    dispatch(requestSpendingsPending(pagination.page, pagination.perPage));
   }, []);
 
   return (

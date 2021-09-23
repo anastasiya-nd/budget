@@ -12,7 +12,7 @@ export const requestSpendingsSuccess = (spendings, pagination) => { //eslint-dis
   };
 };
 
-export const requestSpendingsPendings = (page, perPage) => {
+export const requestSpendingsPending = (page, perPage) => {
   return {
     type: REQUEST_SPENDINGS_PENDING,
     page,
