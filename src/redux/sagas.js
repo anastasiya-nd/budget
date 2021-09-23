@@ -1,6 +1,6 @@
 import 'regenerator-runtime/runtime';
 import { takeLatest, put, call, all } from 'redux-saga/effects';
-import spendings from '../api/api';
+import spendings from '../api';
 import { REQUEST_SPENDINGS_PENDING } from './types';
 import { requestSpendingsSuccess, requestSpendingsError } from './actions';
 
