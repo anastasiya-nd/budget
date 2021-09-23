@@ -14,8 +14,8 @@ const reducer = (state = initialState, action) => {
     case REQUEST_SPENDINGS_SUCCESS:
       return {
         ...state,
-        spendings: [...action.spendings],
-        pagination: { ...action.pagination },
+        spendings: action.spendings,
+        pagination: action.pagination,
       };
     default:
       return state;
