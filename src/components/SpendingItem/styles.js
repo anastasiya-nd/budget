@@ -61,7 +61,7 @@ export const CategoryWrap = styled.div`
 export const CategoryName = styled.h4`
   font-weight: 700;
   font-size: 16px;
-  line-height: 16px;
+  line-height: 18px;
   letter-spacing: 0.02em;
   color: #000000;
   margin: 0;
@@ -69,7 +69,7 @@ export const CategoryName = styled.h4`
 
 export const Description = styled.p`
   font-size: 14px;
-  line-height: 12px;
+  line-height: 16px;
   letter-spacing: 0.02em;
   color: #b2b2b2;
   margin: 4px 0 0;
@@ -108,7 +108,7 @@ export const DateAndAmountWrap = styled.div`
 
 export const Date = styled.div`
   font-size: 14px;
-  line-height: 12px;
+  line-height: 16px;
   letter-spacing: 0.02em;
   color: #b2b2b2;
   max-width: 125px;
@@ -118,7 +118,7 @@ export const Date = styled.div`
 export const Amount = styled.div`
   font-weight: 700;
   font-size: 16px;
-  line-height: 16px;
+  line-height: 18px;
   letter-spacing: 0.02em;
   color: #24695c;
   width: 125px;

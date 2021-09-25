@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { requestSpendingsPending } from '../../redux/actions';
 import CategoryPopover from '../../components/CategoryPopover';
 import LabelsPopover from '../../components/LabelsPopover';
 import SpendingItem from '../../components/SpendingItem';
@@ -6,38 +8,13 @@ import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import PeriodPopover from '../../components/PeriodPopover';
 import NewSpendingForm from '../../components/NewSpendingForm';
+import { getSpendings, getPagination } from '../../redux/selectors';
 
 const Home = () => {
-  const spendingsArray = [
-    {
-      category: 'food',
-      note: 'fish, bread, eggs, milk, bread, ice-cream',
-      labels: ['Mall', 'Party', 'Mall', 'Party'],
-      createdAt: 'Sep 29, 2019',
-      amount: 25.0,
-      currency: 'BYN',
-      id: 'faf2',
-    },
-    {
-      category: 'shopping',
-      note: 't-shirt, jacket, cup, keyboard',
-      labels: [],
-      createdAt: 'Sep 22, 2020',
-      amount: 100.0,
-      currency: 'BYN',
-      id: 'fdwf',
-    },
-    {
-      category: 'bills',
-      note: 'internet, phone, electricity, water',
-      labels: ['Home'],
-      createdAt: 'Sep 22, 2020',
-      amount: 60.5,
-      currency: 'BYN',
-      id: 'fdcfe',
-    },
-  ];
   const [isOpenModal, toggleModal] = useState(false);
+  const dispatch = useDispatch();
+  const spendings = useSelector(getSpendings);
+  const pagination = useSelector(getPagination);
 
   const handleOpenModal = () => {
     toggleModal(true);
@@ -46,6 +23,10 @@ const Home = () => {
   const handleCloseModal = () => {
     toggleModal(false);
   };
+
+  useEffect(() => {
+    dispatch(requestSpendingsPending(pagination.page, pagination.perPage));
+  }, []);
 
   return (
     <section>
@@ -58,9 +39,9 @@ const Home = () => {
       <LabelsPopover />
       <CategoryPopover />
       <Button text="Add new spending +" onClick={handleOpenModal} />
-      {spendingsArray.map((s) => (
+      {spendings.map((s) => (
         <SpendingItem
-          key={s.id}
+          key={s._id} //eslint-disable-line
           category={s.category}
           note={s.note}
           labels={s.labels}

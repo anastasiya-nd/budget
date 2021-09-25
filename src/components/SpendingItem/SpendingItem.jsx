@@ -13,32 +13,53 @@ import DeleteIcon24 from '../Icons/DeleteIcon24';
 import EditIcon from '../Icons/EditIcon';
 
 const SpendingItem = ({ category, note, labels, createdAt, amount, currency }) => {
+  const shortMonthNames = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
   const getIcon = (categoryName) => {
     switch (categoryName) {
-      case 'food':
+      case 'Food':
         return <Food />;
-      case 'shopping':
+      case 'Shopping':
         return <Shopping />;
-      case 'entertainment':
+      case 'Entertainment':
         return <Entertainment />;
-      case 'car':
+      case 'Car':
         return <Car />;
-      case 'bills':
+      case 'Bills':
         return <Bills />;
-      case 'home':
+      case 'Home':
         return <Home />;
-      case 'education':
+      case 'Education':
         return <Education />;
-      case 'other':
+      case 'Other':
         return <Other />;
       default:
         return null;
     }
   };
 
+  const getFormatDate = (date) => {
+    const formatDate = new Date(date);
+    return `${
+      shortMonthNames[formatDate.getMonth()]
+    } ${formatDate.getDate()}, ${formatDate.getFullYear()}`;
+  };
+
   return (
     <Styled.Spending>
-      <Styled.IconWrap variant={category}>{getIcon(category)}</Styled.IconWrap>
+      <Styled.IconWrap variant={category.toLowerCase()}>{getIcon(category)}</Styled.IconWrap>
       <Styled.CategoryWrap>
         <Styled.CategoryName>{category}</Styled.CategoryName>
         {note && <Styled.Description>{note}</Styled.Description>}
@@ -48,12 +69,14 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency }) =
           <Styled.Label>{labels[0]}</Styled.Label>
           {labels[1] && <Styled.Label>{labels[1]}</Styled.Label>}
           {labels.length > 2 && (
-            <Styled.HiddenLabelsNumber>+{labels.length - 2}</Styled.HiddenLabelsNumber>
+            <Styled.HiddenLabelsNumber title={labels}>
+              +{labels.length - 2}
+            </Styled.HiddenLabelsNumber>
           )}
         </Styled.LabelWrap>
       )}
       <Styled.DateAndAmountWrap>
-        <Styled.Date>{createdAt}</Styled.Date>
+        <Styled.Date>{getFormatDate(createdAt)}</Styled.Date>
         <Styled.Amount>
           {amount} {currency}
         </Styled.Amount>
