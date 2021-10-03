@@ -13,8 +13,8 @@ import NextArrow24 from '../Icons/NextArrow24';
 
 const Pagination = ({ currentPage, total, onPageChange }) => {
   const [buttons, setButtons] = useState([]);
-
   const numberOfPages = [];
+
   for (let i = 1; i <= total; i++) { //eslint-disable-line
     numberOfPages.push(i);
   }
@@ -97,7 +97,6 @@ Pagination.propTypes = {
   currentPage: PropTypes.number.isRequired,
   total: PropTypes.number,
   onPageChange: PropTypes.func.isRequired,
-  className: PropTypes.string, //eslint-disable-line
 };
 
 Pagination.defaultProps = {
