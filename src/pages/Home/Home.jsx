@@ -15,7 +15,6 @@ const Home = () => {
   const [isOpenModal, toggleModal] = useState(false);
   const dispatch = useDispatch();
   const spendings = useSelector(getSpendings);
-  // const pagination = useSelector(getPagination);
   const { page, perPage, total } = useSelector(getPagination);
 
   const handleOpenModal = () => {

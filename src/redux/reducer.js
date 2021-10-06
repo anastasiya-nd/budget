@@ -9,7 +9,7 @@ const initialState = {
   pagination: {
     total: undefined,
     page: 1,
-    perPage: 5,
+    perPage: 1,
   },
   loading: false,
 };
