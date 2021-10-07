@@ -13,6 +13,7 @@ import Pagination from '../../components/Pagination';
 
 const Home = () => {
   const [isOpenModal, toggleModal] = useState(false);
+
   const dispatch = useDispatch();
   const spendings = useSelector(getSpendings);
   const { page, perPage, total } = useSelector(getPagination);
@@ -41,6 +42,7 @@ const Home = () => {
           <NewSpendingForm onClose={handleCloseModal} />
         </Modal>
       )}
+
       <LabelsPopover />
       <CategoryPopover />
       <Button text="Add new spending +" onClick={handleOpenModal} />

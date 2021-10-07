@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from '../Button';
 
 const iconVariants = {
   food: '#DFC4C0',
@@ -125,8 +126,25 @@ export const Amount = styled.div`
   text-align: right;
 `;
 
-export const Button = styled.button`
+export const SpendingButton = styled.button`
   &:hover {
     cursor: pointer;
+  }
+`;
+
+export const ModalContent = styled.div`
+  padding: 24px 24px 32px;
+`;
+
+export const ModalButtonWrap = styled.div`
+  margin: 24px auto 0;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const ModalButton = styled(Button)`
+  margin: 0 8px;
+  &:last-of-type {
+    margin-right: 0;
   }
 `;
