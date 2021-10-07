@@ -9,12 +9,13 @@ import Modal from '../../components/Modal';
 import PeriodPopover from '../../components/PeriodPopover';
 import NewSpendingForm from '../../components/NewSpendingForm';
 import { getSpendings, getPagination } from '../../redux/selectors';
+import Pagination from '../../components/Pagination';
 
 const Home = () => {
   const [isOpenModal, toggleModal] = useState(false);
   const dispatch = useDispatch();
   const spendings = useSelector(getSpendings);
-  const pagination = useSelector(getPagination);
+  const { page, perPage, total } = useSelector(getPagination);
 
   const handleOpenModal = () => {
     toggleModal(true);
@@ -24,8 +25,12 @@ const Home = () => {
     toggleModal(false);
   };
 
+  const onPageChange = (value) => {
+    dispatch(requestSpendingsPending(value, perPage));
+  };
+
   useEffect(() => {
-    dispatch(requestSpendingsPending(pagination.page, pagination.perPage));
+    dispatch(requestSpendingsPending(page, perPage));
   }, []);
 
   return (
@@ -50,6 +55,7 @@ const Home = () => {
           currency={s.currency}
         />
       ))}
+      <Pagination currentPage={+page} total={total} onPageChange={onPageChange} />
     </section>
   );
 };
