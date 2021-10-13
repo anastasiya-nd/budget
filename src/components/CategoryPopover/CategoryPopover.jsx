@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Popover from '../Popover/Popover';
 import * as Styled from './styles';
 
@@ -34,6 +35,16 @@ const CategoryPopover = ({categoryValue, setCategory, getSpendingValues}) => { /
       </>
     </Popover>
   );
+};
+
+CategoryPopover.propTypes = {
+  categoryValue: PropTypes.string,
+  setCategory: PropTypes.func.isRequired,
+  getSpendingValues: PropTypes.func.isRequired,
+};
+
+CategoryPopover.defaultProps = {
+  categoryValue: '',
 };
 
 export default CategoryPopover;
