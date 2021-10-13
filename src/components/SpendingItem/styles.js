@@ -21,7 +21,7 @@ export const ButtonWrap = styled.div`
 `;
 
 export const Spending = styled.div`
-  padding: 12px 18px;
+  padding: 8px 18px;
   background: #f5f1ee;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
@@ -29,7 +29,7 @@ export const Spending = styled.div`
   align-items: center;
   transition: 0.3s;
   overflow: hidden;
-  height: 60px;
+  height: 54px;
   &:not(:last-of-type) {
     margin-bottom: 10px;
   }
