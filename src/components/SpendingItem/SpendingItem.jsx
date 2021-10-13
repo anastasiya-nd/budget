@@ -60,7 +60,7 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id 
     } ${formatDate.getDate()}, ${formatDate.getFullYear()}`;
   };
 
-  const deleteSpending = (val) => () => {
+  const deleteSpending = (val) => {
     dispatch(deleteSpendingPending(val));
   };
   const [isOpenModal, toggleModal] = useState(false);
@@ -81,7 +81,11 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id 
             <div>Are you sure you want to delete this entry?</div>
             <Styled.ModalButtonWrap>
               <Styled.ModalButton text="Close" variant="secondary" onClick={handleCloseModal} />
-              <Styled.ModalButton text="Delete" variant="negative" onClick={deleteSpending(id)} />
+              <Styled.ModalButton
+                text="Delete"
+                variant="negative"
+                onClick={() => deleteSpending(id)}
+              />
             </Styled.ModalButtonWrap>
           </Styled.ModalContent>
         </Modal>
