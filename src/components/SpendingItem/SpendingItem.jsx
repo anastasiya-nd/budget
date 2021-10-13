@@ -60,8 +60,9 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id 
     } ${formatDate.getDate()}, ${formatDate.getFullYear()}`;
   };
 
-  const deleteSpending = (val) => {
-    dispatch(deleteSpendingPending(val));
+  const deleteSpending = (spendingID) => {
+    dispatch(deleteSpendingPending(spendingID));
+    // onDelete(spendingID)
   };
   const [isOpenModal, toggleModal] = useState(false);
 
