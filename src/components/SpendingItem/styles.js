@@ -29,6 +29,7 @@ export const Spending = styled.div`
   align-items: center;
   transition: 0.3s;
   overflow: hidden;
+  height: 60px;
   &:not(:last-of-type) {
     margin-bottom: 10px;
   }
