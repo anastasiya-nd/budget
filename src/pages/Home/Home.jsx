@@ -38,7 +38,6 @@ const Home = () => {
 
   const handleCloseDeletingModal = () => {
     toggleDeletingModal(false);
-    handleCloseDeletingModal();
   };
 
   const onDelete = (id) => {
@@ -48,6 +47,7 @@ const Home = () => {
 
   const deleteSpending = () => {
     dispatch(deleteSpendingPending(spendingID));
+    handleCloseDeletingModal();
   };
 
   useEffect(() => {
