@@ -39,15 +39,18 @@ const reducer = (state = initialState, action) => {
     case DELETE_SPENDING_PENDING:
       return {
         ...state,
+        loading: true,
       };
     case DELETE_SPENDING_SUCCESS:
       return {
         ...state,
         spendings: state.spendings.filter((spending) => spending._id !== action.payload.id), // eslint-disable-line
+        loading: false,
       };
     case DELETE_SPENDING_ERROR:
       return {
         ...state,
+        loading: false,
       };
     default:
       return state;

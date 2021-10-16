@@ -14,11 +14,7 @@ const spendings = {
     });
   },
   deleteSpending(id) {
-    return instance.delete(`/spendings/${id}`, {
-      params: {
-        id,
-      },
-    });
+    return instance.delete(`/spendings/${id}`);
   },
 };
 

@@ -27,6 +27,11 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id,
     'Nov',
     'Dec',
   ];
+
+  const formatCategory = (categoryName) => {
+    return categoryName[0].toUpperCase() + categoryName.slice(1);
+  };
+
   const getIcon = (categoryName) => {
     switch (categoryName) {
       case 'Food':
@@ -49,13 +54,14 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id,
         return null;
     }
   };
+
   const getFormatDate = (date) => {
     const formatDate = new Date(date);
     return `${
       shortMonthNames[formatDate.getMonth()]
     } ${formatDate.getDate()}, ${formatDate.getFullYear()}`;
   };
-  const deleteSpending = (spendingID) => {
+  const handleDeleteSpending = (spendingID) => {
     onDelete(spendingID);
   };
 
@@ -63,7 +69,7 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id,
     <Styled.Spending>
       <Styled.IconWrap variant={category.toLowerCase()}>{getIcon(category)}</Styled.IconWrap>
       <Styled.CategoryWrap>
-        <Styled.CategoryName>{category}</Styled.CategoryName>
+        <Styled.CategoryName>{formatCategory(category)}</Styled.CategoryName>
         {note && <Styled.Description>{note}</Styled.Description>}
       </Styled.CategoryWrap>
       {!!labels.length && (
@@ -87,7 +93,7 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id,
         <Styled.SpendingButton type="button">
           <EditIcon />
         </Styled.SpendingButton>
-        <Styled.SpendingButton type="button" onClick={() => deleteSpending(id)}>
+        <Styled.SpendingButton type="button" onClick={() => handleDeleteSpending(id)}>
           <DeleteIcon24 />
         </Styled.SpendingButton>
       </Styled.ButtonWrap>

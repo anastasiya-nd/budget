@@ -18,12 +18,12 @@ function* getSpendingsWorker(data) {
   }
 }
 
-function* deleteSpendingWorker(data) {
+function* deleteSpendingWorker(action) {
   try {
-    yield call(spendings.deleteSpending, data.payload.id);
-    yield put(deleteSpendingSuccess(data.payload.id));
-  } catch {
-    yield put(deleteSpendingError());
+    yield call(spendings.deleteSpending, action.payload.id);
+    yield put(deleteSpendingSuccess(action.payload.id));
+  } catch (error) {
+    yield put(deleteSpendingError(error.message));
   }
 }
 

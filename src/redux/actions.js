@@ -51,8 +51,11 @@ export const deleteSpendingSuccess = (id) => {
   };
 };
 
-export const deleteSpendingError = () => {
+export const deleteSpendingError = (message) => {
   return {
     type: DELETE_SPENDING_ERROR,
+    payload: {
+      message,
+    },
   };
 };
