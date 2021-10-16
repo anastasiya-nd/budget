@@ -28,27 +28,34 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id,
     'Dec',
   ];
 
-  const formatCategory = (categoryName) => {
-    return categoryName[0].toUpperCase() + categoryName.slice(1);
+  const categoryLabelMapper = {
+    food: 'Food',
+    shopping: 'Shopping',
+    entertainment: 'Entertainment',
+    car: 'Car',
+    bills: 'Bills',
+    home: 'Home',
+    education: 'Education',
+    other: 'Other',
   };
 
   const getIcon = (categoryName) => {
     switch (categoryName) {
-      case 'Food':
+      case 'food':
         return <Food />;
-      case 'Shopping':
+      case 'shopping':
         return <Shopping />;
-      case 'Entertainment':
+      case 'entertainment':
         return <Entertainment />;
-      case 'Car':
+      case 'car':
         return <Car />;
-      case 'Bills':
+      case 'bills':
         return <Bills />;
-      case 'Home':
+      case 'home':
         return <Home />;
-      case 'Education':
+      case 'education':
         return <Education />;
-      case 'Other':
+      case 'other':
         return <Other />;
       default:
         return null;
@@ -61,15 +68,16 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id,
       shortMonthNames[formatDate.getMonth()]
     } ${formatDate.getDate()}, ${formatDate.getFullYear()}`;
   };
+
   const handleDeleteSpending = (spendingID) => {
     onDelete(spendingID);
   };
 
   return (
     <Styled.Spending>
-      <Styled.IconWrap variant={category.toLowerCase()}>{getIcon(category)}</Styled.IconWrap>
+      <Styled.IconWrap variant={category}>{getIcon(category)}</Styled.IconWrap>
       <Styled.CategoryWrap>
-        <Styled.CategoryName>{formatCategory(category)}</Styled.CategoryName>
+        <Styled.CategoryName>{categoryLabelMapper[category]}</Styled.CategoryName>
         {note && <Styled.Description>{note}</Styled.Description>}
       </Styled.CategoryWrap>
       {!!labels.length && (
