@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Food from '../Icons/Food';
 import Shopping from '../Icons/Shopping';
@@ -11,8 +12,10 @@ import Other from '../Icons/Other';
 import * as Styled from './styles';
 import DeleteIcon24 from '../Icons/DeleteIcon24';
 import EditIcon from '../Icons/EditIcon';
+// import spendings from '../../api/api';
+import { deleteSpendingPending } from '../../redux/actions';
 
-const SpendingItem = ({ category, note, labels, createdAt, amount, currency }) => {
+const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id }) => {
   const shortMonthNames = [
     'Jan',
     'Feb',
@@ -49,12 +52,16 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency }) =
         return null;
     }
   };
-
+  const dispatch = useDispatch();
   const getFormatDate = (date) => {
     const formatDate = new Date(date);
     return `${
       shortMonthNames[formatDate.getMonth()]
     } ${formatDate.getDate()}, ${formatDate.getFullYear()}`;
+  };
+
+  const deleteSpending = (val) => () => {
+    dispatch(deleteSpendingPending(val));
   };
 
   return (
@@ -85,7 +92,7 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency }) =
         <Styled.Button type="button">
           <EditIcon />
         </Styled.Button>
-        <Styled.Button type="button">
+        <Styled.Button type="button" onClick={deleteSpending(id)}>
           <DeleteIcon24 />
         </Styled.Button>
       </Styled.ButtonWrap>
@@ -100,6 +107,7 @@ SpendingItem.propTypes = {
   createdAt: PropTypes.string.isRequired,
   amount: PropTypes.number.isRequired,
   currency: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 SpendingItem.defaultProps = {

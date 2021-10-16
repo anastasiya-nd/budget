@@ -53,6 +53,7 @@ const Home = () => {
           createdAt={s.createdAt}
           amount={s.amount}
           currency={s.currency}
+          id={s._id} //eslint-disable-line
         />
       ))}
       <Pagination currentPage={+page} total={total} onPageChange={onPageChange} />
