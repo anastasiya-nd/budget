@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import Close from '../Icons/Close';
+import { useClickOutside } from '../../hooks/hooks';
 
 const Modal = ({ onClose, title, children }) => {
   const node = useRef(null);
+
+  useClickOutside(node, onClose);
 
   useEffect(() => {
     function onKeyDown(event) {
@@ -14,18 +17,10 @@ const Modal = ({ onClose, title, children }) => {
       }
     }
 
-    const handleClickOutside = (e) => {
-      if (node.current && !node.current.contains(e.target)) {
-        onClose();
-      }
-    };
-
     document.addEventListener('keydown', onKeyDown);
-    document.addEventListener('click', handleClickOutside, true);
 
     return () => {
       document.removeEventListener('keydown', onKeyDown);
-      document.removeEventListener('click', handleClickOutside, true);
     };
   });
 
