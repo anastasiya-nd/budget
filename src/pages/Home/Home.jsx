@@ -27,6 +27,7 @@ const Home = () => {
   const handleChangePeriodStart = (date) => {
     setPeriodStart(date);
   };
+
   const handleChangePeriodEnd = (date) => {
     setPeriodEnd(date);
   };
