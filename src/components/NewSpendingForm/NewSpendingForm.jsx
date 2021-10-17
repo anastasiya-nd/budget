@@ -29,7 +29,14 @@ const NewSpendingForm = ({ onClose }) => {
   const [note, setNote] = useState('');
   const [labels, setLabels] = useState([]);
   const dispatch = useDispatch();
-  const fieldNames = { category, createdAt, amount, currency, note, labels };
+  const fields = {
+    category,
+    createdAt,
+    amount,
+    currency,
+    note,
+    labels,
+  };
 
   const handleChangeCategory = (val) => {
     setCategory(val);
@@ -60,22 +67,12 @@ const NewSpendingForm = ({ onClose }) => {
     setLabels([...labels, val]);
   };
 
-  const setSpendingValues = () => {
-    return Object.fromEntries(Object.entries(fieldNames).filter(([key, value]) => value)); //eslint-disable-line
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    const spendingValues = setSpendingValues();
-    if (
-      !spendingValues.category ||
-      !spendingValues.createdAt ||
-      !spendingValues.amount ||
-      !spendingValues.currency
-    ) {
+    if (!fields.category || !fields.createdAt || !fields.amount || !fields.currency) {
       console.log('Required fields');
     } else {
-      dispatch(postSpendingPending(spendingValues));
+      dispatch(postSpendingPending(fields));
       onClose();
     }
   };
