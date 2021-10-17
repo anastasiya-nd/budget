@@ -53,7 +53,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(requestSpendingsPending(page, perPage));
   }, []);
-
+  console.log(spendings);
   return (
     <>
       {isOpenModal && (

@@ -5,6 +5,9 @@ import {
   DELETE_SPENDING_SUCCESS,
   DELETE_SPENDING_ERROR,
   DELETE_SPENDING_PENDING,
+  PUT_SPENDING_PENDING,
+  PUT_SPENDING_SUCCESS,
+  PUT_SPENDING__ERROR,
 } from './types';
 
 const initialState = {
@@ -51,6 +54,19 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+      };
+    case PUT_SPENDING_PENDING:
+      return {
+        ...state,
+      };
+    case PUT_SPENDING_SUCCESS:
+      return {
+        ...state,
+        spendings: [action.payload.spending, ...state.spendings],
+      };
+    case PUT_SPENDING__ERROR:
+      return {
+        ...state,
       };
     default:
       return state;

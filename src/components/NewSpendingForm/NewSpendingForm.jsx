@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import Button from '../Button';
+import { putSpendingPending } from '../../redux/actions';
 
 const NewSpendingForm = ({ onClose }) => {
   const categories = [
@@ -14,14 +16,15 @@ const NewSpendingForm = ({ onClose }) => {
     'Education',
     'Other',
   ];
+  const dispatch = useDispatch();
   const [category, setCategory] = useState(''); //eslint-disable-line
   const handleChangeCategory = (val) => {
     setCategory(val);
   };
 
-  const [periodStart, setPeriodStart] = useState('');
+  const [createdAt, setCreatedAt] = useState('');
   const handleChangePeriodStart = (date) => {
-    setPeriodStart(date);
+    setCreatedAt(date);
   };
 
   const [amount, setAmount] = useState(0);
@@ -54,7 +57,7 @@ const NewSpendingForm = ({ onClose }) => {
     setLabels([...labels, val]);
   };
 
-  const fieldNames = { category, periodStart, amount, currency, note, labels };
+  const fieldNames = { category, createdAt, amount, currency, note, labels };
 
   const setSpendingValues = () => {
     return Object.fromEntries(Object.entries(fieldNames).filter(([key, value]) => value)); //eslint-disable-line
@@ -65,13 +68,13 @@ const NewSpendingForm = ({ onClose }) => {
     const spendingValues = setSpendingValues();
     if (
       !spendingValues.category ||
-      !spendingValues.periodStart ||
+      !spendingValues.createdAt ||
       !spendingValues.amount ||
       !spendingValues.currency
     ) {
       return console.log('Required fields');
     }
-    return console.log(spendingValues);
+    return dispatch(putSpendingPending(spendingValues));
   };
 
   return (
@@ -87,7 +90,7 @@ const NewSpendingForm = ({ onClose }) => {
         <Styled.Date
           fieldLabel="Date"
           placeholder="Select a spending date"
-          activeDate={periodStart}
+          activeDate={createdAt}
           onChange={handleChangePeriodStart}
         />
         <Styled.Amount fieldLabel="Amount" onChange={handleChangeAmount} value={amount} />
@@ -108,7 +111,7 @@ const NewSpendingForm = ({ onClose }) => {
       </Styled.FormContent>
       <Styled.ButtonWrap>
         <Button text="Close" variant="secondary" onClick={onClose} />
-        <Button text="Save" type="submit" onClick={() => console.log(1)} />
+        <Button text="Save" type="submit" />
       </Styled.ButtonWrap>
     </Styled.Form>
   );

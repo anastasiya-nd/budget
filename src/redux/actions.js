@@ -5,6 +5,9 @@ import {
   DELETE_SPENDING_PENDING,
   DELETE_SPENDING_SUCCESS,
   DELETE_SPENDING_ERROR,
+  PUT_SPENDING_PENDING,
+  PUT_SPENDING_SUCCESS,
+  PUT_SPENDING__ERROR,
 } from './types';
 
 export const requestSpendingsSuccess = (spendings, pagination) => {
@@ -57,5 +60,29 @@ export const deleteSpendingError = (message) => {
     payload: {
       message,
     },
+  };
+};
+
+export const putSpendingPending = (spending) => {
+  return {
+    type: PUT_SPENDING_PENDING,
+    payload: {
+      spending,
+    },
+  };
+};
+
+export const putSpendingSuccess = (spending) => {
+  return {
+    type: PUT_SPENDING_SUCCESS,
+    payload: {
+      spending,
+    },
+  };
+};
+
+export const putSpendingError = () => {
+  return {
+    type: PUT_SPENDING__ERROR,
   };
 };

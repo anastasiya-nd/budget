@@ -16,6 +16,9 @@ const spendings = {
   deleteSpending(id) {
     return instance.delete(`/spendings/${id}`);
   },
+  putSpending(spending) {
+    return instance.post('/spendings', spending);
+  },
 };
 
 export default spendings;

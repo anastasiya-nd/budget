@@ -12,7 +12,7 @@ Button.propTypes = {
   text: PropTypes.string.isRequired,
   type: PropTypes.string,
   variant: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func, //eslint-disable-line
   className: PropTypes.string,
 };
 

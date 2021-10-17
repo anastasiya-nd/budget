@@ -94,7 +94,7 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id,
       <Styled.DateAndAmountWrap>
         <Styled.Date>{getFormatDate(createdAt)}</Styled.Date>
         <Styled.Amount>
-          {amount} {currency}
+          {amount} {currency.toUpperCase()}
         </Styled.Amount>
       </Styled.DateAndAmountWrap>
       <Styled.ButtonWrap>
@@ -113,7 +113,7 @@ SpendingItem.propTypes = {
   category: PropTypes.string.isRequired,
   note: PropTypes.string,
   labels: PropTypes.arrayOf(PropTypes.string),
-  createdAt: PropTypes.string.isRequired,
+  createdAt: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
   amount: PropTypes.number.isRequired,
   currency: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
