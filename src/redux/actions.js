@@ -7,7 +7,7 @@ import {
   DELETE_SPENDING_ERROR,
   POST_SPENDING_PENDING,
   POST_SPENDING_SUCCESS,
-  POST_SPENDING__ERROR,
+  POST_SPENDING_ERROR,
 } from './types';
 
 export const requestSpendingsSuccess = (spendings, pagination) => {
@@ -83,6 +83,6 @@ export const postSpendingSuccess = (spending) => {
 
 export const postSpendingError = () => {
   return {
-    type: POST_SPENDING__ERROR,
+    type: POST_SPENDING_ERROR,
   };
 };
