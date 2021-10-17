@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Popover from '../Popover/Popover';
 import * as Styled from './styles';
 
-const CategoryPopover = ({categoryValue, setCategory, getSpendingValues}) => { //eslint-disable-line
+const CategoryPopover = ({ categoryValue, setCategory, getSpendingValues }) => {
   const categories = [
     'Shopping',
     'Entertainment',
