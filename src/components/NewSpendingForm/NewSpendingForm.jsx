@@ -7,57 +7,58 @@ import { postSpendingPending } from '../../redux/actions';
 
 const NewSpendingForm = ({ onClose }) => {
   const categories = [
-    'Shopping',
-    'Entertainment',
-    'Car',
-    'Bills',
-    'Food',
-    'Home',
-    'Education',
-    'Other',
+    'shopping',
+    'entertainment',
+    'car',
+    'bills',
+    'food',
+    'home',
+    'education',
+    'other',
   ];
-  const dispatch = useDispatch();
-  const [category, setCategory] = useState(''); //eslint-disable-line
-  const handleChangeCategory = (val) => {
-    setCategory(val);
-  };
-
-  const [createdAt, setCreatedAt] = useState('');
-  const handleChangePeriodStart = (date) => {
-    setCreatedAt(date);
-  };
-
-  const [amount, setAmount] = useState(0);
-  const handleChangeAmount = (val) => {
-    setAmount(val);
-  };
-
   const currencyData = [
     { id: '1', value: 'byn', label: 'BYN' },
     { id: '2', value: 'rub', label: 'RUB' },
     { id: '3', value: 'usd', label: 'USD' },
     { id: '4', value: 'eur', label: 'EUR' },
   ];
+  const [category, setCategory] = useState(''); //eslint-disable-line
+  const [createdAt, setCreatedAt] = useState('');
+  const [amount, setAmount] = useState(0);
   const [currency, setCurrency] = useState('');
+  const [note, setNote] = useState('');
+  const [labels, setLabels] = useState([]);
+  const dispatch = useDispatch();
+  const fieldNames = { category, createdAt, amount, currency, note, labels };
+
+  const handleChangeCategory = (val) => {
+    setCategory(val);
+  };
+
+  const handleChangePeriodStart = (date) => {
+    setCreatedAt(date);
+  };
+
+  const handleChangeAmount = (val) => {
+    setAmount(val);
+  };
+
   const handleChangeCurrency = (val) => {
     setCurrency(val);
   };
 
-  const [note, setNote] = useState('');
   const handleChangeNote = (val) => {
     setNote(val);
   };
 
-  const [labels, setLabels] = useState([]);
   const handleDeleteLabel = (deletingLabel) => {
     const newLabels = labels.filter((label) => label !== deletingLabel);
     setLabels(newLabels);
   };
+
   const handleChangeLabel = (val) => {
     setLabels([...labels, val]);
   };
-
-  const fieldNames = { category, createdAt, amount, currency, note, labels };
 
   const setSpendingValues = () => {
     return Object.fromEntries(Object.entries(fieldNames).filter(([key, value]) => value)); //eslint-disable-line
@@ -73,9 +74,10 @@ const NewSpendingForm = ({ onClose }) => {
       !spendingValues.currency
     ) {
       console.log('Required fields');
+    } else {
+      dispatch(postSpendingPending(spendingValues));
+      onClose();
     }
-    dispatch(postSpendingPending(spendingValues));
-    onClose();
   };
 
   return (
