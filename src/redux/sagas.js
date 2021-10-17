@@ -5,10 +5,10 @@ import { REQUEST_SPENDINGS_PENDING, DELETE_SPENDING_PENDING, POST_SPENDING_PENDI
 import {
   requestSpendingsSuccess,
   requestSpendingsError,
-  putSpendingError,
-  putSpendingSuccess,
   deleteSpendingSuccess,
   deleteSpendingError,
+  postSpendingError,
+  postSpendingSuccess,
 } from './actions';
 
 function* getSpendingsWorker(data) {
@@ -31,10 +31,10 @@ function* deleteSpendingWorker(action) {
 
 function* postSpendingWorker(data) {
   try {
-    yield call(spendings.postSpending, data.payload.spending);
-    yield put(putSpendingSuccess(data.payload.spending));
-  } catch {
-    yield put(putSpendingError());
+    const response = yield call(spendings.postSpending, data.payload.spending);
+    yield put(postSpendingSuccess(response.data));
+  } catch (error) {
+    yield put(postSpendingError());
   }
 }
 

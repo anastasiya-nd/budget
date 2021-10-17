@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import Button from '../Button';
-import { putSpendingPending } from '../../redux/actions';
+import { postSpendingPending } from '../../redux/actions';
 
 const NewSpendingForm = ({ onClose }) => {
   const categories = [
@@ -74,7 +74,7 @@ const NewSpendingForm = ({ onClose }) => {
     ) {
       console.log('Required fields');
     }
-    dispatch(putSpendingPending(spendingValues));
+    dispatch(postSpendingPending(spendingValues));
     onClose();
   };
 
