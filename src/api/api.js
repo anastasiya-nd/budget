@@ -16,7 +16,7 @@ const spendings = {
   deleteSpending(id) {
     return instance.delete(`/spendings/${id}`);
   },
-  putSpending(spending) {
+  postSpending(spending) {
     return instance.post('/spendings', spending);
   },
 };

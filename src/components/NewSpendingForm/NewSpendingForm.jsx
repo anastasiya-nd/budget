@@ -48,7 +48,7 @@ const NewSpendingForm = ({ onClose }) => {
     setNote(val);
   };
 
-  const [labels, setLabels] = useState();
+  const [labels, setLabels] = useState([]);
   const handleDeleteLabel = (deletingLabel) => {
     const newLabels = labels.filter((label) => label !== deletingLabel);
     setLabels(newLabels);
@@ -72,9 +72,10 @@ const NewSpendingForm = ({ onClose }) => {
       !spendingValues.amount ||
       !spendingValues.currency
     ) {
-      return console.log('Required fields');
+      console.log('Required fields');
     }
-    return dispatch(putSpendingPending(spendingValues));
+    dispatch(putSpendingPending(spendingValues));
+    onClose();
   };
 
   return (
