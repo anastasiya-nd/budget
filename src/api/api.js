@@ -13,6 +13,9 @@ const spendings = {
       },
     });
   },
+  deleteSpending(id) {
+    return instance.delete(`/spendings/${id}`);
+  },
 };
 
 export default spendings;

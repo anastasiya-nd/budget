@@ -125,7 +125,7 @@ export const Amount = styled.div`
   text-align: right;
 `;
 
-export const Button = styled.button`
+export const SpendingButton = styled.button`
   &:hover {
     cursor: pointer;
   }

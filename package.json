@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve",
+    "dev": "webpack serve --env development",
     "build": "webpack",
     "lint": "eslint src --ext .js --ext .jsx -f table",
     "prepare": "husky install",

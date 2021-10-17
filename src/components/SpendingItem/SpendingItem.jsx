@@ -8,11 +8,11 @@ import Bills from '../Icons/Bills';
 import Home from '../Icons/Home';
 import Education from '../Icons/Education';
 import Other from '../Icons/Other';
-import * as Styled from './styles';
 import DeleteIcon24 from '../Icons/DeleteIcon24';
 import EditIcon from '../Icons/EditIcon';
+import * as Styled from './styles';
 
-const SpendingItem = ({ category, note, labels, createdAt, amount, currency }) => {
+const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id, onDelete }) => {
   const shortMonthNames = [
     'Jan',
     'Feb',
@@ -27,23 +27,35 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency }) =
     'Nov',
     'Dec',
   ];
+
+  const categoryLabelMapper = {
+    food: 'Food',
+    shopping: 'Shopping',
+    entertainment: 'Entertainment',
+    car: 'Car',
+    bills: 'Bills',
+    home: 'Home',
+    education: 'Education',
+    other: 'Other',
+  };
+
   const getIcon = (categoryName) => {
     switch (categoryName) {
-      case 'Food':
+      case 'food':
         return <Food />;
-      case 'Shopping':
+      case 'shopping':
         return <Shopping />;
-      case 'Entertainment':
+      case 'entertainment':
         return <Entertainment />;
-      case 'Car':
+      case 'car':
         return <Car />;
-      case 'Bills':
+      case 'bills':
         return <Bills />;
-      case 'Home':
+      case 'home':
         return <Home />;
-      case 'Education':
+      case 'education':
         return <Education />;
-      case 'Other':
+      case 'other':
         return <Other />;
       default:
         return null;
@@ -57,11 +69,15 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency }) =
     } ${formatDate.getDate()}, ${formatDate.getFullYear()}`;
   };
 
+  const handleDeleteSpending = (spendingID) => {
+    onDelete(spendingID);
+  };
+
   return (
     <Styled.Spending>
-      <Styled.IconWrap variant={category.toLowerCase()}>{getIcon(category)}</Styled.IconWrap>
+      <Styled.IconWrap variant={category}>{getIcon(category)}</Styled.IconWrap>
       <Styled.CategoryWrap>
-        <Styled.CategoryName>{category}</Styled.CategoryName>
+        <Styled.CategoryName>{categoryLabelMapper[category]}</Styled.CategoryName>
         {note && <Styled.Description>{note}</Styled.Description>}
       </Styled.CategoryWrap>
       {!!labels.length && (
@@ -82,12 +98,12 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency }) =
         </Styled.Amount>
       </Styled.DateAndAmountWrap>
       <Styled.ButtonWrap>
-        <Styled.Button type="button">
+        <Styled.SpendingButton type="button">
           <EditIcon />
-        </Styled.Button>
-        <Styled.Button type="button">
+        </Styled.SpendingButton>
+        <Styled.SpendingButton type="button" onClick={() => handleDeleteSpending(id)}>
           <DeleteIcon24 />
-        </Styled.Button>
+        </Styled.SpendingButton>
       </Styled.ButtonWrap>
     </Styled.Spending>
   );
@@ -100,6 +116,8 @@ SpendingItem.propTypes = {
   createdAt: PropTypes.string.isRequired,
   amount: PropTypes.number.isRequired,
   currency: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 SpendingItem.defaultProps = {

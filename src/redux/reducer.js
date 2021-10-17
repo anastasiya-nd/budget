@@ -2,6 +2,9 @@ import {
   REQUEST_SPENDINGS_PENDING,
   REQUEST_SPENDINGS_SUCCESS,
   REQUEST_SPENDINGS_ERROR,
+  DELETE_SPENDING_SUCCESS,
+  DELETE_SPENDING_ERROR,
+  DELETE_SPENDING_PENDING,
 } from './types';
 
 const initialState = {
@@ -29,6 +32,22 @@ const reducer = (state = initialState, action) => {
         loading: true,
       };
     case REQUEST_SPENDINGS_ERROR:
+      return {
+        ...state,
+        loading: false,
+      };
+    case DELETE_SPENDING_PENDING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case DELETE_SPENDING_SUCCESS:
+      return {
+        ...state,
+        spendings: state.spendings.filter((spending) => spending._id !== action.payload.id), // eslint-disable-line
+        loading: false,
+      };
+    case DELETE_SPENDING_ERROR:
       return {
         ...state,
         loading: false,

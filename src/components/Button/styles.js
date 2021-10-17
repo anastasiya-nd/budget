@@ -21,4 +21,11 @@ export const ButtonItem = styled.button`
     background-color: #f5f1ee;
     color: #000;
   `}
+
+  ${({ variant }) =>
+    variant === 'negative' &&
+    `
+    background-color: #F93434;
+    color: #fff;
+  `}
 `;

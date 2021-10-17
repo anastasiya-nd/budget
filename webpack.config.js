@@ -1,4 +1,4 @@
-__webpack_base_uri__ = 'http://localhost:8080'; //eslint-disable-line
+__webpack_base_uri__ = 'http://localhost:8888'; //eslint-disable-line
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -26,5 +26,6 @@ module.exports = {
   },
   devServer: {
     open: true,
+    port: 8888,
   },
 };
