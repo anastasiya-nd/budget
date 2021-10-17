@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Popover from '../Popover/Popover';
 import * as Styled from './styles';
 
-const CategoryPopover = ({ categoryValue, setCategory, getSpendingValues }) => {
+const CategoryPopover = ({ categoryValue, setCategory, onApply }) => {
   const categories = [
     'Shopping',
     'Entertainment',
@@ -30,7 +30,7 @@ const CategoryPopover = ({ categoryValue, setCategory, getSpendingValues }) => {
           ))}
         </Styled.CategoryWrap>
         <Styled.ButtonWrap>
-          <Styled.ButtonItem text="Apply" onClick={getSpendingValues} />
+          <Styled.ButtonItem text="Apply" onClick={onApply} />
         </Styled.ButtonWrap>
       </>
     </Popover>
@@ -40,7 +40,7 @@ const CategoryPopover = ({ categoryValue, setCategory, getSpendingValues }) => {
 CategoryPopover.propTypes = {
   categoryValue: PropTypes.string,
   setCategory: PropTypes.func.isRequired,
-  getSpendingValues: PropTypes.func.isRequired,
+  onApply: PropTypes.func.isRequired,
 };
 
 CategoryPopover.defaultProps = {

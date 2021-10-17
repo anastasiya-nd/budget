@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Popover from '../Popover/Popover';
 import Content from './Content';
 
-const LabelsPopover = ({ labels, setLabels, getSpending }) => {
+const LabelsPopover = ({ labels, setLabels, onApply }) => {
   return (
     <Popover popoverLabel="Labels">
-      <Content labels={labels} setLabels={setLabels} getSpending={getSpending} />
+      <Content labels={labels} setLabels={setLabels} onApply={onApply} />
     </Popover>
   );
 };
@@ -14,7 +14,7 @@ const LabelsPopover = ({ labels, setLabels, getSpending }) => {
 LabelsPopover.propTypes = {
   labels: PropTypes.arrayOf(PropTypes.string).isRequired,
   setLabels: PropTypes.func.isRequired,
-  getSpending: PropTypes.func.isRequired,
+  onApply: PropTypes.func.isRequired,
 };
 
 export default LabelsPopover;

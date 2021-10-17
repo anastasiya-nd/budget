@@ -54,7 +54,7 @@ const Home = () => {
     );
   };
 
-  const getSpendingValues = () => {
+  const onApply = () => {
     dispatch(
       requestSpendingsPending(page, perPage, category, labels.join(','), periodStart, periodEnd)
     );
@@ -110,20 +110,16 @@ const Home = () => {
             <CategoryPopover
               categoryValue={category}
               setCategory={setCategoryValue}
-              getSpendingValues={getSpendingValues}
+              onApply={onApply}
             />
             <PeriodPopover
               periodStart={periodStart}
               periodEnd={periodEnd}
               handleChangePeriodStart={handleChangePeriodStart}
               handleChangePeriodEnd={handleChangePeriodEnd}
-              getSpending={getSpendingValues}
+              onApply={onApply}
             />
-            <LabelsPopover
-              labels={labels}
-              setLabels={setLabelsValue}
-              getSpending={getSpendingValues}
-            />
+            <LabelsPopover labels={labels} setLabels={setLabelsValue} onApply={onApply} />
           </Styled.FilterWrap>
           <Button text="Add new spending +" onClick={handleOpenModal} />
         </Styled.SpendingHeader>

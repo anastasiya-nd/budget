@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import Popover from '../Popover/Popover';
 import * as Styled from './styles';
 
-const PeriodPopover = ({ periodStart, periodEnd, handleChangePeriodStart, handleChangePeriodEnd, getSpending }) => { //eslint-disable-line
+const PeriodPopover = ({
+  periodStart,
+  periodEnd,
+  handleChangePeriodStart,
+  handleChangePeriodEnd,
+  onApply,
+}) => {
   return (
     <Popover popoverLabel="Period">
       <>
@@ -14,18 +20,18 @@ const PeriodPopover = ({ periodStart, periodEnd, handleChangePeriodStart, handle
           setPeriodStart={handleChangePeriodStart}
           setPeriodEnd={handleChangePeriodEnd}
         />
-        <Styled.ButtonItem text="Apply" onClick={getSpending} />
+        <Styled.ButtonItem text="Apply" onClick={onApply} />
       </>
     </Popover>
   );
 };
 
 PeriodPopover.propTypes = {
-  periodStart: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
-  periodEnd: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+  periodStart: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]), //eslint-disable-line
+  periodEnd: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]), //eslint-disable-line
   handleChangePeriodStart: PropTypes.func.isRequired,
   handleChangePeriodEnd: PropTypes.func.isRequired,
-  getSpending: PropTypes.func.isRequired,
+  onApply: PropTypes.func.isRequired,
 };
 
 PeriodPopover.defaultProps = {
