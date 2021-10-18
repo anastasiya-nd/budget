@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Popover from '../Popover/Popover';
 import * as Styled from './styles';
 
-const CategoryPopover = () => {
+const CategoryPopover = ({categoryValue, setCategory, getSpendingValues}) => { //eslint-disable-line
   const categories = [
     'Shopping',
     'Entertainment',
@@ -13,11 +13,6 @@ const CategoryPopover = () => {
     'Education',
     'Other',
   ];
-  const [categoryValue, setValue] = useState('');
-
-  const setCategory = (category) => {
-    setValue(category);
-  };
 
   return (
     <Popover popoverLabel="Category">
@@ -34,7 +29,7 @@ const CategoryPopover = () => {
           ))}
         </Styled.CategoryWrap>
         <Styled.ButtonWrap>
-          <Styled.ButtonItem text="Apply" onClick={() => console.log(categoryValue)} />
+          <Styled.ButtonItem text="Apply" onClick={getSpendingValues} />
         </Styled.ButtonWrap>
       </>
     </Popover>

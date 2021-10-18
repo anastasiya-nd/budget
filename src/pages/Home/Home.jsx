@@ -16,9 +16,15 @@ const Home = () => {
   const [isOpenModal, toggleModal] = useState(false);
   const [isOpenDeletingModal, toggleDeletingModal] = useState(false);
   const [spendingID, setSpendingID] = useState('');
+  const [category, setCategory] = useState('');
+
   const dispatch = useDispatch();
   const spendings = useSelector(getSpendings);
   const { page, perPage, total } = useSelector(getPagination);
+
+  const setCategoryValue = (val) => {
+    setCategory(val);
+  };
 
   const handleOpenModal = () => {
     toggleModal(true);
@@ -29,7 +35,11 @@ const Home = () => {
   };
 
   const onPageChange = (value) => {
-    dispatch(requestSpendingsPending(value, perPage));
+    dispatch(requestSpendingsPending(value, perPage, category));
+  };
+
+  const getSpendingValues = () => {
+    dispatch(requestSpendingsPending(page, perPage, category));
   };
 
   const handleOpenDeletingModal = () => {
@@ -53,6 +63,8 @@ const Home = () => {
   useEffect(() => {
     dispatch(requestSpendingsPending(page, perPage));
   }, []);
+
+  console.log(category);
 
   return (
     <>
@@ -79,7 +91,11 @@ const Home = () => {
       <section>
         <PeriodPopover />
         <LabelsPopover />
-        <CategoryPopover />
+        <CategoryPopover
+          categoryValue={category}
+          setCategory={setCategoryValue}
+          getSpendingValues={getSpendingValues}
+        />
         <Button text="Add new spending +" onClick={handleOpenModal} />
         {spendings.map((s) => (
           <SpendingItem

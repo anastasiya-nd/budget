@@ -13,7 +13,15 @@ import {
 
 function* getSpendingsWorker(data) {
   try {
-    const response = yield call(spendings.getSpendings, data.payload.page, data.payload.perPage);
+    const response = yield call(
+      spendings.getSpendings,
+      data.payload.page,
+      data.payload.perPage,
+      data.payload.category,
+      data.payload.labels,
+      data.payload.start,
+      data.payload.end
+    );
     yield put(requestSpendingsSuccess(response.data.spendings, response.data.pagination));
   } catch (error) {
     yield put(requestSpendingsError());
