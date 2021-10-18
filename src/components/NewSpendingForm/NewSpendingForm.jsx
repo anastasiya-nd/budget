@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import Button from '../Button';
 import { postSpendingPending } from '../../redux/actions';
+import { getSpendings } from '../../redux/selectors';
 
-const NewSpendingForm = ({ onClose, spending }) => {
+const NewSpendingForm = ({ onClose, id }) => {
   const categories = [
     'shopping',
     'entertainment',
@@ -22,21 +23,38 @@ const NewSpendingForm = ({ onClose, spending }) => {
     { id: '3', value: 'usd', label: 'USD' },
     { id: '4', value: 'eur', label: 'EUR' },
   ];
-  const [category, setCategory] = useState(''); //eslint-disable-line
+  const [category, setCategory] = useState('');
   const [createdAt, setCreatedAt] = useState('');
   const [amount, setAmount] = useState(0);
   const [currency, setCurrency] = useState('');
   const [note, setNote] = useState('');
   const [labels, setLabels] = useState([]);
+  const spending = useSelector(getSpendings).find((item) => item._id === id); //eslint-disable-line
   const dispatch = useDispatch();
-  const fields = {
-    category,
-    createdAt,
-    amount,
-    currency,
-    note,
-    labels,
-  };
+
+  useEffect(() => {
+    if (!!spending && spending.category) {
+      if (spending.category) {
+        setCategory(spending.category);
+      }
+      if (spending.createdAt) {
+        const formatDate = new Date(spending.createdAt);
+        setCreatedAt(formatDate);
+      }
+      if (spending.amount) {
+        setAmount(+spending.amount);
+      }
+      if (spending.currency) {
+        setCurrency(spending.currency);
+      }
+      if (spending.note) {
+        setNote(spending.note);
+      }
+      if (spending.labels.length > 0) {
+        setLabels(spending.labels);
+      }
+    }
+  }, [spending]);
 
   const handleChangeCategory = (val) => {
     setCategory(val);
@@ -69,35 +87,25 @@ const NewSpendingForm = ({ onClose, spending }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const fields = {
+      category,
+      createdAt,
+      amount,
+      currency,
+      note,
+      labels,
+    };
     if (!fields.category || !fields.createdAt || !fields.amount || !fields.currency) {
       console.log('Required fields');
     } else {
-      dispatch(postSpendingPending(fields));
+      if (spending) {
+        console.log('update query');
+      } else {
+        dispatch(postSpendingPending(fields));
+      }
       onClose();
     }
   };
-
-  useEffect(() => {
-    if (!!spending && spending.category) {
-      setCategory(spending.category);
-    }
-    if (!!spending && spending.createdAt) {
-      const formatDate = new Date(spending.createdAt);
-      setCreatedAt(formatDate);
-    }
-    if (!!spending && spending.amount) {
-      setAmount(+spending.amount);
-    }
-    if (!!spending && spending.currency) {
-      setCurrency(spending.currency);
-    }
-    if (!!spending && spending.note) {
-      setNote(spending.note);
-    }
-    if (!!spending && !!spending.labels) {
-      setLabels(spending.labels);
-    }
-  }, [spending]);
 
   return (
     <Styled.Form onSubmit={handleSubmit}>
@@ -142,6 +150,11 @@ const NewSpendingForm = ({ onClose, spending }) => {
 NewSpendingForm.propTypes = {
   onClose: PropTypes.func.isRequired,
   spending: PropTypes.object, //eslint-disable-line
+  id: PropTypes.string,
+};
+
+NewSpendingForm.defaultProps = {
+  id: '',
 };
 
 export default NewSpendingForm;

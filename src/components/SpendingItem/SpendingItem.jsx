@@ -79,12 +79,12 @@ const SpendingItem = ({
     } ${formatDate.getDate()}, ${formatDate.getFullYear()}`;
   };
 
-  const handleDeleteSpending = (spendingID) => {
+  const handleDeleteSpending = (spendingID) => () => {
     onDelete(spendingID);
   };
 
-  const handleEditSpending = (spendingId) => {
-    onEdit(spendingId);
+  const handleEditSpending = (spendingID) => () => {
+    onEdit(spendingID);
   };
 
   return (
@@ -112,10 +112,10 @@ const SpendingItem = ({
         </Styled.Amount>
       </Styled.DateAndAmountWrap>
       <Styled.ButtonWrap>
-        <Styled.SpendingButton type="button" onClick={() => handleEditSpending(id)}>
+        <Styled.SpendingButton type="button" onClick={handleEditSpending(id)}>
           <EditIcon />
         </Styled.SpendingButton>
-        <Styled.SpendingButton type="button" onClick={() => handleDeleteSpending(id)}>
+        <Styled.SpendingButton type="button" onClick={handleDeleteSpending(id)}>
           <DeleteIcon24 />
         </Styled.SpendingButton>
       </Styled.ButtonWrap>
