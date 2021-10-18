@@ -1,77 +1,80 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import Button from '../Button';
+import { postSpendingPending } from '../../redux/actions';
 
 const NewSpendingForm = ({ onClose }) => {
   const categories = [
-    'Shopping',
-    'Entertainment',
-    'Car',
-    'Bills',
-    'Food',
-    'Home',
-    'Education',
-    'Other',
+    'shopping',
+    'entertainment',
+    'car',
+    'bills',
+    'food',
+    'home',
+    'education',
+    'other',
   ];
-  const [category, setCategory] = useState(''); //eslint-disable-line
-  const handleChangeCategory = (val) => {
-    setCategory(val);
-  };
-
-  const [periodStart, setPeriodStart] = useState('');
-  const handleChangePeriodStart = (date) => {
-    setPeriodStart(date);
-  };
-
-  const [amount, setAmount] = useState(0);
-  const handleChangeAmount = (val) => {
-    setAmount(val);
-  };
-
   const currencyData = [
     { id: '1', value: 'byn', label: 'BYN' },
     { id: '2', value: 'rub', label: 'RUB' },
     { id: '3', value: 'usd', label: 'USD' },
     { id: '4', value: 'eur', label: 'EUR' },
   ];
+  const [category, setCategory] = useState(''); //eslint-disable-line
+  const [createdAt, setCreatedAt] = useState('');
+  const [amount, setAmount] = useState(0);
   const [currency, setCurrency] = useState('');
+  const [note, setNote] = useState('');
+  const [labels, setLabels] = useState([]);
+  const dispatch = useDispatch();
+  const fields = {
+    category,
+    createdAt,
+    amount,
+    currency,
+    note,
+    labels,
+  };
+
+  const handleChangeCategory = (val) => {
+    setCategory(val);
+  };
+
+  const handleChangePeriodStart = (date) => {
+    setCreatedAt(date);
+  };
+
+  const handleChangeAmount = (val) => {
+    setAmount(val);
+  };
+
   const handleChangeCurrency = (val) => {
     setCurrency(val);
   };
 
-  const [note, setNote] = useState('');
   const handleChangeNote = (val) => {
     setNote(val);
   };
 
-  const [labels, setLabels] = useState();
   const handleDeleteLabel = (deletingLabel) => {
     const newLabels = labels.filter((label) => label !== deletingLabel);
     setLabels(newLabels);
   };
+
   const handleChangeLabel = (val) => {
     setLabels([...labels, val]);
   };
 
-  const fieldNames = { category, periodStart, amount, currency, note, labels };
-
-  const setSpendingValues = () => {
-    return Object.fromEntries(Object.entries(fieldNames).filter(([key, value]) => value)); //eslint-disable-line
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    const spendingValues = setSpendingValues();
-    if (
-      !spendingValues.category ||
-      !spendingValues.periodStart ||
-      !spendingValues.amount ||
-      !spendingValues.currency
-    ) {
-      return console.log('Required fields');
+    if (!fields.category || !fields.createdAt || !fields.amount || !fields.currency) {
+      console.log('Required fields');
+    } else {
+      dispatch(postSpendingPending(fields));
+      onClose();
     }
-    return console.log(spendingValues);
   };
 
   return (
@@ -87,7 +90,7 @@ const NewSpendingForm = ({ onClose }) => {
         <Styled.Date
           fieldLabel="Date"
           placeholder="Select a spending date"
-          activeDate={periodStart}
+          activeDate={createdAt}
           onChange={handleChangePeriodStart}
         />
         <Styled.Amount fieldLabel="Amount" onChange={handleChangeAmount} value={amount} />
@@ -108,7 +111,7 @@ const NewSpendingForm = ({ onClose }) => {
       </Styled.FormContent>
       <Styled.ButtonWrap>
         <Button text="Close" variant="secondary" onClick={onClose} />
-        <Button text="Save" type="submit" onClick={() => console.log(1)} />
+        <Button text="Save" type="submit" />
       </Styled.ButtonWrap>
     </Styled.Form>
   );

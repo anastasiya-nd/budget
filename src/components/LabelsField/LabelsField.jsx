@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Input, FieldLabel, PlusButton, Label, LabelsWrap, DeleteButton } from './styles';
 import Plus from '../Icons/Plus';
 import LabelClear from '../Icons/LabelClear';
+import { useClickOutside } from '../../hooks/hooks';
 
 const LabelsField = ({ fieldLabel, placeholder, labels, onChange, onDelete, className }) => {
   const [labelValue, setLabelValue] = useState('');
+  const node = useRef(null);
 
   const addLabel = () => {
     const inputValue = labelValue.trim();
@@ -23,6 +25,8 @@ const LabelsField = ({ fieldLabel, placeholder, labels, onChange, onDelete, clas
     setLabelValue(e.target.value);
   };
 
+  useClickOutside(node, addLabel);
+
   return (
     <div className={className}>
       {fieldLabel && <FieldLabel htmlFor="label">{fieldLabel}</FieldLabel>}
@@ -37,6 +41,8 @@ const LabelsField = ({ fieldLabel, placeholder, labels, onChange, onDelete, clas
           value={labelValue}
           placeholder={placeholder}
           onChange={handleInputChange}
+          onKeyDown={handleInputChange}
+          ref={node}
         />
         {!!labels.length &&
           labels.map((label, index) => (
