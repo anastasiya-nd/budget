@@ -46,6 +46,7 @@ const Home = () => {
 
   const handleCloseModal = () => {
     toggleModal(false);
+    // dispatch(requestOneSpendingSuccess({}));
   };
 
   const onPageChange = (value) => {
@@ -76,6 +77,11 @@ const Home = () => {
   const deleteSpending = () => {
     dispatch(deleteSpendingPending(spendingID));
     handleCloseDeletingModal();
+  };
+
+  const onEdit = () => {
+    // dispatch(requestOneSpendingPending(id));
+    handleOpenModal();
   };
 
   useEffect(() => {
@@ -135,6 +141,7 @@ const Home = () => {
               amount={s.amount}
               currency={s.currency}
               onDelete={onDelete}
+              onEdit={onEdit}
             />
           ))}
         </Styled.SpendingContent>
