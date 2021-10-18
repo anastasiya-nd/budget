@@ -5,11 +5,15 @@ const instance = axios.create({
 });
 
 const spendings = {
-  getSpendings(page, perPage) {
+  getSpendings(page, perPage, category, labels, start, end) {
     return instance.get('/spendings', {
       params: {
         page,
         perPage,
+        category,
+        labels,
+        start,
+        end,
       },
     });
   },

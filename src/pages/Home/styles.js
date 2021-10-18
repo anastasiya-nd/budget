@@ -17,3 +17,26 @@ export const ModalButton = styled(Button)`
     margin-right: 0;
   }
 `;
+
+export const SpendingWrap = styled.section`
+  padding: 18px 0;
+`;
+
+export const SpendingHeader = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #e7e7e9;
+`;
+
+export const SpendingContent = styled.div`
+  padding: 32px 0;
+`;
+
+export const FilterWrap = styled.div`
+  display: flex;
+  & > div {
+    margin-right: 18px;
+  }
+`;

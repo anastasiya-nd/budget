@@ -16,9 +16,29 @@ const Home = () => {
   const [isOpenModal, toggleModal] = useState(false);
   const [isOpenDeletingModal, toggleDeletingModal] = useState(false);
   const [spendingID, setSpendingID] = useState('');
+  const [category, setCategory] = useState('');
+  const [labels, setLabels] = useState([]);
+  const [periodStart, setPeriodStart] = useState('');
+  const [periodEnd, setPeriodEnd] = useState();
   const dispatch = useDispatch();
   const spendings = useSelector(getSpendings);
   const { page, perPage, total } = useSelector(getPagination);
+
+  const handleChangePeriodStart = (date) => {
+    setPeriodStart(date);
+  };
+
+  const handleChangePeriodEnd = (date) => {
+    setPeriodEnd(date);
+  };
+
+  const setCategoryValue = (val) => {
+    setCategory(val);
+  };
+
+  const setLabelsValue = (val) => {
+    setLabels(val);
+  };
 
   const handleOpenModal = () => {
     toggleModal(true);
@@ -29,7 +49,15 @@ const Home = () => {
   };
 
   const onPageChange = (value) => {
-    dispatch(requestSpendingsPending(value, perPage));
+    dispatch(
+      requestSpendingsPending(value, perPage, category, labels.join(','), periodStart, periodEnd)
+    );
+  };
+
+  const onApply = () => {
+    dispatch(
+      requestSpendingsPending(page, perPage, category, labels.join(','), periodStart, periodEnd)
+    );
   };
 
   const handleOpenDeletingModal = () => {
@@ -76,26 +104,42 @@ const Home = () => {
           </Styled.ModalContent>
         </Modal>
       )}
-      <section>
-        <PeriodPopover />
-        <LabelsPopover />
-        <CategoryPopover />
-        <Button text="Add new spending +" onClick={handleOpenModal} />
-        {spendings.map((s) => (
-          <SpendingItem
+      <Styled.SpendingWrap>
+        <Styled.SpendingHeader>
+          <Styled.FilterWrap>
+            <CategoryPopover
+              categoryValue={category}
+              setCategory={setCategoryValue}
+              onApply={onApply}
+            />
+            <PeriodPopover
+              periodStart={periodStart}
+              periodEnd={periodEnd}
+              handleChangePeriodStart={handleChangePeriodStart}
+              handleChangePeriodEnd={handleChangePeriodEnd}
+              onApply={onApply}
+            />
+            <LabelsPopover labels={labels} setLabels={setLabelsValue} onApply={onApply} />
+          </Styled.FilterWrap>
+          <Button text="Add new spending +" onClick={handleOpenModal} />
+        </Styled.SpendingHeader>
+        <Styled.SpendingContent>
+          {spendings.map((s) => (
+            <SpendingItem
             key={s._id} //eslint-disable-line
             id={s._id} //eslint-disable-line
-            category={s.category}
-            note={s.note}
-            labels={s.labels}
-            createdAt={s.createdAt}
-            amount={s.amount}
-            currency={s.currency}
-            onDelete={onDelete}
-          />
-        ))}
+              category={s.category}
+              note={s.note}
+              labels={s.labels}
+              createdAt={s.createdAt}
+              amount={s.amount}
+              currency={s.currency}
+              onDelete={onDelete}
+            />
+          ))}
+        </Styled.SpendingContent>
         <Pagination currentPage={+page} total={total} onPageChange={onPageChange} />
-      </section>
+      </Styled.SpendingWrap>
     </>
   );
 };

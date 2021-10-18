@@ -10,22 +10,26 @@ import {
   POST_SPENDING_ERROR,
 } from './types';
 
+export const requestSpendingsPending = (page, perPage, category, labels, start, end) => {
+  return {
+    type: REQUEST_SPENDINGS_PENDING,
+    payload: {
+      page,
+      perPage,
+      category,
+      labels,
+      start,
+      end,
+    },
+  };
+};
+
 export const requestSpendingsSuccess = (spendings, pagination) => {
   return {
     type: REQUEST_SPENDINGS_SUCCESS,
     payload: {
       spendings,
       pagination,
-    },
-  };
-};
-
-export const requestSpendingsPending = (page, perPage) => {
-  return {
-    type: REQUEST_SPENDINGS_PENDING,
-    payload: {
-      page,
-      perPage,
     },
   };
 };

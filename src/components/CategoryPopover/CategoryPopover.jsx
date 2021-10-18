@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Popover from '../Popover/Popover';
 import * as Styled from './styles';
 
-const CategoryPopover = () => {
+const CategoryPopover = ({ categoryValue, setCategory, onApply }) => {
   const categories = [
     'Shopping',
     'Entertainment',
@@ -13,11 +14,6 @@ const CategoryPopover = () => {
     'Education',
     'Other',
   ];
-  const [categoryValue, setValue] = useState('');
-
-  const setCategory = (category) => {
-    setValue(category);
-  };
 
   return (
     <Popover popoverLabel="Category">
@@ -34,11 +30,21 @@ const CategoryPopover = () => {
           ))}
         </Styled.CategoryWrap>
         <Styled.ButtonWrap>
-          <Styled.ButtonItem text="Apply" onClick={() => console.log(categoryValue)} />
+          <Styled.ButtonItem text="Apply" onClick={onApply} />
         </Styled.ButtonWrap>
       </>
     </Popover>
   );
+};
+
+CategoryPopover.propTypes = {
+  categoryValue: PropTypes.string,
+  setCategory: PropTypes.func.isRequired,
+  onApply: PropTypes.func.isRequired,
+};
+
+CategoryPopover.defaultProps = {
+  categoryValue: '',
 };
 
 export default CategoryPopover;

@@ -9,6 +9,7 @@ const commonStylesOfPagintaionItem = `
 
 export const PaginationWrap = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
 `;
 

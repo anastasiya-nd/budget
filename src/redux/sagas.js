@@ -11,9 +11,18 @@ import {
   postSpendingSuccess,
 } from './actions';
 
-function* getSpendingsWorker(data) {
+function* getSpendingsWorker(action) {
   try {
-    const response = yield call(spendings.getSpendings, data.payload.page, data.payload.perPage);
+    const { page, perPage, category, labels, start, end } = action.payload;
+    const response = yield call(
+      spendings.getSpendings,
+      page,
+      perPage,
+      category,
+      labels,
+      start,
+      end
+    );
     yield put(requestSpendingsSuccess(response.data.spendings, response.data.pagination));
   } catch (error) {
     yield put(requestSpendingsError());
