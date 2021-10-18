@@ -71,6 +71,7 @@ const Home = () => {
 
   const handleCloseDeletingModal = () => {
     toggleDeletingModal(false);
+    setSpendingID('');
   };
 
   const onDelete = (id) => {
