@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Input, FieldLabel } from './styles';
 
 const NumberField = ({ fieldLabel, value, onChange, className }) => {
   const [inputValue, setInputValue] = useState(value);
-
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -19,6 +18,10 @@ const NumberField = ({ fieldLabel, value, onChange, className }) => {
       onChange(val);
     }
   };
+
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
 
   return (
     <div className={className}>

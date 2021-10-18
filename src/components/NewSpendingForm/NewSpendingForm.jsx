@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import Button from '../Button';
 import { postSpendingPending } from '../../redux/actions';
 
-const NewSpendingForm = ({ onClose }) => {
+const NewSpendingForm = ({ onClose, spending }) => {
   const categories = [
     'shopping',
     'entertainment',
@@ -77,6 +77,28 @@ const NewSpendingForm = ({ onClose }) => {
     }
   };
 
+  useEffect(() => {
+    if (!!spending && spending.category) {
+      setCategory(spending.category);
+    }
+    if (!!spending && spending.createdAt) {
+      const formatDate = new Date(spending.createdAt);
+      setCreatedAt(formatDate);
+    }
+    if (!!spending && spending.amount) {
+      setAmount(+spending.amount);
+    }
+    if (!!spending && spending.currency) {
+      setCurrency(spending.currency);
+    }
+    if (!!spending && spending.note) {
+      setNote(spending.note);
+    }
+    if (!!spending && !!spending.labels) {
+      setLabels(spending.labels);
+    }
+  }, [spending]);
+
   return (
     <Styled.Form onSubmit={handleSubmit}>
       <Styled.FormContent>
@@ -119,6 +141,7 @@ const NewSpendingForm = ({ onClose }) => {
 
 NewSpendingForm.propTypes = {
   onClose: PropTypes.func.isRequired,
+  spending: PropTypes.object, //eslint-disable-line
 };
 
 export default NewSpendingForm;

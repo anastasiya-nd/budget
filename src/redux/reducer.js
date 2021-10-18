@@ -12,6 +12,7 @@ import {
 
 const initialState = {
   spendings: [],
+  spending: {},
   pagination: {
     total: undefined,
     page: 1,
