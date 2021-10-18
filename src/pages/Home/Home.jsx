@@ -17,13 +17,17 @@ const Home = () => {
   const [isOpenDeletingModal, toggleDeletingModal] = useState(false);
   const [spendingID, setSpendingID] = useState('');
   const [category, setCategory] = useState('');
-
+  const [labels, setLabels] = useState([]);
   const dispatch = useDispatch();
   const spendings = useSelector(getSpendings);
   const { page, perPage, total } = useSelector(getPagination);
 
   const setCategoryValue = (val) => {
     setCategory(val);
+  };
+
+  const setLabelsValue = (val) => {
+    setLabels(val);
   };
 
   const handleOpenModal = () => {
@@ -35,11 +39,11 @@ const Home = () => {
   };
 
   const onPageChange = (value) => {
-    dispatch(requestSpendingsPending(value, perPage, category));
+    dispatch(requestSpendingsPending(value, perPage, category, labels.join(',')));
   };
 
   const getSpendingValues = () => {
-    dispatch(requestSpendingsPending(page, perPage, category));
+    dispatch(requestSpendingsPending(page, perPage, category, labels.join(',')));
   };
 
   const handleOpenDeletingModal = () => {
@@ -64,7 +68,7 @@ const Home = () => {
     dispatch(requestSpendingsPending(page, perPage));
   }, []);
 
-  console.log(category);
+  console.log(labels);
 
   return (
     <>
@@ -90,7 +94,7 @@ const Home = () => {
       )}
       <section>
         <PeriodPopover />
-        <LabelsPopover />
+        <LabelsPopover labels={labels} setLabels={setLabelsValue} getSpending={getSpendingValues} />
         <CategoryPopover
           categoryValue={category}
           setCategory={setCategoryValue}
