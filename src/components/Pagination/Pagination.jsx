@@ -11,7 +11,7 @@ import {
 import PrevArrow24 from '../Icons/PrevArrow24';
 import NextArrow24 from '../Icons/NextArrow24';
 
-const Pagination = ({ currentPage, total, onPageChange }) => {
+const Pagination = ({ currentPage, total, onPageChange, className }) => {
   const getPaginationItems = () => {
     const numberOfPages = [];
     let pagination = [];
@@ -59,7 +59,7 @@ const Pagination = ({ currentPage, total, onPageChange }) => {
   const paginationItems = getPaginationItems();
 
   return (
-    <PaginationWrap>
+    <PaginationWrap className={className}>
       <PaginationNavigation
         type="button"
         onClick={() => onPageChange(currentPage - 1)}
@@ -103,10 +103,12 @@ Pagination.propTypes = {
   currentPage: PropTypes.number.isRequired,
   total: PropTypes.number,
   onPageChange: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };
 
 Pagination.defaultProps = {
   total: 0,
+  className: '',
 };
 
 export default Pagination;

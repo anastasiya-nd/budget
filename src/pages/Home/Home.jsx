@@ -103,36 +103,46 @@ const Home = () => {
           </Styled.ModalContent>
         </Modal>
       )}
-      <section>
-        <PeriodPopover
-          periodStart={periodStart}
-          periodEnd={periodEnd}
-          handleChangePeriodStart={handleChangePeriodStart}
-          handleChangePeriodEnd={handleChangePeriodEnd}
-          getSpending={getSpendingValues}
-        />
-        <LabelsPopover labels={labels} setLabels={setLabelsValue} getSpending={getSpendingValues} />
-        <CategoryPopover
-          categoryValue={category}
-          setCategory={setCategoryValue}
-          getSpendingValues={getSpendingValues}
-        />
-        <Button text="Add new spending +" onClick={handleOpenModal} />
-        {spendings.map((s) => (
-          <SpendingItem
+      <Styled.SpendingWrap>
+        <Styled.SpendingHeader>
+          <Styled.FilterWrap>
+            <CategoryPopover
+              categoryValue={category}
+              setCategory={setCategoryValue}
+              getSpendingValues={getSpendingValues}
+            />
+            <PeriodPopover
+              periodStart={periodStart}
+              periodEnd={periodEnd}
+              handleChangePeriodStart={handleChangePeriodStart}
+              handleChangePeriodEnd={handleChangePeriodEnd}
+              getSpending={getSpendingValues}
+            />
+            <LabelsPopover
+              labels={labels}
+              setLabels={setLabelsValue}
+              getSpending={getSpendingValues}
+            />
+          </Styled.FilterWrap>
+          <Button text="Add new spending +" onClick={handleOpenModal} />
+        </Styled.SpendingHeader>
+        <Styled.SpendingContent>
+          {spendings.map((s) => (
+            <SpendingItem
             key={s._id} //eslint-disable-line
             id={s._id} //eslint-disable-line
-            category={s.category}
-            note={s.note}
-            labels={s.labels}
-            createdAt={s.createdAt}
-            amount={s.amount}
-            currency={s.currency}
-            onDelete={onDelete}
-          />
-        ))}
+              category={s.category}
+              note={s.note}
+              labels={s.labels}
+              createdAt={s.createdAt}
+              amount={s.amount}
+              currency={s.currency}
+              onDelete={onDelete}
+            />
+          ))}
+        </Styled.SpendingContent>
         <Pagination currentPage={+page} total={total} onPageChange={onPageChange} />
-      </section>
+      </Styled.SpendingWrap>
     </>
   );
 };
