@@ -8,6 +8,9 @@ import {
   POST_SPENDING_PENDING,
   POST_SPENDING_SUCCESS,
   POST_SPENDING_ERROR,
+  UPDATE_SPENDING_PENDING,
+  UPDATE_SPENDING_SUCCESS,
+  UPDATE_SPENDING_ERROR,
 } from './types';
 
 export const requestSpendingsPending = (page, perPage, category, labels, start, end) => {
@@ -88,5 +91,31 @@ export const postSpendingSuccess = (spending) => {
 export const postSpendingError = () => {
   return {
     type: POST_SPENDING_ERROR,
+  };
+};
+
+export const updateSpendingPending = (id, spending) => {
+  return {
+    type: UPDATE_SPENDING_PENDING,
+    payload: {
+      id,
+      spending,
+    },
+  };
+};
+
+export const updateSpendingSuccess = (id, spending) => {
+  return {
+    type: UPDATE_SPENDING_SUCCESS,
+    payload: {
+      id,
+      spending,
+    },
+  };
+};
+
+export const updateSpendingError = () => {
+  return {
+    type: UPDATE_SPENDING_ERROR,
   };
 };

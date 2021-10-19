@@ -8,6 +8,9 @@ import {
   POST_SPENDING_PENDING,
   POST_SPENDING_SUCCESS,
   POST_SPENDING_ERROR,
+  UPDATE_SPENDING_PENDING,
+  UPDATE_SPENDING_SUCCESS,
+  UPDATE_SPENDING_ERROR,
 } from './types';
 
 const initialState = {
@@ -67,6 +70,28 @@ const reducer = (state = initialState, action) => {
         loading: false,
       };
     case POST_SPENDING_ERROR:
+      return {
+        ...state,
+        loading: false,
+      };
+    case UPDATE_SPENDING_PENDING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case UPDATE_SPENDING_SUCCESS:
+      return {
+        ...state,
+        spendings: state.spendings.map((spending) => {
+          if (spending._id === action.payload.id) { //eslint-disable-line
+            return { ...action.payload.spending };
+          }
+          return spending;
+        }),
+        spending: action.payload.spending,
+        loading: false,
+      };
+    case UPDATE_SPENDING_ERROR:
       return {
         ...state,
         loading: false,

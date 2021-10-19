@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import Button from '../Button';
-import { postSpendingPending } from '../../redux/actions';
+import { postSpendingPending, updateSpendingPending } from '../../redux/actions';
 import { getSpendings } from '../../redux/selectors';
 
 const NewSpendingForm = ({ onClose, id }) => {
@@ -33,7 +33,7 @@ const NewSpendingForm = ({ onClose, id }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!!spending && spending.category) {
+    if (!!spending) { //eslint-disable-line
       if (spending.category) {
         setCategory(spending.category);
       }
@@ -99,7 +99,8 @@ const NewSpendingForm = ({ onClose, id }) => {
       console.log('Required fields');
     } else {
       if (spending) {
-        console.log('update query');
+        fields._id = spending._id; //eslint-disable-line
+        dispatch(updateSpendingPending(id, fields));
       } else {
         dispatch(postSpendingPending(fields));
       }
