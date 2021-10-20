@@ -88,7 +88,6 @@ const reducer = (state = initialState, action) => {
           }
           return spending;
         }),
-        spending: action.payload.spending,
         loading: false,
       };
     case UPDATE_SPENDING_ERROR:

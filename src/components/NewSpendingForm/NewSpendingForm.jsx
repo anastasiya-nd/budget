@@ -37,19 +37,24 @@ const NewSpendingForm = ({ onClose, id }) => {
       if (spending.category) {
         setCategory(spending.category);
       }
+
       if (spending.createdAt) {
         const formatDate = new Date(spending.createdAt);
         setCreatedAt(formatDate);
       }
+
       if (spending.amount) {
         setAmount(+spending.amount);
       }
+
       if (spending.currency) {
         setCurrency(spending.currency);
       }
+
       if (spending.note) {
         setNote(spending.note);
       }
+
       if (spending.labels.length > 0) {
         setLabels(spending.labels);
       }
@@ -99,7 +104,6 @@ const NewSpendingForm = ({ onClose, id }) => {
       console.log('Required fields');
     } else {
       if (spending) {
-        fields._id = spending._id; //eslint-disable-line
         dispatch(updateSpendingPending(id, fields));
       } else {
         dispatch(postSpendingPending(fields));
