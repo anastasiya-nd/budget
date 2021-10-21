@@ -12,7 +12,17 @@ import DeleteIcon24 from '../Icons/DeleteIcon24';
 import EditIcon from '../Icons/EditIcon';
 import * as Styled from './styles';
 
-const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id, onDelete }) => {
+const SpendingItem = ({
+  category,
+  note,
+  labels,
+  createdAt,
+  amount,
+  currency,
+  id,
+  onEdit,
+  onDelete,
+}) => {
   const shortMonthNames = [
     'Jan',
     'Feb',
@@ -69,8 +79,12 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id,
     } ${formatDate.getDate()}, ${formatDate.getFullYear()}`;
   };
 
-  const handleDeleteSpending = (spendingID) => {
+  const handleDeleteSpending = (spendingID) => () => {
     onDelete(spendingID);
+  };
+
+  const handleEditSpending = (spendingID) => () => {
+    onEdit(spendingID);
   };
 
   return (
@@ -98,10 +112,10 @@ const SpendingItem = ({ category, note, labels, createdAt, amount, currency, id,
         </Styled.Amount>
       </Styled.DateAndAmountWrap>
       <Styled.ButtonWrap>
-        <Styled.SpendingButton type="button">
+        <Styled.SpendingButton type="button" onClick={handleEditSpending(id)}>
           <EditIcon />
         </Styled.SpendingButton>
-        <Styled.SpendingButton type="button" onClick={() => handleDeleteSpending(id)}>
+        <Styled.SpendingButton type="button" onClick={handleDeleteSpending(id)}>
           <DeleteIcon24 />
         </Styled.SpendingButton>
       </Styled.ButtonWrap>
@@ -118,6 +132,7 @@ SpendingItem.propTypes = {
   currency: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
 };
 
 SpendingItem.defaultProps = {

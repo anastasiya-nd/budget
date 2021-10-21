@@ -24,6 +24,10 @@ const Home = () => {
   const spendings = useSelector(getSpendings);
   const { page, perPage, total } = useSelector(getPagination);
 
+  useEffect(() => {
+    dispatch(requestSpendingsPending(page, perPage));
+  }, []);
+
   const handleChangePeriodStart = (date) => {
     setPeriodStart(date);
   };
@@ -46,6 +50,7 @@ const Home = () => {
 
   const handleCloseModal = () => {
     toggleModal(false);
+    setSpendingID('');
   };
 
   const onPageChange = (value) => {
@@ -66,6 +71,7 @@ const Home = () => {
 
   const handleCloseDeletingModal = () => {
     toggleDeletingModal(false);
+    setSpendingID('');
   };
 
   const onDelete = (id) => {
@@ -78,15 +84,16 @@ const Home = () => {
     handleCloseDeletingModal();
   };
 
-  useEffect(() => {
-    dispatch(requestSpendingsPending(page, perPage));
-  }, []);
+  const onEdit = (id) => {
+    setSpendingID(id);
+    handleOpenModal();
+  };
 
   return (
     <>
       {isOpenModal && (
         <Modal title="New spending" onClose={handleCloseModal}>
-          <NewSpendingForm onClose={handleCloseModal} />
+          <NewSpendingForm onClose={handleCloseModal} id={spendingID} />
         </Modal>
       )}
       {isOpenDeletingModal && (
@@ -126,8 +133,8 @@ const Home = () => {
         <Styled.SpendingContent>
           {spendings.map((s) => (
             <SpendingItem
-            key={s._id} //eslint-disable-line
-            id={s._id} //eslint-disable-line
+              key={s._id} //eslint-disable-line
+              id={s._id} //eslint-disable-line
               category={s.category}
               note={s.note}
               labels={s.labels}
@@ -135,6 +142,7 @@ const Home = () => {
               amount={s.amount}
               currency={s.currency}
               onDelete={onDelete}
+              onEdit={onEdit}
             />
           ))}
         </Styled.SpendingContent>

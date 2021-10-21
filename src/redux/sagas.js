@@ -1,7 +1,12 @@
 import 'regenerator-runtime/runtime';
 import { takeLatest, takeLeading, put, call, all } from 'redux-saga/effects';
 import spendings from '../api';
-import { REQUEST_SPENDINGS_PENDING, DELETE_SPENDING_PENDING, POST_SPENDING_PENDING } from './types';
+import {
+  REQUEST_SPENDINGS_PENDING,
+  DELETE_SPENDING_PENDING,
+  POST_SPENDING_PENDING,
+  UPDATE_SPENDING_PENDING,
+} from './types';
 import {
   requestSpendingsSuccess,
   requestSpendingsError,
@@ -9,6 +14,8 @@ import {
   deleteSpendingError,
   postSpendingError,
   postSpendingSuccess,
+  updateSpendingSuccess,
+  updateSpendingError,
 } from './actions';
 
 function* getSpendingsWorker(action) {
@@ -47,10 +54,24 @@ function* postSpendingWorker(data) {
   }
 }
 
+function* updateSpendingWorker(action) {
+  try {
+    const response = yield call(
+      spendings.updateSpending,
+      action.payload.id,
+      action.payload.spending
+    );
+    yield put(updateSpendingSuccess(action.payload.id, response.data));
+  } catch (error) {
+    yield put(updateSpendingError());
+  }
+}
+
 export default function* rootSaga() {
   yield all([
     takeLatest(REQUEST_SPENDINGS_PENDING, getSpendingsWorker),
     takeLeading(DELETE_SPENDING_PENDING, deleteSpendingWorker),
     takeLatest(POST_SPENDING_PENDING, postSpendingWorker),
+    takeLatest(UPDATE_SPENDING_PENDING, updateSpendingWorker),
   ]);
 }

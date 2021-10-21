@@ -23,6 +23,9 @@ const spendings = {
   postSpending(spending) {
     return instance.post('/spendings', spending);
   },
+  updateSpending(id, spending) {
+    return instance.patch(`/spendings/${id}`, spending);
+  },
 };
 
 export default spendings;
