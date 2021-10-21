@@ -89,8 +89,6 @@ const Home = () => {
     handleOpenModal();
   };
 
-  // console.log(spendings);
-
   return (
     <>
       {isOpenModal && (

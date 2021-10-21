@@ -61,8 +61,6 @@ function* updateSpendingWorker(action) {
       action.payload.id,
       action.payload.spending
     );
-    yield console.log('updateSpendingWorker 1', action.payload.spending);
-    yield console.log('updateSpendingWorker 2', response.data);
     yield put(updateSpendingSuccess(action.payload.id, response.data));
   } catch (error) {
     yield put(updateSpendingError());
