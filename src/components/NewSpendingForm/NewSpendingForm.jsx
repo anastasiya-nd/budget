@@ -111,19 +111,7 @@ const NewSpendingForm = ({ onClose, id }) => {
       console.log('Required fields');
     } else {
       if (spending) {
-        for (const [key, value] of Object.entries(fields)) { //eslint-disable-line
-          if (
-            (key === 'createdAt' &&
-              new Date(spending[key]).getTime() === new Date(value).getTime()) ||
-            (key === 'labels' && compareArray(spending[key], value)) ||
-            value === spending[key]
-          ) {
-            delete fields[key];
-          }
-        }
-        if (Object.keys(fields).length !== 0) {
-          dispatch(updateSpendingPending(id, fields));
-        }
+        dispatch(updateSpendingPending(id, fields));
       } else {
         dispatch(postSpendingPending(fields));
       }
