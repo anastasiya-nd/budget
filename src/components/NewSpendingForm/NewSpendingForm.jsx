@@ -90,13 +90,6 @@ const NewSpendingForm = ({ onClose, id }) => {
     setLabels([...labels, val]);
   };
 
-  const compareArray = (arr1, arr2) => {
-    if (arr1.length === arr2.length && JSON.stringify(arr1) === JSON.stringify(arr2)) {
-      return true;
-    }
-    return false;
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const fields = {
