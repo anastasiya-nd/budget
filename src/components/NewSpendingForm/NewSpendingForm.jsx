@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import Button from '../Button';
 import { postSpendingPending, updateSpendingPending } from '../../redux/actions';
-import { getSpendings } from '../../redux/selectors';
+import { getSpendingById } from '../../redux/selectors';
 
 const NewSpendingForm = ({ onClose, id }) => {
   const categories = [
@@ -29,7 +29,7 @@ const NewSpendingForm = ({ onClose, id }) => {
   const [currency, setCurrency] = useState('');
   const [note, setNote] = useState('');
   const [labels, setLabels] = useState([]);
-  const spending = useSelector(getSpendings).find((item) => item._id === id); //eslint-disable-line
+  const spending = useSelector((state) => getSpendingById(state, id));
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -90,6 +90,13 @@ const NewSpendingForm = ({ onClose, id }) => {
     setLabels([...labels, val]);
   };
 
+  const compareArray = (arr1, arr2) => {
+    if (arr1.length === arr2.length && JSON.stringify(arr1) === JSON.stringify(arr2)) {
+      return true;
+    }
+    return false;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const fields = {
@@ -104,7 +111,19 @@ const NewSpendingForm = ({ onClose, id }) => {
       console.log('Required fields');
     } else {
       if (spending) {
-        dispatch(updateSpendingPending(id, fields));
+        for (const [key, value] of Object.entries(fields)) { //eslint-disable-line
+          if (
+            (key === 'createdAt' &&
+              new Date(spending[key]).getTime() === new Date(value).getTime()) ||
+            (key === 'labels' && compareArray(spending[key], value)) ||
+            value === spending[key]
+          ) {
+            delete fields[key];
+          }
+        }
+        if (Object.keys(fields).length !== 0) {
+          dispatch(updateSpendingPending(id, fields));
+        }
       } else {
         dispatch(postSpendingPending(fields));
       }
