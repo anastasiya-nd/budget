@@ -11,6 +11,7 @@ import NewSpendingForm from '../../components/NewSpendingForm';
 import { getSpendings, getPagination } from '../../redux/selectors';
 import Pagination from '../../components/Pagination';
 import * as Styled from './styles';
+import Chart from '../../components/Chart';
 
 const Home = () => {
   const [isOpenModal, toggleModal] = useState(false);
@@ -111,6 +112,10 @@ const Home = () => {
           </Styled.ModalContent>
         </Modal>
       )}
+      <section>
+        <h2>Spendings analytics</h2>
+        <Chart />
+      </section>
       <Styled.SpendingWrap>
         <Styled.SpendingHeader>
           <Styled.FilterWrap>

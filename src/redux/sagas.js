@@ -6,6 +6,7 @@ import {
   DELETE_SPENDING_PENDING,
   POST_SPENDING_PENDING,
   UPDATE_SPENDING_PENDING,
+  REQUEST_ALL_SPENDINGS_PENDING,
 } from './types';
 import {
   requestSpendingsSuccess,
@@ -16,6 +17,8 @@ import {
   postSpendingSuccess,
   updateSpendingSuccess,
   updateSpendingError,
+  requestAllSpendingsSuccess,
+  requestAllSpendingsError,
 } from './actions';
 
 function* getSpendingsWorker(action) {
@@ -66,6 +69,14 @@ function* updateSpendingWorker(action) {
     yield put(updateSpendingError());
   }
 }
+function* getAllSpendingsWorker(action) {
+  try {
+    const response = yield call(spendings.getSpendings, action.payload.category);
+    yield put(requestAllSpendingsSuccess(response.data.spendings));
+  } catch (error) {
+    yield put(requestAllSpendingsError());
+  }
+}
 
 export default function* rootSaga() {
   yield all([
@@ -73,5 +84,6 @@ export default function* rootSaga() {
     takeLeading(DELETE_SPENDING_PENDING, deleteSpendingWorker),
     takeLatest(POST_SPENDING_PENDING, postSpendingWorker),
     takeLatest(UPDATE_SPENDING_PENDING, updateSpendingWorker),
+    takeLatest(REQUEST_ALL_SPENDINGS_PENDING, getAllSpendingsWorker),
   ]);
 }

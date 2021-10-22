@@ -12,7 +12,7 @@ export const monthNames = [
   'September',
   'October',
   'November',
-  'December'
+  'December',
 ];
 export const countOfWeekInCalendar = 6;
 export const countOfDayInWeek = 7;

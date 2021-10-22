@@ -11,9 +11,13 @@ import {
   UPDATE_SPENDING_PENDING,
   UPDATE_SPENDING_SUCCESS,
   UPDATE_SPENDING_ERROR,
+  REQUEST_ALL_SPENDINGS_PENDING,
+  REQUEST_ALL_SPENDINGS_SUCCESS,
+  REQUEST_ALL_SPENDINGS_ERROR,
 } from './types';
 
 const initialState = {
+  allSpendings: [],
   spendings: [],
   pagination: {
     total: undefined,
@@ -91,6 +95,22 @@ const reducer = (state = initialState, action) => {
         loading: false,
       };
     case UPDATE_SPENDING_ERROR:
+      return {
+        ...state,
+        loading: false,
+      };
+    case REQUEST_ALL_SPENDINGS_PENDING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case REQUEST_ALL_SPENDINGS_SUCCESS:
+      return {
+        ...state,
+        allSpendings: action.payload.allSpendings,
+        loading: false,
+      };
+    case REQUEST_ALL_SPENDINGS_ERROR:
       return {
         ...state,
         loading: false,
