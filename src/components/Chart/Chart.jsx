@@ -1,61 +1,42 @@
 import React, { useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { useSelector, useDispatch } from 'react-redux';
-import { requestAllSpendingsPending } from '../../redux/actions';
-import { getAllSpendings } from '../../redux/selectors';
+import { requestChartDataPending } from '../../redux/actions';
+import { getChartData } from '../../redux/selectors';
+import { ChartWrap } from './style';
 
 const Chart = () => {
-  const allSpendings = useSelector(getAllSpendings);
+  let other;
+  let shopping;
+  let entertainment;
+  let car;
+  let bills;
+  let food;
+  let home;
+  let education;
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const chartData = useSelector(getChartData);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(requestAllSpendingsPending());
+    dispatch(requestChartDataPending(currentYear));
   }, []);
 
-  const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
-
-  const getCategoryItems = (categoryName, items) => {
-    return items.filter((i) => i.category === categoryName);
+  const getCategoryAmounts = (categoryName) => {
+    return chartData.find((categoryItems) => categoryItems.category === categoryName).amounts;
   };
 
-  const getSpendingsforMonth = (year, categoryName) => {
-    const items = getCategoryItems(categoryName, allSpendings);
-    const arr = [];
-    for (let i = 0; i < 12; i++) { //eslint-disable-line
-      let sum = 0;
-      items.forEach((item) => {
-        if (
-          new Date(item.createdAt).getFullYear() === year &&
-          new Date(item.createdAt).getMonth() === i
-        ) {
-          if (item.currency === 'usd') {
-            sum += item.amount * 2.5;
-          }
-          if (item.currency === 'rub') {
-            sum += item.amount * 0.034;
-          }
-          if (item.currency === 'eur') {
-            sum += item.amount * 2.8;
-          }
-          if (item.currency === 'byn') {
-            sum += item.amount;
-          }
-        }
-      });
-      arr[i] = sum;
-    }
-    return arr;
-  };
-
-  const other = getSpendingsforMonth(currentYear, 'other');
-  const shopping = getSpendingsforMonth(currentYear, 'shopping');
-  const entertainment = getSpendingsforMonth(currentYear, 'entertainment');
-  const car = getSpendingsforMonth(currentYear, 'car');
-  const bills = getSpendingsforMonth(currentYear, 'bills');
-  const food = getSpendingsforMonth(currentYear, 'food');
-  const home = getSpendingsforMonth(currentYear, 'home');
-  const education = getSpendingsforMonth(currentYear, 'education');
+  if (chartData.length !== 0) {
+    other = getCategoryAmounts('other');
+    shopping = getCategoryAmounts('shopping');
+    entertainment = getCategoryAmounts('entertainment');
+    car = getCategoryAmounts('car');
+    bills = getCategoryAmounts('bills');
+    food = getCategoryAmounts('food');
+    home = getCategoryAmounts('home');
+    education = getCategoryAmounts('education');
+  }
 
   const data = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -105,17 +86,35 @@ const Chart = () => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     scales: {
       x: {
         stacked: true,
+        // display: false,
+        ticks: {
+          color: '#B2B2B2',
+          font: {
+            size: 12,
+          },
+        },
       },
       y: {
         stacked: true,
+        display: false,
+      },
+    },
+    plugins: {
+      legend: {
+        position: 'bottom',
       },
     },
   };
 
-  return <Bar data={data} options={options} />;
+  return (
+    <ChartWrap>
+      <Bar data={data} options={options} />
+    </ChartWrap>
+  );
 };
 
 export default Chart;

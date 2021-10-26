@@ -11,14 +11,15 @@ import {
   UPDATE_SPENDING_PENDING,
   UPDATE_SPENDING_SUCCESS,
   UPDATE_SPENDING_ERROR,
-  REQUEST_ALL_SPENDINGS_PENDING,
-  REQUEST_ALL_SPENDINGS_SUCCESS,
-  REQUEST_ALL_SPENDINGS_ERROR,
+  REQUEST_CHART_DATA_PENDING,
+  REQUEST_CHART_DATA_SUCCESS,
+  REQUEST_CHART_DATA_ERROR,
 } from './types';
 
 const initialState = {
   allSpendings: [],
   spendings: [],
+  chartData: [],
   pagination: {
     total: undefined,
     page: 1,
@@ -99,18 +100,18 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
       };
-    case REQUEST_ALL_SPENDINGS_PENDING:
+    case REQUEST_CHART_DATA_PENDING:
       return {
         ...state,
         loading: true,
       };
-    case REQUEST_ALL_SPENDINGS_SUCCESS:
+    case REQUEST_CHART_DATA_SUCCESS:
       return {
         ...state,
-        allSpendings: action.payload.allSpendings,
+        chartData: action.payload.chartData,
         loading: false,
       };
-    case REQUEST_ALL_SPENDINGS_ERROR:
+    case REQUEST_CHART_DATA_ERROR:
       return {
         ...state,
         loading: false,

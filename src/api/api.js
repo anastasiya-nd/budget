@@ -26,6 +26,13 @@ const spendings = {
   updateSpending(id, spending) {
     return instance.patch(`/spendings/${id}`, spending);
   },
+  getChartData(year) {
+    return instance.get('/chart', {
+      params: {
+        year,
+      },
+    });
+  },
 };
 
 export default spendings;

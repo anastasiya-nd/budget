@@ -11,6 +11,9 @@ import {
   UPDATE_SPENDING_PENDING,
   UPDATE_SPENDING_SUCCESS,
   UPDATE_SPENDING_ERROR,
+  REQUEST_CHART_DATA_PENDING,
+  REQUEST_CHART_DATA_SUCCESS,
+  REQUEST_CHART_DATA_ERROR,
 } from './types';
 
 export const requestSpendingsPending = (page, perPage, category, labels, start, end) => {
@@ -117,5 +120,29 @@ export const updateSpendingSuccess = (id, spending) => {
 export const updateSpendingError = () => {
   return {
     type: UPDATE_SPENDING_ERROR,
+  };
+};
+
+export const requestChartDataPending = (year) => {
+  return {
+    type: REQUEST_CHART_DATA_PENDING,
+    payload: {
+      year,
+    },
+  };
+};
+
+export const requestChartDataSuccess = (chartData) => {
+  return {
+    type: REQUEST_CHART_DATA_SUCCESS,
+    payload: {
+      chartData,
+    },
+  };
+};
+
+export const requestChartDataError = () => {
+  return {
+    type: REQUEST_CHART_DATA_ERROR,
   };
 };

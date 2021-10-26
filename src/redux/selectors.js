@@ -6,4 +6,4 @@ export const getLoadingValue = (state) => state.isLoading;
 
 export const getSpendingById = (state, id) => state.spendings.find((s) => s._id === id); //eslint-disable-line
 
-export const getAllSpendings = (state) => state.allSpendings;
+export const getChartData = (state) => state.chartData;
